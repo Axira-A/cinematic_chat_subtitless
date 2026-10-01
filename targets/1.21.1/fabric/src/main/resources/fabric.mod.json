@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "cinematic_chat",
+  "version": "${version}",
+  "name": "Cinematic Chat",
+  "description": "Client-side cinematic chat subtitles, local CCML and optional pseudo voice.",
+  "environment": "client",
+  "license": "MIT",
+  "entrypoints": { "client": ["io.github.axiraa.cinematicchat.fabric.CinematicChatFabric"] },
+  "mixins": ["cinematic_chat.mixins.json", "cinematic_chat.fabric.mixins.json"],
+  "depends": { "fabricloader": ">=0.19.5", "minecraft": "${minecraft}", "java": ">=${javaVersion}", "fabric-api": "*" }
+}

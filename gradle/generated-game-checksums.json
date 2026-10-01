@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 1,
+  "loom": "1.15.5",
+  "algorithm": "SHA256 of sorted UTF8(name) + NUL + SHA256(entry bytes), excluding directory entries",
+  "targets": {
+    "1.21": {
+      "clientSha1": "0e9a07b9bb3390602f977073aa12884a4ce12431",
+      "serverSha1": "450698d1863ab5180c25d7c804ef0fe6369dd1ba",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21-loom.mappings.1_21.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21-loom.mappings.1_21.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21-loom.mappings.1_21.layered+hash.2198-v2/minecraft-merged-1.21-loom.mappings.1_21.layered+hash.2198-v2.jar",
+          "contentSha256": "cb9f27c1fc0d196288256968afdb1c30aedef8dfda66c6682561e82b50e24172",
+          "entryCount": 23517
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-c453a9ae23",
+          "version": "1.21-loom.mappings.1_21.layered+hash.2198-v2",
+          "file": "minecraft-merged-c453a9ae23-1.21-loom.mappings.1_21.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-c453a9ae23/1.21-loom.mappings.1_21.layered+hash.2198-v2/minecraft-merged-c453a9ae23-1.21-loom.mappings.1_21.layered+hash.2198-v2.jar",
+          "contentSha256": "7960b494551141919bd525e0f5f5a14e9c21c400b958647033125e3a51ebf7ae",
+          "entryCount": 23517
+        }
+      ]
+    },
+    "1.21.1": {
+      "clientSha1": "30c73b1c5da787909b2f73340419fdf13b9def88",
+      "serverSha1": "59353fb40c36d304f2035d51e7d6e6baa98dc05c",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.1-loom.mappings.1_21_1.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.1-loom.mappings.1_21_1.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.1-loom.mappings.1_21_1.layered+hash.2198-v2/minecraft-merged-1.21.1-loom.mappings.1_21_1.layered+hash.2198-v2.jar",
+          "contentSha256": "55070dbb41fc9c8225fc98b797dbe1369273b5d6829596951aaec67de232dfba",
+          "entryCount": 23517
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-9b5ff62f35",
+          "version": "1.21.1-loom.mappings.1_21_1.layered+hash.2198-v2",
+          "file": "minecraft-merged-9b5ff62f35-1.21.1-loom.mappings.1_21_1.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-9b5ff62f35/1.21.1-loom.mappings.1_21_1.layered+hash.2198-v2/minecraft-merged-9b5ff62f35-1.21.1-loom.mappings.1_21_1.layered+hash.2198-v2.jar",
+          "contentSha256": "bfc9ee8d4738ff838b5c3e100c3b93b81cc1705c90155cf5ddd7d146a3bd2e05",
+          "entryCount": 23517
+        }
+      ]
+    },
+    "1.21.2": {
+      "clientSha1": "c7ac2d0d86f4ca416cab9064ff8a281852ad0c7b",
+      "serverSha1": "7bf95409b0d9b5388bfea3704ec92012d273c14c",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.2-loom.mappings.1_21_2.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.2-loom.mappings.1_21_2.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.2-loom.mappings.1_21_2.layered+hash.2198-v2/minecraft-merged-1.21.2-loom.mappings.1_21_2.layered+hash.2198-v2.jar",
+          "contentSha256": "3ebf102843c3018b5b6d47592e4a8910c19dbfea1efdcd506d4c9bedc551074a",
+          "entryCount": 24561
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-a29c07fd92",
+          "version": "1.21.2-loom.mappings.1_21_2.layered+hash.2198-v2",
+          "file": "minecraft-merged-a29c07fd92-1.21.2-loom.mappings.1_21_2.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-a29c07fd92/1.21.2-loom.mappings.1_21_2.layered+hash.2198-v2/minecraft-merged-a29c07fd92-1.21.2-loom.mappings.1_21_2.layered+hash.2198-v2.jar",
+          "contentSha256": "b8fc4fbb5204e4219b9f7d8c02dc99869f818600f6fd0757cb6ae6d5d3a3e5bc",
+          "entryCount": 24561
+        }
+      ]
+    },
+    "1.21.3": {
+      "clientSha1": "6f67d19b4467240639cb2c368ffd4b94ba889705",
+      "serverSha1": "45810d238246d90e811d896f87b14695b7fb6839",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.3-loom.mappings.1_21_3.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.3-loom.mappings.1_21_3.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.3-loom.mappings.1_21_3.layered+hash.2198-v2/minecraft-merged-1.21.3-loom.mappings.1_21_3.layered+hash.2198-v2.jar",
+          "contentSha256": "a22bb59407970c3d7be2eb7cae54228719154e32a078e8763130d3225fb338e4",
+          "entryCount": 24562
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-fc511e2cda",
+          "version": "1.21.3-loom.mappings.1_21_3.layered+hash.2198-v2",
+          "file": "minecraft-merged-fc511e2cda-1.21.3-loom.mappings.1_21_3.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-fc511e2cda/1.21.3-loom.mappings.1_21_3.layered+hash.2198-v2/minecraft-merged-fc511e2cda-1.21.3-loom.mappings.1_21_3.layered+hash.2198-v2.jar",
+          "contentSha256": "75b115a7482a0e73bd670a3afd001efd00ec4325f881477ddf9f482fd2d299dc",
+          "entryCount": 24562
+        }
+      ]
+    },
+    "1.21.4": {
+      "clientSha1": "a7e5a6024bfd3cd614625aa05629adf760020304",
+      "serverSha1": "4707d00eb834b446575d89a61a11b5d548d8c001",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.4-loom.mappings.1_21_4.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.4-loom.mappings.1_21_4.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.4-loom.mappings.1_21_4.layered+hash.2198-v2/minecraft-merged-1.21.4-loom.mappings.1_21_4.layered+hash.2198-v2.jar",
+          "contentSha256": "82ab1c5fef16c18dbda58702f3b8d0c9e6e56b55542026977febc2e618e62683",
+          "entryCount": 25365
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-a172fc6613",
+          "version": "1.21.4-loom.mappings.1_21_4.layered+hash.2198-v2",
+          "file": "minecraft-merged-a172fc6613-1.21.4-loom.mappings.1_21_4.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-a172fc6613/1.21.4-loom.mappings.1_21_4.layered+hash.2198-v2/minecraft-merged-a172fc6613-1.21.4-loom.mappings.1_21_4.layered+hash.2198-v2.jar",
+          "contentSha256": "be2739fff6b05ccba4b61d44755c35db2d9d872c3a4d5f9f348c4bde711797b1",
+          "entryCount": 25365
+        }
+      ]
+    },
+    "1.21.5": {
+      "clientSha1": "b88808bbb3da8d9f453694b5d8f74a3396f1a533",
+      "serverSha1": "e6ec2f64e6080b9b5d9b471b291c33cc7f509733",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.5-loom.mappings.1_21_5.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.5-loom.mappings.1_21_5.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.5-loom.mappings.1_21_5.layered+hash.2198-v2/minecraft-merged-1.21.5-loom.mappings.1_21_5.layered+hash.2198-v2.jar",
+          "contentSha256": "947b95722e322f513f4bdec1e565e4fa0ce6720a7d201f09a14333f82ca01b71",
+          "entryCount": 25953
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-736b6061eb",
+          "version": "1.21.5-loom.mappings.1_21_5.layered+hash.2198-v2",
+          "file": "minecraft-merged-736b6061eb-1.21.5-loom.mappings.1_21_5.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-736b6061eb/1.21.5-loom.mappings.1_21_5.layered+hash.2198-v2/minecraft-merged-736b6061eb-1.21.5-loom.mappings.1_21_5.layered+hash.2198-v2.jar",
+          "contentSha256": "c4a0ad8b883fcc21013541e1dd81dba65e762af48f86d1dd3c7f0b3f790f4ef9",
+          "entryCount": 25953
+        }
+      ]
+    },
+    "1.21.6": {
+      "clientSha1": "740a125b83dd3447feaa3c5e891ead7fbb21ae28",
+      "serverSha1": "6e64dcabba3c01a7271b4fa6bd898483b794c59b",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.6-loom.mappings.1_21_6.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.6-loom.mappings.1_21_6.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.6-loom.mappings.1_21_6.layered+hash.2198-v2/minecraft-merged-1.21.6-loom.mappings.1_21_6.layered+hash.2198-v2.jar",
+          "contentSha256": "442400ebeb0395867cd2b50702b5f68cdc91eb4bb481ce6f88f50b1ba70126cc",
+          "entryCount": 26521
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-077c1ca8a6",
+          "version": "1.21.6-loom.mappings.1_21_6.layered+hash.2198-v2",
+          "file": "minecraft-merged-077c1ca8a6-1.21.6-loom.mappings.1_21_6.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-077c1ca8a6/1.21.6-loom.mappings.1_21_6.layered+hash.2198-v2/minecraft-merged-077c1ca8a6-1.21.6-loom.mappings.1_21_6.layered+hash.2198-v2.jar",
+          "contentSha256": "d5d6aa3003d3be32e7194b0a2e8fecdc56508b3f24281bc7014320e8385e08b0",
+          "entryCount": 26521
+        }
+      ]
+    },
+    "1.21.7": {
+      "clientSha1": "a2db1ea98c37b2d00c83f6867fb8bb581a593e07",
+      "serverSha1": "05e4b48fbc01f0385adb74bcff9751d34552486c",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.7-loom.mappings.1_21_7.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.7-loom.mappings.1_21_7.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.7-loom.mappings.1_21_7.layered+hash.2198-v2/minecraft-merged-1.21.7-loom.mappings.1_21_7.layered+hash.2198-v2.jar",
+          "contentSha256": "e361f690d3a3aa6cd5f86464445091682225165cfe36fb262bb6ef70633aa2a0",
+          "entryCount": 26528
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-077c1ca8a6",
+          "version": "1.21.7-loom.mappings.1_21_7.layered+hash.2198-v2",
+          "file": "minecraft-merged-077c1ca8a6-1.21.7-loom.mappings.1_21_7.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-077c1ca8a6/1.21.7-loom.mappings.1_21_7.layered+hash.2198-v2/minecraft-merged-077c1ca8a6-1.21.7-loom.mappings.1_21_7.layered+hash.2198-v2.jar",
+          "contentSha256": "f78cc8fd5c7ce8a6c1b062f5e0e94bd51974e2225418bb9f55792a637605b92e",
+          "entryCount": 26528
+        }
+      ]
+    },
+    "1.21.8": {
+      "clientSha1": "a19d9badbea944a4369fd0059e53bf7286597576",
+      "serverSha1": "6bce4ef400e4efaa63a13d5e6f6b500be969ef81",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2/minecraft-merged-1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2.jar",
+          "contentSha256": "adf489090d5270a433f4522ac17d216845d2c52e0f7fa393fa3893fd2aa81731",
+          "entryCount": 26529
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-6790506c70",
+          "version": "1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2",
+          "file": "minecraft-merged-6790506c70-1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-6790506c70/1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2/minecraft-merged-6790506c70-1.21.8-loom.mappings.1_21_8.layered+hash.2198-v2.jar",
+          "contentSha256": "e64d612c6d9ba01a350e4031f6d3b95f5b2cc56e1a5fa8eeb24ca3aefa9c24ed",
+          "entryCount": 26529
+        }
+      ]
+    },
+    "1.21.9": {
+      "clientSha1": "ce92fd8d1b2460c41ceda07ae7b3fe863a80d045",
+      "serverSha1": "11e54c2081420a4d49db3007e66c80a22579ff2a",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.9-loom.mappings.1_21_9.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.9-loom.mappings.1_21_9.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.9-loom.mappings.1_21_9.layered+hash.2198-v2/minecraft-merged-1.21.9-loom.mappings.1_21_9.layered+hash.2198-v2.jar",
+          "contentSha256": "715bf18aa23d0c8c62ebc50e8210a46000d4bb802c474b6a140a7569630acb4d",
+          "entryCount": 27643
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-42d054c137",
+          "version": "1.21.9-loom.mappings.1_21_9.layered+hash.2198-v2",
+          "file": "minecraft-merged-42d054c137-1.21.9-loom.mappings.1_21_9.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-42d054c137/1.21.9-loom.mappings.1_21_9.layered+hash.2198-v2/minecraft-merged-42d054c137-1.21.9-loom.mappings.1_21_9.layered+hash.2198-v2.jar",
+          "contentSha256": "479ecebb0e91dcf8d9492aa9c8a58ca59d5d1794e09a16adb455ba7d34765cd9",
+          "entryCount": 27643
+        }
+      ]
+    },
+    "1.21.10": {
+      "clientSha1": "d3bdf582a7fa723ce199f3665588dcfe6bf9aca8",
+      "serverSha1": "95495a7f485eedd84ce928cef5e223b757d2f764",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.10-loom.mappings.1_21_10.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.10-loom.mappings.1_21_10.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.10-loom.mappings.1_21_10.layered+hash.2198-v2/minecraft-merged-1.21.10-loom.mappings.1_21_10.layered+hash.2198-v2.jar",
+          "contentSha256": "5bcee7fc9ed5374620477dcac2d1083dd09ef5dbae330fa76a1a24e821ecfbaa",
+          "entryCount": 27643
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-6227aad8ee",
+          "version": "1.21.10-loom.mappings.1_21_10.layered+hash.2198-v2",
+          "file": "minecraft-merged-6227aad8ee-1.21.10-loom.mappings.1_21_10.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-6227aad8ee/1.21.10-loom.mappings.1_21_10.layered+hash.2198-v2/minecraft-merged-6227aad8ee-1.21.10-loom.mappings.1_21_10.layered+hash.2198-v2.jar",
+          "contentSha256": "2fc0bdfc8b73c12f3f89c1986c03af18be5a2d5ee8ecb6d245d3ed47ab8aec23",
+          "entryCount": 27643
+        }
+      ]
+    },
+    "1.21.11": {
+      "clientSha1": "ba2df812c2d12e0219c489c4cd9a5e1f0760f5bd",
+      "serverSha1": "64bb6d763bed0a9f1d632ec347938594144943ed",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged",
+          "version": "1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2",
+          "file": "minecraft-merged-1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged/1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2/minecraft-merged-1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2.jar",
+          "contentSha256": "9ce7f220d05976e0afc16f90ce9f947735c0bba72db41a85094821acf6a018c7",
+          "entryCount": 28161
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-2ae02fda0f",
+          "version": "1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2",
+          "file": "minecraft-merged-2ae02fda0f-1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-2ae02fda0f/1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2/minecraft-merged-2ae02fda0f-1.21.11-loom.mappings.1_21_11.layered+hash.2198-v2.jar",
+          "contentSha256": "d4848a428896096dbba761affb2aaf9bab7c3492042d13aa8e99b1df6d276294",
+          "entryCount": 28161
+        }
+      ]
+    },
+    "26.1": {
+      "clientSha1": "191771837687b766537a8c4607cb6fad79c533a1",
+      "serverSha1": "3872a7f07a1a595e651aef8b058dfc2bb3772f46",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-a26c9a9f3c",
+          "version": "26.1",
+          "file": "minecraft-merged-a26c9a9f3c-26.1.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-a26c9a9f3c/26.1/minecraft-merged-a26c9a9f3c-26.1.jar",
+          "contentSha256": "df2a45686d227f23c1360472766396b273905e2f05edfe3357db19a65d23b206",
+          "entryCount": 29433
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-deobf",
+          "version": "26.1",
+          "file": "minecraft-merged-deobf-26.1.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged-deobf/26.1/minecraft-merged-deobf-26.1.jar",
+          "contentSha256": "002c89e8279955da292197342edda4a8c5abe13f555cb97dca7f23d2e10fef6a",
+          "entryCount": 29433
+        }
+      ]
+    },
+    "26.1.1": {
+      "clientSha1": "377031a9e733ba8ab4d355959a8f6fb8eb707556",
+      "serverSha1": "49c8195703ad0ba4f0a4efbccfd85a4a8ca57431",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-a26c9a9f3c",
+          "version": "26.1.1",
+          "file": "minecraft-merged-a26c9a9f3c-26.1.1.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-a26c9a9f3c/26.1.1/minecraft-merged-a26c9a9f3c-26.1.1.jar",
+          "contentSha256": "eac674e5699c422e4f1a39b6705e1a0ed878d866cfe0d065b8a316eef6ca2993",
+          "entryCount": 29433
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-deobf",
+          "version": "26.1.1",
+          "file": "minecraft-merged-deobf-26.1.1.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged-deobf/26.1.1/minecraft-merged-deobf-26.1.1.jar",
+          "contentSha256": "1f7f76c9dd08d30f21fb77cb69724d2f2300323e72cd65584bde139ad816148c",
+          "entryCount": 29433
+        }
+      ]
+    },
+    "26.1.2": {
+      "clientSha1": "4e618f09a0c649dde3fdf829df443ce0b8831e65",
+      "serverSha1": "97ccd4c0ed3f81bbb7bfacddd1090b0c56f9bc51",
+      "artifacts": [
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-043a8b3edf",
+          "version": "26.1.2",
+          "file": "minecraft-merged-043a8b3edf-26.1.2.jar",
+          "scope": "project",
+          "path": "net/minecraft/minecraft-merged-043a8b3edf/26.1.2/minecraft-merged-043a8b3edf-26.1.2.jar",
+          "contentSha256": "24f49458d44587fb58d733d4a55ac6977dec797ecddd39b1ea1a1248472299aa",
+          "entryCount": 29433
+        },
+        {
+          "group": "net.minecraft",
+          "name": "minecraft-merged-deobf",
+          "version": "26.1.2",
+          "file": "minecraft-merged-deobf-26.1.2.jar",
+          "scope": "global",
+          "path": "net/minecraft/minecraft-merged-deobf/26.1.2/minecraft-merged-deobf-26.1.2.jar",
+          "contentSha256": "ad9919c29844965a103b457a1f00e7bb1945e3f25942597dbebbe02685647e35",
+          "entryCount": 29433
+        }
+      ]
+    }
+  }
+}

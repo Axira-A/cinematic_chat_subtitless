@@ -1,0 +1,38 @@
+// Loom remapped/processed game archives also use generation timestamps.
+// Verify the full entry set and bytes; only these exact local artifacts are
+// exempt from Gradle's ZIP-byte checksum. Downloaded inputs stay pinned.
+def gameBaseline=rootProject.repoFile('gradle/generated-game-checksums.json')
+def gameCache=new File(gradle.gradleUserHomeDir,"caches/fabric-loom/${targetSpec.minecraft}")
+def verifyGame=tasks.register('verifyGeneratedGame'){
+    inputs.file(gameBaseline)
+    doLast {
+        def data=new groovy.json.JsonSlurper().parse(gameBaseline)
+        def expected=data.targets[targetSpec.minecraft]
+        if(data.loom!='1.15.5'||expected==null)throw new GradleException("Missing reviewed generated game baseline for ${targetSpec.minecraft}")
+        def checksum={byte[] bytes,String algorithm->java.security.MessageDigest.getInstance(algorithm).digest(bytes).encodeHex().toString()}
+        ['client','server'].each { side ->
+            def actual=checksum(new File(gameCache,"minecraft-${side}.jar").bytes,'SHA-1')
+            if(actual!=expected[side+'Sha1'])throw new GradleException("Mojang ${side} game input checksum mismatch for ${targetSpec.minecraft}")
+        }
+        expected.artifacts.each { artifact ->
+            def base=artifact.scope=='global'?new File(gradle.gradleUserHomeDir,'caches/fabric-loom/minecraftMaven'):new File(rootProject.rootDir,'.gradle/loom-cache/minecraftMaven')
+            def path=new File(base,artifact.path)
+            new java.util.zip.ZipFile(path).withCloseable { zip ->
+                def entries=java.util.Collections.list(zip.entries()).findAll{!it.directory}.sort{it.name}
+                if(entries.size()!=artifact.entryCount||entries.collect{it.name}.toSet().size()!=entries.size())throw new GradleException("Generated game entry set mismatch for ${targetSpec.minecraft}: ${artifact.name}")
+                def result=java.security.MessageDigest.getInstance('SHA-256')
+                entries.each { entry ->
+                    result.update(entry.name.getBytes(java.nio.charset.StandardCharsets.UTF_8));result.update((byte)0)
+                    def digest=java.security.MessageDigest.getInstance('SHA-256')
+                    zip.getInputStream(entry).withCloseable { stream ->
+                        byte[] block=new byte[8192];int count;while((count=stream.read(block))!=-1)digest.update(block,0,count)
+                    }
+                    result.update(digest.digest())
+                }
+                if(result.digest().encodeHex().toString()!=artifact.contentSha256)throw new GradleException("Generated game content checksum mismatch for ${targetSpec.minecraft}: ${artifact.name}")
+            }
+        }
+    }
+}
+tasks.named('compileJava'){dependsOn verifyGame}
+tasks.named('check'){dependsOn verifyGame}

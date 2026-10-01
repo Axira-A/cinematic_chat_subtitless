@@ -1,0 +1,11 @@
+dependencies { api project(':minecraft-api') }
+tasks.register('verifyIsolation') {
+    inputs.files(fileTree('src/main/java'))
+    doLast {
+        fileTree('src/main/java').matching { include '**/*.java' }.each { f ->
+            if (f.text =~ /(?m)^import\s+(net\.minecraft|net\.fabricmc|net\.neoforged|org\.spongepowered|org\.lwjgl|com\.mojang|java\.io|java\.net|java\.nio\.file|java\.lang\.reflect|javax\.script|javax\.sound|java\.awt)/)
+                throw new GradleException("Forbidden engine dependency in ${f}")
+        }
+    }
+}
+tasks.named('check') { dependsOn 'verifyIsolation' }

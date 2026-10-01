@@ -1,0 +1,38 @@
+evaluationDependsOn(':minecraft-adapter')
+sourceSets { smoke { compileClasspath += sourceSets.main.output + configurations.compileClasspath + project(':minecraft-adapter').sourceSets.smoke.output; runtimeClasspath += sourceSets.main.output + configurations.runtimeClasspath + project(':minecraft-adapter').sourceSets.smoke.output } }
+java.toolchain.languageVersion = JavaLanguageVersion.of(targetSpec.java)
+dependencies {
+    minecraft "com.mojang:minecraft:${targetSpec.minecraft}"
+    if(targetSpec.java<25){
+        mappings loom.officialMojangMappings()
+        modImplementation 'net.fabricmc:fabric-loader:0.19.5'
+        modImplementation "net.fabricmc.fabric-api:fabric-api:${targetSpec.fabricApi}"
+        implementation project(path: ':minecraft-adapter',configuration: 'namedElements')
+    }else{
+        implementation 'net.fabricmc:fabric-loader:0.19.5'
+        implementation "net.fabricmc.fabric-api:fabric-api:${targetSpec.fabricApi}"
+        implementation project(':minecraft-adapter')
+    }
+}
+loom {
+    runs { client { client(); runDir 'run' }; smoke { client(); source sourceSets.smoke; runDir 'run-smoke'; vmArg '-Dcinematic_chat.smoke=true'; vmArg '-Dmixin.debug.export=true' } }
+    mods { cinematic_chat { sourceSet sourceSets.main; sourceSet project(':minecraft-adapter').sourceSets.main }; cinematic_chat_smoke { sourceSet sourceSets.smoke; sourceSet project(':minecraft-adapter').sourceSets.smoke } }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = targetSpec.java }
+jar {
+    archiveBaseName = 'cinematic-chat'
+    archiveVersion = "${project.version}+mc${targetSpec.minecraft}-fabric"
+    from project(':minecraft-adapter').sourceSets.main.output
+    from project(':client-common').sourceSets.main.output
+    from project(':engine').sourceSets.main.output
+    from project(':minecraft-api').sourceSets.main.output
+    from rootProject.repoFile('LICENSE')
+}
+tasks.named(targetSpec.java<25?'remapJar':'jar') { archiveFileName = "cinematic-chat-${project.version}+mc${targetSpec.minecraft}-fabric.jar" }
+apply from: rootProject.repoFile('build-logic/verify-jar.gradle')
+processResources { inputs.property 'version', project.version; inputs.property 'javaVersion',targetSpec.java; filesMatching('fabric.mod.json') { expand version: project.version, minecraft: targetSpec.minecraft, javaVersion:targetSpec.java } }
+tasks.named('runSmoke') {
+    dependsOn tasks.named('smokeClasses'),project(':minecraft-adapter').tasks.named('smokeClasses')
+    doFirst { delete file('run-smoke/smoke-report.json') }
+    doLast { def report=file('run-smoke/smoke-report.json');if(!report.exists()||new groovy.json.JsonSlurper().parse(report).passed!=true)throw new GradleException("Client smoke scenario failed: ${report}") }
+}

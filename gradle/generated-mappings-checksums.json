@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "loom": "1.15.5",
+  "mappingsCoordinate": "loom:mappings:layered+hash.2198",
+  "targets": {
+    "1.21": {
+      "tinySha256": "8fbc2e8037c72005551106091da7833ee60691009a8cdaf9c29c18bb6c43d3c4",
+      "clientSha1": "0530a206839eb1e9b35ec86acbbe394b07a2d9fb",
+      "serverSha1": "31c77994d96f05ba25a870ada70f47f315330437"
+    },
+    "1.21.1": {
+      "tinySha256": "e2ccb07abfc7f4a045c638fa746f36be44240fcca3346974c9a0894037342fe7",
+      "clientSha1": "2244b6f072256667bcd9a73df124d6c58de77992",
+      "serverSha1": "03f8985492bda0afc0898465341eb0acef35f570"
+    },
+    "1.21.10": {
+      "tinySha256": "3dd14e0ec39d246d5cf9b9b029b817a9492a3fb4eadbcd3396050ded9d367d4a",
+      "clientSha1": "7e62354a697f95cf5e7d5981face0583676a9ef7",
+      "serverSha1": "c5440743411a6fd7490fa18a4b6c5d8edf36d88b"
+    },
+    "1.21.11": {
+      "tinySha256": "27768369f33df3b3d8b68713e40a6252287a1477aeeeb56288c7dde74fc1da43",
+      "clientSha1": "031a68bebf55d824f66d6573d8c752f0e1bf232a",
+      "serverSha1": "5621e9253f05fd57872bbe7f8ddf5f9a7d525955"
+    },
+    "1.21.2": {
+      "tinySha256": "50452d31190bd6009d6f950dfca51eeebdc63d950ba4a4eabd67ce81d569c5b8",
+      "clientSha1": "ce0ed2eb99175df9ec5166324e3fdd1f87cee827",
+      "serverSha1": "ce1d4ab050af87c41fc3d51050ef6862385da784"
+    },
+    "1.21.3": {
+      "tinySha256": "9c91063fb07927dac06e4938ddccfbf34f0d8d3f019e076ac58872ba59ee8e3d",
+      "clientSha1": "42c2292dfc21de314dee5205760332c807cad411",
+      "serverSha1": "c70e10f72ea65bb97e156143fd97c852dc958325"
+    },
+    "1.21.4": {
+      "tinySha256": "c285ffc5a9ab27e3c1399aa0c97a6c0df0a65511ae32a26d40d9572d0cc7a5a3",
+      "clientSha1": "0cf2a0b7f056da1a5a5dd99fc6dc752f33987150",
+      "serverSha1": "0b1e60cc509cfb0172573ae56b436c29febbc187"
+    },
+    "1.21.5": {
+      "tinySha256": "5833372f431c4192b293239511e74dfe4144d6bac78e067d617f2b3490a0bc87",
+      "clientSha1": "57669731d542f98646772e91a0d68628f9827a5c",
+      "serverSha1": "f4812c1d66d0098a94616b19c21829e591d0af3a"
+    },
+    "1.21.6": {
+      "tinySha256": "13fc151b9642c9976ab5661140c83e0fdeddbed1c8b3edc91726c053b8673b7d",
+      "clientSha1": "848855615bc81e3db1c85e69b6afb150807a1261",
+      "serverSha1": "94d453080a58875d3acc1a9a249809767c91ed40"
+    },
+    "1.21.7": {
+      "tinySha256": "063a17ec13536abfbf002b3b66218c7dfaa422860edc4f183ea5b1c1a2e1bb72",
+      "clientSha1": "8d83af626cae1865deaf55fbf96934be4886fd45",
+      "serverSha1": "eb1e1eb47cb740012fc82eacc394859463684132"
+    },
+    "1.21.8": {
+      "tinySha256": "b8c1658a8843f28ff120973e054819286a84e9d0b8944e5fef5554926cf4cc54",
+      "clientSha1": "bdeb624c3aefba11d9d40f34bc96176350b549b6",
+      "serverSha1": "eb1e1eb47cb740012fc82eacc394859463684132"
+    },
+    "1.21.9": {
+      "tinySha256": "6f437c152b36bf474fd23616e3ed1d9d53cf446f1df0a72f3f1b4abb2d67900a",
+      "clientSha1": "3641ccb54eac2153c7e8274823c5a8e046beaba0",
+      "serverSha1": "587e016fe8a876cbc1cc98d73f9d0d79bfb32b2c"
+    }
+  }
+}

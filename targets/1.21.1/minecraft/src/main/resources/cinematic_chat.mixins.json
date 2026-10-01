@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.axiraa.cinematicchat.minecraft.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": ["ChatComponentMixin", "ChatHistoryAccessor", "SoundManagerAccessor", "SoundEngineAccessor", "SoundEngineLifecycleMixin", "MinecraftLifecycleMixin"],
+  "injectors": { "defaultRequire": 1 }
+}

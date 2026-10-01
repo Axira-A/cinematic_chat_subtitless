@@ -1,0 +1,8 @@
+def shared=rootProject.repoFile("targets/1.21.1/${targetSpec.loader}/src/main/java")
+def overrides=file('src/main/java')
+sourceSets.main.java.srcDir(overrides)
+sourceSets.main.java.exclude { entry -> entry.file.toPath().startsWith(shared.toPath()) && new File(overrides,entry.path).isFile() }
+if(targetSpec.java>=25)tasks.named('processResources') {
+    inputs.property('mixinJava',targetSpec.java)
+    filesMatching('*.mixins.json') { filter { it.replace('JAVA_21','JAVA_25') } }
+}

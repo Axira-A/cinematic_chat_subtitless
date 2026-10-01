@@ -1,0 +1,15 @@
+java.toolchain.languageVersion = JavaLanguageVersion.of(targetSpec.java)
+dependencies {
+    minecraft "com.mojang:minecraft:${targetSpec.minecraft}"
+    if(targetSpec.java<25){
+        mappings loom.officialMojangMappings()
+        modImplementation 'net.fabricmc:fabric-loader:0.19.5'
+    }else{
+        implementation 'net.fabricmc:fabric-loader:0.19.5'
+    }
+    api project(':client-common')
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = targetSpec.java }
+sourceSets { smoke { compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath; runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath } }
+apply from: rootProject.repoFile('build-logic/verify-generated-mappings.gradle')
+apply from: rootProject.repoFile('build-logic/verify-generated-game.gradle')

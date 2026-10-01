@@ -1,0 +1,28 @@
+{
+  "minecraft": "1.21.1",
+  "command": "legacy/gradlew.bat -p E:\\cinematic_chat_subtitless\\legacy -PmcVersion=1.21.1 -Ploader=fabric --no-parallel :minecraft-adapter:verifyGeneratedMappings -PdependencyCache=tools/.cache/maven --offline",
+  "testedAt": "2026-10-01T20:36:50.0899145Z",
+  "checks": [
+    {
+      "message": "Generated mapping content checksum mismatch",
+      "probe": "tinySha256",
+      "expectedFailure": true,
+      "logSha256": "c3e7e58f51f27e2569f16851060b3550874952c47713e2ee9d262c616c2de9fb",
+      "exitCode": 1
+    },
+    {
+      "message": "Mojang client mapping input checksum mismatch",
+      "probe": "clientSha1",
+      "expectedFailure": true,
+      "logSha256": "362ee907d815e3df24cf6be56fd546d5ade09ccb182cc6508e44d504e99f7eea",
+      "exitCode": 1
+    },
+    {
+      "probe": "restored",
+      "logSha256": "36090117d6cabe329a125f559faa772fdeb74932960aae850b1da5216f8e1a56",
+      "exitCode": 0,
+      "passed": true
+    }
+  ],
+  "baselineSha256": "16ea38349b3ceba52caa0111c65a34dbca9d20561ec65fff6c453194438e4d90"
+}

@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "gradle": {
+    "legacy": "9.2.1",
+    "modern": "9.4.0"
+  },
+  "modDev": "2.0.148",
+  "loom": "1.15.5",
+  "fabricLoader": "0.19.5",
+  "targets": [
+    {
+      "minecraft": "1.21",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.102.0+1.21",
+      "neoForge": "21.0.167",
+      "artifact": "cinematic-chat-0.1.0+mc1.21-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.102.0+1.21",
+      "neoForge": "21.0.167",
+      "artifact": "cinematic-chat-0.1.0+mc1.21-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.1",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.116.17+1.21.1",
+      "neoForge": "21.1.252",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.1-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.1",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.116.17+1.21.1",
+      "neoForge": "21.1.252",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.1-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.2",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.106.1+1.21.2",
+      "neoForge": "21.2.1-beta",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.2-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.2",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.106.1+1.21.2",
+      "neoForge": "21.2.1-beta",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.2-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.3",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.114.1+1.21.3",
+      "neoForge": "21.3.97",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.3-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.3",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.114.1+1.21.3",
+      "neoForge": "21.3.97",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.3-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.4",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.119.4+1.21.4",
+      "neoForge": "21.4.158",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.4-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.4",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.119.4+1.21.4",
+      "neoForge": "21.4.158",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.4-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.5",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.128.2+1.21.5",
+      "neoForge": "21.5.98",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.5-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.5",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.128.2+1.21.5",
+      "neoForge": "21.5.98",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.5-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.6",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.128.2+1.21.6",
+      "neoForge": "21.6.20-beta",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.6-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.6",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.128.2+1.21.6",
+      "neoForge": "21.6.20-beta",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.6-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.7",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.129.0+1.21.7",
+      "neoForge": "21.7.25-beta",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.7-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.7",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.129.0+1.21.7",
+      "neoForge": "21.7.25-beta",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.7-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.8",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.136.1+1.21.8",
+      "neoForge": "21.8.54",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.8-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.8",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.136.1+1.21.8",
+      "neoForge": "21.8.54",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.8-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.9",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.134.1+1.21.9",
+      "neoForge": "21.9.16-beta",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.9-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.9",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.134.1+1.21.9",
+      "neoForge": "21.9.16-beta",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.9-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.10",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.138.4+1.21.10",
+      "neoForge": "21.10.64",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.10-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.10",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.138.4+1.21.10",
+      "neoForge": "21.10.64",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.10-fabric.jar"
+    },
+    {
+      "minecraft": "1.21.11",
+      "loader": "neoforge",
+      "java": 21,
+      "fabricApi": "0.141.6+1.21.11",
+      "neoForge": "21.11.45",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.11-neoforge.jar"
+    },
+    {
+      "minecraft": "1.21.11",
+      "loader": "fabric",
+      "java": 21,
+      "fabricApi": "0.141.6+1.21.11",
+      "neoForge": "21.11.45",
+      "artifact": "cinematic-chat-0.1.0+mc1.21.11-fabric.jar"
+    },
+    {
+      "minecraft": "26.1",
+      "loader": "neoforge",
+      "java": 25,
+      "fabricApi": "0.145.1+26.1",
+      "neoForge": "26.1.0.19-beta",
+      "artifact": "cinematic-chat-0.1.0+mc26.1-neoforge.jar"
+    },
+    {
+      "minecraft": "26.1",
+      "loader": "fabric",
+      "java": 25,
+      "fabricApi": "0.145.1+26.1",
+      "neoForge": "26.1.0.19-beta",
+      "artifact": "cinematic-chat-0.1.0+mc26.1-fabric.jar"
+    },
+    {
+      "minecraft": "26.1.1",
+      "loader": "neoforge",
+      "java": 25,
+      "fabricApi": "0.145.4+26.1.1",
+      "neoForge": "26.1.1.15-beta",
+      "artifact": "cinematic-chat-0.1.0+mc26.1.1-neoforge.jar"
+    },
+    {
+      "minecraft": "26.1.1",
+      "loader": "fabric",
+      "java": 25,
+      "fabricApi": "0.145.4+26.1.1",
+      "neoForge": "26.1.1.15-beta",
+      "artifact": "cinematic-chat-0.1.0+mc26.1.1-fabric.jar"
+    },
+    {
+      "minecraft": "26.1.2",
+      "loader": "neoforge",
+      "java": 25,
+      "fabricApi": "0.155.3+26.1.2",
+      "neoForge": "26.1.2.112",
+      "artifact": "cinematic-chat-0.1.0+mc26.1.2-neoforge.jar"
+    },
+    {
+      "minecraft": "26.1.2",
+      "loader": "fabric",
+      "java": 25,
+      "fabricApi": "0.155.3+26.1.2",
+      "neoForge": "26.1.2.112",
+      "artifact": "cinematic-chat-0.1.0+mc26.1.2-fabric.jar"
+    }
+  ]
+}

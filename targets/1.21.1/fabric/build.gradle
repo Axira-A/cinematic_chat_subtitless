@@ -1,0 +1,33 @@
+plugins { id 'java-library'; id 'net.fabricmc.fabric-loom-remap' version '1.15.5' }
+evaluationDependsOn(':minecraft-adapter')
+sourceSets { smoke { compileClasspath += sourceSets.main.output + configurations.compileClasspath + project(':minecraft-adapter').sourceSets.smoke.output; runtimeClasspath += sourceSets.main.output + configurations.runtimeClasspath + project(':minecraft-adapter').sourceSets.smoke.output } }
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+dependencies {
+    minecraft 'com.mojang:minecraft:1.21.1'
+    mappings loom.officialMojangMappings()
+    modImplementation 'net.fabricmc:fabric-loader:0.19.5'
+    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.116.17+1.21.1'
+    implementation project(path: ':minecraft-adapter',configuration: 'namedElements')
+}
+loom {
+    runs { client { client(); runDir 'run' }; smoke { client(); source sourceSets.smoke; runDir 'run-smoke'; vmArg '-Dcinematic_chat.smoke=true'; vmArg '-Dmixin.debug.export=true' } }
+    mods { cinematic_chat { sourceSet sourceSets.main; sourceSet project(':minecraft-adapter').sourceSets.main }; cinematic_chat_smoke { sourceSet sourceSets.smoke; sourceSet project(':minecraft-adapter').sourceSets.smoke } }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 21 }
+jar {
+    archiveBaseName = 'cinematic-chat'
+    archiveVersion = "${project.version}+mc1.21.1-fabric"
+    from project(':minecraft-adapter').sourceSets.main.output
+    from project(':client-common').sourceSets.main.output
+    from project(':engine').sourceSets.main.output
+    from project(':minecraft-api').sourceSets.main.output
+    from rootProject.repoFile('LICENSE')
+}
+processResources { inputs.property 'version', project.version; filesMatching('fabric.mod.json') { expand version: project.version, minecraft: '1.21.1', javaVersion:21 } }
+tasks.named('remapJar') { archiveFileName = "cinematic-chat-${project.version}+mc1.21.1-fabric.jar" }
+apply from: rootProject.repoFile('build-logic/verify-jar.gradle')
+tasks.named('runSmoke') {
+    dependsOn tasks.named('smokeClasses'),project(':minecraft-adapter').tasks.named('smokeClasses')
+    doFirst { delete file('run-smoke/smoke-report.json') }
+    doLast { def report=file('run-smoke/smoke-report.json');if(!report.exists()||new groovy.json.JsonSlurper().parse(report).passed!=true)throw new GradleException("Client smoke scenario failed: ${report}") }
+}

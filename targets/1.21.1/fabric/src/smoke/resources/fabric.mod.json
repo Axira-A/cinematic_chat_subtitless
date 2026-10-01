@@ -1,0 +1,1 @@
+{"schemaVersion":1,"id":"cinematic_chat_smoke","version":"1","environment":"client","entrypoints":{"client":["io.github.axiraa.cinematicchat.smoke.FabricSmokeTest"]},"depends":{"cinematic_chat":"*"}}

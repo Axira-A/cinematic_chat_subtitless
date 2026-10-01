@@ -1,0 +1,23 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+[[mods]]
+modId="cinematic_chat"
+version="${version}"
+displayName="Cinematic Chat"
+authors="Cinematic Chat contributors"
+description='''Client-side cinematic subtitles, safe CCML, a HUD editor and optional local pseudo voice.'''
+[[dependencies.cinematic_chat]]
+modId="neoforge"
+type="required"
+versionRange="[${neo},)"
+ordering="NONE"
+side="CLIENT"
+[[dependencies.cinematic_chat]]
+modId="minecraft"
+type="required"
+versionRange="[${minecraft}]"
+ordering="NONE"
+side="CLIENT"
+[[mixins]]
+config="cinematic_chat.mixins.json"

@@ -1,0 +1,12 @@
+pluginManagement {
+    repositories {
+        if(providers.gradleProperty('dependencyCache').isPresent())maven { url = new File(settingsDir.parentFile,providers.gradleProperty('dependencyCache').get()) }
+        gradlePluginPortal()
+        maven { url = 'https://maven.neoforged.net/releases' }
+        maven { url = 'https://maven.fabricmc.net/' }
+    }
+}
+rootProject.name='cinematic-chat-legacy'
+ext.repositoryRoot=settingsDir.parentFile
+gradle.ext.repositoryRoot=repositoryRoot
+apply from: new File(repositoryRoot,'build-logic/settings-targets.gradle')

@@ -1,0 +1,36 @@
+ext.repositoryRoot = gradle.ext.has('repositoryRoot') ? gradle.ext.repositoryRoot : rootDir
+ext.repoFile = { String path -> def candidate=new File(path); candidate.isAbsolute()?candidate:new File(repositoryRoot,path) }
+apply from: repoFile('build-logic/target-properties.gradle')
+allprojects {
+    group = 'io.github.axiraa.cinematicchat'
+    version = providers.gradleProperty('modVersion').getOrElse('0.1.0')
+    dependencyLocking {
+        lockAllConfigurations()
+        def shared=name in ['minecraft-api','engine','client-common']
+        lockFile=rootProject.repoFile("gradle/dependency-locks/${shared?'shared':targetSpec.minecraft+'-'+targetSpec.loader}-${name}.lockfile")
+    }
+    repositories {
+        if (providers.gradleProperty('dependencyCache').isPresent()) maven { url = rootProject.repoFile(providers.gradleProperty('dependencyCache').get()) }
+        mavenCentral()
+    }
+    if(providers.gradleProperty('dependencyCache').isPresent())afterEvaluate {
+        repositories.withType(org.gradle.api.artifacts.repositories.MavenArtifactRepository).each { repository ->
+            if(repository.name in ['Mojang Meta','Mojang Minecraft Libraries'])repository.url=rootProject.repoFile(providers.gradleProperty('dependencyCache').get())
+        }
+    }
+}
+subprojects {
+    if (name in ['minecraft-api', 'engine', 'client-common']) {
+        if(rootProject.name=='cinematic-chat-modern')layout.buildDirectory=file('build-modern')
+        apply plugin: 'java-library'
+        java { toolchain.languageVersion = JavaLanguageVersion.of(21); withSourcesJar() }
+        tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 21 }
+        tasks.withType(Test).configureEach { useJUnitPlatform(); testLogging { events 'failed', 'skipped'; exceptionFormat = 'full' } }
+        dependencies {
+            testImplementation platform('org.junit:junit-bom:5.11.4')
+            testImplementation 'org.junit.jupiter:junit-jupiter'
+            testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+        }
+    }
+}
+tasks.register('check') { dependsOn ':engine:check', ':client-common:check' }

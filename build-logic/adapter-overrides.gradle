@@ -1,0 +1,13 @@
+// Compile shared adapter files once, replacing only files whose API changed in this target.
+def shared = rootProject.repoFile('targets/1.21.1/minecraft/src/main/java')
+def overrides = file('src/main/java')
+sourceSets.main.java.srcDir(overrides)
+sourceSets.main.java.exclude { entry ->
+    entry.file.toPath().startsWith(shared.toPath()) && (targetSpec.java>=25 || new File(overrides, entry.path).isFile())
+}
+def sharedSmoke = rootProject.repoFile('targets/1.21.1/minecraft/src/smoke/java')
+def smokeOverrides = file('src/smoke/java')
+sourceSets.smoke.java.srcDir(smokeOverrides)
+sourceSets.smoke.java.exclude { entry -> entry.file.toPath().startsWith(sharedSmoke.toPath()) && (targetSpec.java>=25 || new File(smokeOverrides,entry.path).isFile()) }
+
+if(targetSpec.java>=25)apply from: rootProject.repoFile('build-logic/modern-adapter-sources.gradle')

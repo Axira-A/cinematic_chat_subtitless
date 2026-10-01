@@ -1,0 +1,32 @@
+// Loom's local layered ZIP uses generation timestamps. Pin the mapping data,
+// its Mojang inputs and exact ZIP entry set; all external artifacts stay under
+// normal Gradle SHA-256 verification, including intermediary and Loom itself.
+if(targetSpec.java<25){
+    def baseline=rootProject.repoFile('gradle/generated-mappings-checksums.json')
+    def mappingDir=new File(gradle.gradleUserHomeDir,"caches/fabric-loom/${targetSpec.minecraft}/layered")
+    def mappingZip=new File(mappingDir,'loom.mappings-layered+hash.2198.jar')
+    def sourceDir=new File(mappingDir,'working_dir/layered_hash_2198/mojang')
+    def verify=tasks.register('verifyGeneratedMappings'){
+        inputs.file(baseline)
+        inputs.file(mappingZip)
+        inputs.files(new File(sourceDir,'client.txt'),new File(sourceDir,'server.txt'))
+        doLast {
+            def data=new groovy.json.JsonSlurper().parse(baseline)
+            def expected=data.targets[targetSpec.minecraft]
+            if(data.loom!='1.15.5'||expected==null)throw new GradleException("Missing reviewed generated mappings baseline for ${targetSpec.minecraft}")
+            def checksum={ byte[] bytes,String algorithm -> java.security.MessageDigest.getInstance(algorithm).digest(bytes).encodeHex().toString() }
+            ['client','server'].each { side ->
+                def actual=checksum(new File(sourceDir,"${side}.txt").bytes,'SHA-1')
+                if(actual!=expected[side+'Sha1'])throw new GradleException("Mojang ${side} mapping input checksum mismatch for ${targetSpec.minecraft}")
+            }
+            new java.util.zip.ZipFile(mappingZip).withCloseable { zip ->
+                def entries=java.util.Collections.list(zip.entries()).findAll{!it.directory}.collect{it.name}
+                if(entries!=['mappings/mappings.tiny'])throw new GradleException("Unexpected generated mapping ZIP contents: ${entries}")
+                def content=zip.getInputStream(zip.getEntry('mappings/mappings.tiny')).withCloseable{it.readAllBytes()}
+                if(checksum(content,'SHA-256')!=expected.tinySha256)throw new GradleException("Generated mapping content checksum mismatch for ${targetSpec.minecraft}")
+            }
+        }
+    }
+    tasks.named('compileJava'){dependsOn verify}
+    tasks.named('check'){dependsOn verify}
+}

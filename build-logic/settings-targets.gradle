@@ -1,0 +1,12 @@
+include 'minecraft-api', 'engine', 'client-common'
+['minecraft-api', 'engine', 'client-common'].each { project(":${it}").projectDir = new File(repositoryRoot, it) }
+if (!providers.gradleProperty('coreOnly').isPresent()) {
+    def mc = providers.gradleProperty('mcVersion').getOrElse('1.21.1')
+    def loader = providers.gradleProperty('loader').getOrElse('neoforge')
+    if (!(loader in ['fabric', 'neoforge'])) throw new GradleException("Unknown loader: ${loader}")
+    include 'minecraft-adapter', loader
+    project(':minecraft-adapter').projectDir = new File(repositoryRoot, "targets/${mc}/minecraft")
+    if(loader=='fabric')project(':minecraft-adapter').buildFileName='build-fabric.gradle'
+    project(":${loader}").projectDir = new File(repositoryRoot, "targets/${mc}/${loader}")
+    if (!project(":${loader}").projectDir.isDirectory()) throw new GradleException("Target ${mc}/${loader} has not been implemented yet; use -PcoreOnly for the engine.")
+}

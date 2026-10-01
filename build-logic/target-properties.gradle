@@ -1,0 +1,6 @@
+def baseline = new groovy.json.JsonSlurper().parse(rootProject.repoFile('gradle/targets.json'))
+def requestedMinecraft = providers.gradleProperty('mcVersion').getOrElse('1.21.1')
+def requestedLoader = providers.gradleProperty('loader').getOrElse('neoforge')
+def selected = baseline.targets.find { it.minecraft == requestedMinecraft && it.loader == requestedLoader }
+if (selected == null) throw new GradleException("Unknown target ${requestedMinecraft}/${requestedLoader}")
+allprojects { ext.targetSpec = selected }

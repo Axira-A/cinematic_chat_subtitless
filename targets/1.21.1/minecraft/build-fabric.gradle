@@ -1,0 +1,12 @@
+plugins { id 'java-library'; id 'net.fabricmc.fabric-loom-remap' version '1.15.5' }
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+dependencies {
+    minecraft 'com.mojang:minecraft:1.21.1'
+    mappings loom.officialMojangMappings()
+    modImplementation 'net.fabricmc:fabric-loader:0.19.5'
+    api project(':client-common')
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 21 }
+sourceSets { smoke { compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath; runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath } }
+apply from: rootProject.repoFile('build-logic/verify-generated-mappings.gradle')
+apply from: rootProject.repoFile('build-logic/verify-generated-game.gradle')

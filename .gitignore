@@ -1,0 +1,15 @@
+.gradle/
+**/build/
+**/run/
+**/run-*/
+**/build-modern/
+**/logs/
+**/crash-reports/
+.idea/
+*.iml
+.vscode/
+dist/
+tools/.cache/
+*.hprof
+**/__pycache__/
+*.pyc

@@ -1,0 +1,137 @@
+[
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:08.2542427Z",
+    "startedAt": "2026-10-01T20:26:06.0576472Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21",
+    "logSha256": "91f67789cecf2f45f7fb8e3666dbb43ac36847b00c6388418390856ec1000fc4"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.1 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:11.4545185Z",
+    "startedAt": "2026-10-01T20:26:08.2605869Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.1",
+    "logSha256": "f9e358e0b23b1397fe4d18a9fddd2d40ece86d96e24da1fcda14b7966cd0c6f4"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.2 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:24.0099711Z",
+    "startedAt": "2026-10-01T20:26:11.4550253Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.2",
+    "logSha256": "c5f9ef0f546f72557de0d36f55d68e92cd5b543057d6b4e85cbfc5046be0c9d0"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.3 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:35.3210606Z",
+    "startedAt": "2026-10-01T20:26:24.0105130Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.3",
+    "logSha256": "88172ccaced407d3aed9061b7af3cd405da859d97146b7cc4e955f0041abf392"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.4 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:38.7197024Z",
+    "startedAt": "2026-10-01T20:26:35.3215338Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.4",
+    "logSha256": "9c8710d34e638d8df728335f2bc2328cb74696d04afc11cc24179190da64eb11"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.5 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:42.0589278Z",
+    "startedAt": "2026-10-01T20:26:38.7201243Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.5",
+    "logSha256": "fe07c1b708ea285fb359ff455f9f1df82532f282ad9b258e06e7fb9999e446ae"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.6 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:45.3806166Z",
+    "startedAt": "2026-10-01T20:26:42.0593528Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.6",
+    "logSha256": "b974b9f6a22802c89e9ca0f3dec897b3403c765c79e7f424d62c2b238ae183f7"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.7 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:48.6723621Z",
+    "startedAt": "2026-10-01T20:26:45.3809537Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.7",
+    "logSha256": "baf894638c07213a7cc4195cce6287ea827e9f85a53d7ce7d260e28b47487374"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.8 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:52.0520629Z",
+    "startedAt": "2026-10-01T20:26:48.6727180Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.8",
+    "logSha256": "037a7cb4b9660372f7b85104486cbbbdcb6db71a9cb8d8da29038fce59dd18be"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.9 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:55.4467880Z",
+    "startedAt": "2026-10-01T20:26:52.0524389Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.9",
+    "logSha256": "f5cdc3283f265414dfcef6a89d36cf6f96cc20d5a65edc32de0d35068a8094b7"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.10 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:26:58.7728320Z",
+    "startedAt": "2026-10-01T20:26:55.4471421Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.10",
+    "logSha256": "46038d7c33b194ce9d7d125b7d45f8b55cc59ec70efa0c5c34b3318c712d89a0"
+  },
+  {
+    "command": "legacy/gradlew.bat -p legacy -PmcVersion=1.21.11 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:27:02.4888050Z",
+    "startedAt": "2026-10-01T20:26:58.7732083Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "1.21.11",
+    "logSha256": "ad90de536b16eeeebf12991be3836f0281636f4c9b75e34b6d76a507617f4eb6"
+  },
+  {
+    "command": "modern/gradlew.bat -p modern -PmcVersion=26.1 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:27:05.6882996Z",
+    "startedAt": "2026-10-01T20:27:02.4891036Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "26.1",
+    "logSha256": "90bbc742096366c47866fd23970ed7be62abdcaa64a4d88fc41d3ef71a11bda0"
+  },
+  {
+    "command": "modern/gradlew.bat -p modern -PmcVersion=26.1.1 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:27:07.9149149Z",
+    "startedAt": "2026-10-01T20:27:05.6885971Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "26.1.1",
+    "logSha256": "eda65036f11348e4701c05177eca18af84fdb508a6c4ec350a5ebdae95f1b35d"
+  },
+  {
+    "command": "modern/gradlew.bat -p modern -PmcVersion=26.1.2 -Ploader=fabric -PdependencyCache=tools/.cache/maven --offline --no-parallel :fabric:build check",
+    "finishedAt": "2026-10-01T20:27:10.3362771Z",
+    "startedAt": "2026-10-01T20:27:07.9152791Z",
+    "exitCode": 0,
+    "generatedGameVerified": true,
+    "minecraft": "26.1.2",
+    "logSha256": "8f83b7095c2150838c9904f7a2f648f2f65051646ef9ad613a7945fa793f84ba"
+  }
+]

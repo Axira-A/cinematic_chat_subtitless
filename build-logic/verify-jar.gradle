@@ -1,0 +1,37 @@
+def releaseTask=targetSpec.loader=='fabric'&&targetSpec.java<25?'remapJar':'jar'
+tasks.register('verifyModJar') {
+    dependsOn tasks.named(releaseTask)
+    inputs.file(tasks.named(releaseTask).flatMap { it.archiveFile })
+    doLast {
+        def artifact=tasks.named(releaseTask).get().archiveFile.get().asFile
+        def zip=new java.util.zip.ZipFile(artifact)
+        try {
+            def names=zip.entries().collect { it.name }.toSet()
+            ['api/ChatEnvelope.class','engine/CcmlParser.class','client/CinematicConfig.class','minecraft/CinematicChatClient.class'].each { suffix ->
+                if(!names.contains("io/github/axiraa/cinematicchat/${suffix}".toString()))throw new GradleException("Shared runtime missing from ${artifact}: ${suffix}")
+            }
+            if(names.any { it.startsWith('io/github/axiraa/cinematicchat/smoke/') || it.startsWith('net/minecraft/') })throw new GradleException('Development scenario or Minecraft classes leaked into release JAR')
+            if(!names.contains('LICENSE'))throw new GradleException('MIT license missing')
+            names.findAll { it.endsWith('.mixins.json') }.each { name ->
+                def mixins=new groovy.json.JsonSlurper().parse(zip.getInputStream(zip.getEntry(name)))
+                if(mixins.required!=true || mixins.injectors.defaultRequire!=1)throw new GradleException("Mixin hooks must be required: ${name}")
+                mixins.client.each { type -> if(!names.contains(mixins.package.replace('.','/')+'/'+type+'.class'))throw new GradleException("Missing Mixin class ${type}") }
+            }
+            names.findAll { it.endsWith('.class') }.each { name ->
+                def data=new DataInputStream(zip.getInputStream(zip.getEntry(name)))
+                try { data.skipBytes(6);int major=data.readUnsignedShort();int ceiling=(name==~/^io\/github\/axiraa\/cinematicchat\/(api|engine|client)\/.*/)?65:targetSpec.java+44
+                    if(major>ceiling)throw new GradleException("Wrong bytecode level ${major} in ${name}")
+                }finally{data.close()}
+            }
+            if(targetSpec.loader=='fabric') {
+                def metadata=new groovy.json.JsonSlurper().parse(zip.getInputStream(zip.getEntry('fabric.mod.json')))
+                if(metadata.environment!='client'||metadata.depends.minecraft!=targetSpec.minecraft)throw new GradleException('Fabric client metadata or exact Minecraft version mismatch')
+            }else{
+                String metadata=zip.getInputStream(zip.getEntry('META-INF/neoforge.mods.toml')).getText('UTF-8')
+                if(!metadata.contains('versionRange="['+targetSpec.minecraft+']"'))throw new GradleException('NeoForge exact Minecraft version mismatch')
+            }
+            logger.lifecycle("Verified bundled runtime, bytecode, required Mixins and metadata: ${artifact.name}")
+        }finally{zip.close()}
+    }
+}
+tasks.named('build') { dependsOn 'verifyModJar' }
