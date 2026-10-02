@@ -44,7 +44,7 @@
 | 34 | 三十四、CCML 示例测试 | RequiredFixtureTest / EngineTest | 原需求完整 A–H fixture、fade 范围与演出语义 Core |
 | 35 | 三十五、Core Unit Tests | EngineTest / ClientCommonTest / VoiceRuntimeTest | 纯 Java 测试结果汇总 core-tests.json |
 | 36 | 三十六、Minecraft Integration Tests | ClientScenario / NativeSmokeProbes | 每目标真实临时世界、日志、JSON 与 17 张截图 |
-| 37 | 三十七、版本兼容 CI | .github/workflows/matrix.yml | 完整 30 行 CI；首次远端运行依赖校验失败，当前状态见 docs/ci-status.md |
+| 37 | 三十七、版本兼容 CI | .github/workflows/matrix.yml | Windows 与 Ubuntu 24.04 各 30/30 自动通过；远端任务和 hash 见 ci-matrix.json，历史见 docs/ci-status.md |
 | 38 | 三十八、Gradle 策略 | legacy / modern / convention scripts | Gradle 9.2.1/9.4.0，Java 21/25，锁文件与 SHA-256 严格构建 |
 | 39 | 三十九、Artifact 命名 | target-properties.gradle / verifyModJar | 每 MC/Loader 独立命名；dist JAR hash |
 | 40 | 四十、不要提交构建产物 | .gitignore / .gitattributes | 构建/运行/缓存不入 Git，脚本行尾规则；暂存清单检查 |
@@ -56,7 +56,7 @@
 | 46 | 四十六、代码质量 | 职责分离 / 版本 override | 源码审阅、verifyIsolation；Mixin 仅桥接，业务复用 |
 | 47 | 四十七、线程安全 | incoming queue / IO executor / audio executor | 线程所有权源码；保存/重载顺序与迟到音频完成 Core |
 | 48 | 四十八、Render State | GuiPose / SubtitleRenderer | 官方 GUI API 与 pose push/pop；实际所有目标渲染 |
-| 49 | 四十九、版本差异必须局部化 | targets/<版本> / modern source transform | 编译期版本差异，不在 engine 使用版本判断 |
+| 49 | 四十九、版本差异必须局部化 | adapters/api / adapters/overrides / source-layout.json | 显式 API 家族与编译期源码选择，不在 engine 使用版本判断 |
 | 50 | 五十、最终交付 | docs/final-report.md | 12 项交付总结、关键文件、实际结果与限制 |
 | 51 | 五十一、可视化 HUD 编辑器 | SubtitleHudEditorScreen | 原生 Screen、/cchat hud Native；独立预览队列 |
 | 52 | 五十二、字幕 HUD 可拖拽 | HudEditorModel / SubtitleHudEditorScreen | 自由拖动与工作副本 Native，归一化坐标 Core |

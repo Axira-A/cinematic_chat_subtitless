@@ -5,6 +5,9 @@ import re
 import xml.etree.ElementTree as ET
 
 root = Path(__file__).resolve().parents[2]
+
+for entry in ('tools/build/build-matrix.ps1', 'tools/build/build-matrix.sh'):
+    assert (root / entry).is_file(), f'Missing matrix build entry point: {entry}'
 targets = json.loads((root / 'gradle/targets.json').read_text(encoding='utf-8'))['targets']
 layout = json.loads((root / 'gradle/source-layout.json').read_text(encoding='utf-8'))
 assert layout['schemaVersion'] == 1

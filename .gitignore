@@ -1,5 +1,9 @@
 .gradle/
 **/build/
+!tools/build/
+tools/build/*
+!tools/build/build-matrix.ps1
+!tools/build/build-matrix.sh
 **/run/
 **/run-*/
 **/build-modern/

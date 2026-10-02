@@ -4,7 +4,7 @@
 
 **15 个 Minecraft 版本 × NeoForge / Fabric，共 30 个目标** 已实现并独立编译、启动和运行临时世界自动场景，覆盖 1.21 至 1.21.11、26.1、26.1.1、26.1.2。当前产物属于实验版本：已认证 Signed Chat、人工听感和部分实体输入验收仍待验证，尚不标记 Supported。逐目标证据与限制见 [实际验证](docs/validation.md) 和 [验收清单](docs/acceptance.md)。
 
-本机与 GitHub Actions 的结果分别记录：[远端 CI 状态](docs/ci-status.md)。首次远端构建因缺少依赖元数据校验失败，修复后按真实运行结果更新。
+Windows 本机和 Ubuntu 24.04 GitHub Actions 均完成 30/30 目标的构建、启动和临时世界自动场景。最新完整 [CI 运行](https://github.com/Axira-A/cinematic_chat_subtitless/actions/runs/36959424117) 已通过；逐目标证据与历史失败见 [远端 CI 状态](docs/ci-status.md)。
 
 项目结构、开发脚本、分支策略和 26.1.x 显式 API 兼容层的整改见 [审查与修改记录](docs/refactor-review.md)。
 

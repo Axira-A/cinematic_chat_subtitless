@@ -6,6 +6,8 @@
 
 `minecraft-api` 提供纯 Java 契约；`engine` 实现 CCML、Unicode、时间线、队列、动画和布局；`client-common` 实现配置、编辑模型、预设、声线与异步文件缓存；版本 adapter 提供 Component、Screen、绘制和 native audio；Loader 只做客户端初始化、事件、命令、按键与 metadata。共享业务随每个 JAR 打包。
 
+兼容层整改已移除构建时 Java 字符串替换，采用 `adapters/common`、显式 API 家族及版本清单选择 override。adapter 和目标目录的 Java 文件从 141 个减少至 74 个，没有字节一致的重复文件。开发脚本按用途分目录，继续在一个集成分支维护全部目标。详情见 [审查与修改记录](refactor-review.md)。
+
 源码导航：[API](../minecraft-api/src/main/java/io/github/axiraa/cinematicchat/api/ChatEnvelope.java)、[parser](../engine/src/main/java/io/github/axiraa/cinematicchat/engine/CcmlParser.java)、[controller](../client-common/src/main/java/io/github/axiraa/cinematicchat/client/SubtitleController.java)、[参考客户端](../adapters/common/minecraft/src/main/java/io/github/axiraa/cinematicchat/minecraft/CinematicChatClient.java)。详见 [架构](architecture.md)。
 
 ## 2. 已完成功能
@@ -56,6 +58,8 @@ legacy：Java 21、Gradle 9.2.1、Mojang Official Mappings；modern：Java 25、
 
 53 个纯 Java 测试通过；原需求 A–H fixture、SAFE/ALL 累计上限、SYSTEM_ONLY 来源、fade 范围、长文本视口、30/60/144/240 FPS 模拟、编辑模型、声线随机化/节流和 reload 竞态有专门断言。每目标独立执行 Build、Launch、临时世界场景与原生音频检查，详情在 [实际验证](validation.md)。原生声音参数读取真实 AL_GAIN/AL_PITCH，测试代码不进入发布 JAR。
 
+整改后的本机回归覆盖 30 个客户端，保留 510 张截图；最终严格构建复查的 30 个 JAR hash 与场景产物一致。新重映射依赖内容校验覆盖 12 个旧版 Fabric 目标，错误内容、文件集合和 artifact 集合三个探针均按预期失败，恢复后通过。Ubuntu 24.04 的 [完整 CI](https://github.com/Axira-A/cinematic_chat_subtitless/actions/runs/36959424117) 也已通过核心测试与全部 30 个目标的构建、启动和自动世界场景；逐目标远端 JAR/日志 hash 见 [ci-matrix.json](validation/ci-matrix.json)，历史记录见 [CI 状态](ci-status.md)。
+
 关键测试：[EngineTest](../engine/src/test/java/io/github/axiraa/cinematicchat/engine/EngineTest.java)、[ClientCommonTest](../client-common/src/test/java/io/github/axiraa/cinematicchat/client/ClientCommonTest.java)、[VoiceRuntimeTest](../client-common/src/test/java/io/github/axiraa/cinematicchat/client/VoiceRuntimeTest.java)、[ClientScenario](../adapters/common/minecraft/src/smoke/java/io/github/axiraa/cinematicchat/smoke/ClientScenario.java)。
 
 ## 10. 30 target compatibility matrix
@@ -64,10 +68,10 @@ legacy：Java 21、Gradle 9.2.1、Mojang Official Mappings；modern：Java 25、
 
 ## 11. 当前限制与已知问题
 
-没有已认证客户端/签名验证服务器的端到端证据；离线开发 profile 的对象身份与发送测试不能代替该项。人工听感、实体键鼠、更多 GUI Scale 组合、全 GUI/CLI 路径、字体资源包、其他聊天模组和长时性能仍待检查。六种指定窗口比例及声线新建/选择/保存/重载/删除已自动执行。完整 30 行 CI 已提供；首次远端运行构建失败，修复和复测状态见 [CI 记录](ci-status.md)。详见 [验收清单](acceptance.md)。没有将这些项目误标为完成或 Supported。
+没有已认证客户端/签名验证服务器的端到端证据；离线开发 profile 的对象身份与发送测试不能代替该项。人工听感、实体键鼠、更多 GUI Scale 组合、全 GUI/CLI 路径、字体资源包、其他聊天模组、长时性能与 macOS 仍待检查。六种指定窗口比例及声线新建/选择/保存/重载/删除已自动执行。Windows 与 Linux 的 30 行自动矩阵均通过，详情见 [CI 记录](ci-status.md) 和 [验收清单](acceptance.md)。没有将待测项目误标为完成或 Supported。
 
 历史 native buffer 删除顺序、Fabric HUD 命令关闭时序、26.1 准入捕获位置、Windows NeoForm 内存和映射多 hash 校验问题已处理，修复证据及保留的开发环境警告记录在验证文档。
 
 ## 12. 下一阶段
 
-优先在已认证测试服完成 Signed Chat、过滤、撤回与举报检查；按验收表补齐实体 HUD 操作、实体声线输入和人工试听；执行远端 Linux CI 与 macOS 脚本，并进行资源包/聊天模组组合和长时性能测试。之后按真实验收结果逐行更新 Supported，再准备正式发布。
+优先在已认证测试服完成 Signed Chat、过滤、撤回与举报检查；按验收表补齐实体 HUD 操作、实体声线输入和人工试听；执行 macOS 脚本，并进行资源包/聊天模组组合和长时性能测试。之后按真实验收结果逐行更新 Supported，再准备正式发布。
