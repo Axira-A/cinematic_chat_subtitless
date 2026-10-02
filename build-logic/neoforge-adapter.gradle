@@ -1,6 +1,5 @@
 java.toolchain.languageVersion = JavaLanguageVersion.of(targetSpec.java)
 neoForge { version = targetSpec.neoForge }
-apply from: rootProject.repoFile('build-logic/neoforge-cache.gradle')
 dependencies { api project(':client-common') }
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = targetSpec.java }
 sourceSets { smoke { compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath; runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath } }

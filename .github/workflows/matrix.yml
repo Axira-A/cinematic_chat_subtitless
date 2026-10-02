@@ -1,23 +1,17 @@
 name: Build and client scenario matrix
 on:
   push:
-    paths-ignore:
-      - '**/*.md'
-      - 'docs/validation/matrix.json'
-      - 'docs/validation/core-tests.json'
-      - 'docs/validation/ci-matrix.json'
   pull_request:
-    paths-ignore:
-      - '**/*.md'
-      - 'docs/validation/matrix.json'
-      - 'docs/validation/core-tests.json'
-      - 'docs/validation/ci-matrix.json'
   workflow_dispatch:
     inputs:
       smoke:
         type: boolean
         default: true
         description: Run the temporary-world client scenario
+      cold:
+        type: boolean
+        default: false
+        description: Disable Gradle caches for fresh dependency resolution
 permissions:
   contents: read
 jobs:
@@ -30,11 +24,21 @@ jobs:
           distribution: temurin
           java-version: '21'
       - uses: gradle/actions/wrapper-validation@v4
+      - name: Isolate cold verification caches
+        if: github.event_name == 'workflow_dispatch' && inputs.cold
+        run: |
+          echo "GRADLE_USER_HOME=$RUNNER_TEMP/cchat-cold-gradle" >> "$GITHUB_ENV"
+          echo "XDG_CACHE_HOME=$RUNNER_TEMP/cchat-cold-tools" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/cchat-cold-gradle" "$RUNNER_TEMP/cchat-cold-tools"
       - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-disabled: ${{ github.event_name == 'workflow_dispatch' && inputs.cold }}
       - name: Verify Wrapper, source selection and trust baseline consistency
         run: |
           python3 tools/verify/verify-wrapper.py
           python3 tools/verify/verify-source-layout.py
+          python3 tools/verify/verify-localization.py
+          python3 tools/verify/verify-docs.py
       - name: Pure Java contracts, engine and client models
         run: bash legacy/gradlew -p legacy -PcoreOnly check --no-parallel
       - uses: actions/upload-artifact@v4
@@ -72,6 +76,8 @@ jobs:
     env:
       LIBGL_ALWAYS_SOFTWARE: '1'
       ALSOFT_DRIVERS: 'null'
+      _JAVA_OPTIONS: '-Xmx3g'
+      JAVA_TOOL_OPTIONS: '-XX:ActiveProcessorCount=4'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -86,7 +92,15 @@ jobs:
       - uses: gradle/actions/wrapper-validation@v4
       - name: Verify the reviewed Wrapper and distribution pins
         run: python3 tools/verify/verify-wrapper.py
+      - name: Isolate cold verification caches
+        if: github.event_name == 'workflow_dispatch' && inputs.cold
+        run: |
+          echo "GRADLE_USER_HOME=$RUNNER_TEMP/cchat-cold-gradle" >> "$GITHUB_ENV"
+          echo "XDG_CACHE_HOME=$RUNNER_TEMP/cchat-cold-tools" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/cchat-cold-gradle" "$RUNNER_TEMP/cchat-cold-tools"
       - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-disabled: ${{ github.event_name == 'workflow_dispatch' && inputs.cold }}
       - name: Compile, package and pure Java checks
         shell: bash
         run: |

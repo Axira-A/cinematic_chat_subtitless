@@ -15,6 +15,13 @@ import org.lwjgl.openal.AL10;
 public final class NativeSmokeProbes {
     public record AudioState(float gain,float pitch,int state){}
     private NativeSmokeProbes(){}
+    public static boolean hasTooltip(net.minecraft.client.gui.components.AbstractWidget widget){
+        try {
+            // Up to 1.21.5 the widget exposes a getter; newer versions keep a holder.
+            try{return widget.getClass().getMethod("getTooltip").invoke(widget)!=null;}
+            catch(NoSuchMethodException newer){var holder=field(widget,"tooltip");return holder.getClass().getMethod("get").invoke(holder)!=null;}
+        }catch(ReflectiveOperationException error){throw new IllegalStateException("Cannot inspect native tooltip",error);}
+    }
     private static Object field(Object owner,String name)throws ReflectiveOperationException{
         for(Class<?> type=owner.getClass();type!=null;type=type.getSuperclass())try{var field=type.getDeclaredField(name);field.setAccessible(true);return field.get(owner);}catch(NoSuchFieldException ignored){}
         throw new NoSuchFieldException(name);

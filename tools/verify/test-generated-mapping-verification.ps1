@@ -1,4 +1,4 @@
-param([string]$Minecraft='1.21.1',[string]$DependencyCache='',[switch]$Offline,[switch]$Game,[switch]$Mods)
+param([string]$Minecraft='1.21.1',[switch]$Game,[switch]$Mods)
 # Run alone, after all other Gradle/client processes have finished their tasks.
 # The reviewed file is restored byte-for-byte even when a probe fails.
 $ErrorActionPreference='Stop'
@@ -12,9 +12,7 @@ if(!$baseline.targets.ContainsKey($Minecraft)){throw "Missing mapping baseline f
 $task=if($Mods){'verifyGeneratedMods'}elseif($Game){'verifyGeneratedGame'}else{'verifyGeneratedMappings'}
 $projectName=if($Mods){'fabric'}else{'minecraft-adapter'}
 $arguments=@('-p',(Join-Path $workspace 'legacy'),"-PmcVersion=$Minecraft",'-Ploader=fabric','--no-parallel',":${projectName}:$task")
-if($DependencyCache){$arguments+="-PdependencyCache=$DependencyCache"}
-if($Offline){$arguments+='--offline'}
-$cache=Join-Path $workspace 'tools/.cache'
+$cache=Join-Path $workspace ('dist/verification/'+[Guid]::NewGuid().ToString('N'))
 [IO.Directory]::CreateDirectory($cache) | Out-Null
 $records=@()
 try {
@@ -48,6 +46,6 @@ $healthyLog=Join-Path $cache "$kind-verification-restored.log"
 if($LASTEXITCODE -ne 0){throw 'Restored reviewed baseline failed verification'}
 $records+=@{probe='restored';passed=$true;exitCode=0;logSha256=(Get-FileHash -LiteralPath $healthyLog -Algorithm SHA256).Hash.ToLowerInvariant()}
 $report=@{minecraft=$Minecraft;testedAt=[DateTime]::UtcNow.ToString('o');command="legacy/gradlew.bat $($arguments -join ' ')";baselineSha256=(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant();checks=$records}
-$destination=Join-Path $workspace 'docs/validation'
+$destination=$cache
 [IO.Directory]::CreateDirectory($destination) | Out-Null
 $report | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $destination "generated-$kind.json") -Encoding utf8

@@ -13,19 +13,13 @@ allprojects {
         apply from: rootProject.repoFile('build-logic/native-transport-locks.gradle')
     }
     repositories {
-        if (providers.gradleProperty('dependencyCache').isPresent()) maven { url = rootProject.repoFile(providers.gradleProperty('dependencyCache').get()) }
         mavenCentral()
     }
     afterEvaluate {
         repositories.withType(org.gradle.api.artifacts.repositories.MavenArtifactRepository).each { repository ->
-            // Mojang mirrors library POMs; the optional flat cache can also
-            // contain Central's newer .module. Keep both paths on the same
-            // POM graph instead of silently selecting different variants.
+            // Resolve Mojang library POMs using the dependency graph in the locks.
             if (repository.name == 'Mojang Minecraft Libraries' && targetSpec.loader == 'neoforge') {
                 repository.metadataSources { mavenPom(); ignoreGradleMetadataRedirection() }
-            }
-            if (providers.gradleProperty('dependencyCache').isPresent() && repository.name in ['Mojang Meta','Mojang Minecraft Libraries']) {
-                repository.url=rootProject.repoFile(providers.gradleProperty('dependencyCache').get())
             }
         }
     }

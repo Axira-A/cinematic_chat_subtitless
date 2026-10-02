@@ -74,7 +74,7 @@ public final class SubtitleRenderer {
                 graphics.drawString(font,component(g.glyph().text(),st,config.fontId),0,0,color(st.color(),a),config.shadow);graphics.pop();}
             graphics.pop();if(top<graphics.guiHeight()*.05)break;
         }
-        if(config.debug)graphics.drawString(font,"Cinematic Chat | visible="+entries.size()+" queued="+controller.queue().queuedSize(),4,4,0xffffffff,true);
+        if(config.debug)graphics.drawString(font,Component.translatable("cinematic_chat.debug.queue",entries.size(),controller.queue().queuedSize()),4,4,0xffffffff,true);
     }
     private int color(int rgb,double alpha){return ((int)CcmlLimits.clamp(alpha*255,4,255)<<24)|rgb;}
 }

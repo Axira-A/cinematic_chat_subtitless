@@ -1,14 +1,12 @@
 """Encode original synthesized tones; this tool is optional and never a runtime dependency.
 
-Install the encoder into tools/.cache/audio-encoder with soundfile==0.13.1.
+Use a Python virtual environment with soundfile==0.13.1 and numpy.
 No recordings, game assets or third-party samples are used.
 """
 from pathlib import Path
 import math
-import sys
 
 root = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(root / 'tools/.cache/audio-encoder'))
 import soundfile as sf
 import numpy as np
 

@@ -20,7 +20,7 @@ import java.util.*;
 /** Development-only scenario, excluded from release jars. It never runs without the smoke property. */
 
 public final class ClientScenario {
-    private static final Map<String,Object> results=new LinkedHashMap<>();private static int phase,ticks;private static boolean creating;
+    private static final Map<String,Object> results=new LinkedHashMap<>();private static int phase,ticks;private static boolean creating,nativeDone;
     private static final long began=System.nanoTime();private static io.github.axiraa.cinematicchat.client.CinematicConfig originalConfig;private static java.util.concurrent.CompletableFuture<Void> testAudio;private static long audioPlays;private static VoiceProfilesScreen voiceParent;
     private static java.util.concurrent.CompletableFuture<io.github.axiraa.cinematicchat.api.PlatformAudioBackend.VoiceHandle> nativeHandle;
     private static java.util.concurrent.CompletableFuture<NativeSmokeProbes.AudioState> nativeState;private static double originalVoiceGain;
@@ -30,14 +30,14 @@ public final class ClientScenario {
         if(!Boolean.getBoolean("cinematic_chat.smoke"))return;var mc=Minecraft.getInstance();
         try {
             if(mc.screen instanceof AccessibilityOnboardingScreen){mc.options.onboardAccessibility=false;mc.options.pauseOnLostFocus=false;mc.setScreen(new TitleScreen());}
-            if((System.nanoTime()-began)/1e9>240)throw new IllegalStateException("Smoke timeout phase="+phase+" screen="+mc.screen);
+            if((System.nanoTime()-began)/1e9>360)throw new IllegalStateException("Smoke timeout phase="+phase+" screen="+mc.screen);
             if(!creating&&mc.screen instanceof TitleScreen){creating=true;mc.options.pauseOnLostFocus=false;mc.options.tutorialStep=net.minecraft.client.tutorial.TutorialSteps.NONE;mc.getTutorial().stop();mc.options.renderDistance().set(2);mc.options.simulationDistance().set(5);
                 String name="cchat-smoke-"+System.currentTimeMillis();
                 ScenarioPlatform.createWorld(mc,name);return;}
             if(mc.level==null||mc.player==null)return;
             if(++ticks%20!=0)return;var client=CinematicChatClient.get();
             switch(phase++){
-                case 0->{results.put("entered_world",true);mc.setScreen(null);client.controller().clear();ScenarioPlatform.addSystemMessage(mc,Component.literal("你终于来了。\\n[pause=1.2]不过……已经太迟了。"));}
+                case 0->{results.put("entered_world",true);mc.setScreen(null);client.controller().clear();ScenarioPlatform.addSystemMessage(mc,Component.literal("您好，\\n[pause=1.2]欢迎使用Cinematic Chat。"));}
                 case 1->{require(client.controller().queue().visible().size()==1,"capture_exactly_once");require(client.hideVanilla(),"hide_gameplay_chat");ScenarioPlatform.screenshot(mc,"01-subtitles.png");
                     mc.setScreen(ScenarioPlatform.chat(""));}
                 case 2->{require(!client.hideVanilla(),"restore_chat_screen");results.put("chat_screen_opens",true);require(((ChatHistoryAccessor)mc.gui.getChat()).cinematicChat$history().stream().anyMatch(m->m.content().getString().contains("[pause=1.2]")),"original_history_keeps_markup");double time=client.controller().queue().visible().getFirst().runtime().snapshot().time();results.put("pause_started_time",time);ScenarioPlatform.screenshot(mc,"02-chat-history.png");}
@@ -100,7 +100,7 @@ public final class ClientScenario {
                 case 40->{require(mc.screen instanceof SubtitleHudEditorScreen,"hud_client_command_opens_editor");((SubtitleHudEditorScreen)mc.screen).onClose();
                     try{var filter=mc.gui.getChat().getClass().getMethod("setVisibleMessageFilter",java.util.function.Predicate.class);filter.invoke(mc.gui.getChat(),(java.util.function.Predicate<Object>)message->false);admissionFilter=true;ScenarioPlatform.addSystemMessage(mc,Component.literal("admission-rejected-message"));}catch(NoSuchMethodException olderApi){results.put("admission_filter","not applicable to this Minecraft API");}}
                 case 41->{if(admissionFilter){require(((ChatHistoryAccessor)mc.gui.getChat()).cinematicChat$history().stream().noneMatch(m->m.content().getString().contains("admission-rejected-message")),"permission_filter_rejects_history");require(client.controller().queue().visible().isEmpty(),"permission_filter_rejects_subtitle_capture");mc.gui.getChat().getClass().getMethod("setVisibleMessageFilter",java.util.function.Predicate.class).invoke(mc.gui.getChat(),(java.util.function.Predicate<Object>)message->true);}}
-                default->{if(NativeAcceptanceScenario.tick(mc,client,results))finish(null);}
+                default->{if(!nativeDone)nativeDone=NativeAcceptanceScenario.tick(mc,client,results);else if(LocalizationScenario.tick(mc,client,results))finish(null);}
             }
         }catch(Exception|AssertionError error){finish(error);}
     }

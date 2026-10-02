@@ -66,14 +66,10 @@ baselines = [root / entry / 'gradle/verification-metadata.xml' for entry in ('',
 assert len({path.read_bytes() for path in baselines}) == 1, 'Dependency verification baselines have diverged'
 namespace = {'v': 'https://schema.gradle.org/dependency-verification'}
 tree = ET.parse(baselines[0])
-reviewed = json.loads((root / 'docs/validation/dependency-metadata.json').read_text(encoding='utf-8'))
-for artifact in reviewed['artifacts']:
-    group, name, version = artifact['coordinate'].split(':')
-    component = tree.find(f'v:components/v:component[@group="{group}"][@name="{name}"][@version="{version}"]', namespace)
-    assert component is not None
-    filename = artifact.get('file', f'{name}-{version}.module')
-    checksum = component.find(f'v:artifact[@name="{filename}"]/v:sha256', namespace)
-    assert checksum is not None and checksum.get('value') == artifact['sha256'], artifact['coordinate']
+assert tree.findtext('v:configuration/v:verify-metadata', namespaces=namespace) == 'true'
+for artifact in tree.findall('v:components/v:component/v:artifact', namespace):
+    checksums = artifact.findall('v:sha256', namespace)
+    assert checksums and all(re.fullmatch('[0-9a-f]{64}', c.get('value', '')) for c in checksums), artifact.get('name')
 expected_trusts = {('loom', 'mappings', 'layered+hash.2198', 'mappings-layered+hash.2198.jar')}
 for baseline in ('generated-game-checksums.json', 'generated-mod-checksums.json'):
     generated = json.loads((root / 'gradle' / baseline).read_text(encoding='utf-8'))

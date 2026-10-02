@@ -74,16 +74,16 @@ public final class VoiceProfileScreen extends CinematicScreen implements Preview
     private void chooseAudio(){CinematicChatClient.get().audio().list().thenAccept(files->minecraft.execute(()->{
         if(minecraft.screen==this)minecraft.setScreen(new LocalChoiceScreen(this,label("audio"),files,id->{if(!working.audio.contains(id))working.audio.add(id);}));
     }));}
-    private void text(String key,String value,Consumer<String> changed,int limit){rows.add(new Row(40,(x,y)->{var field=new EditBox(font,x,y+13,310,20,label(key));field.setMaxLength(limit);field.setValue(value==null?"":value);field.setResponder(changed);addRenderableWidget(field);labels.add(new Label(x,y,label(key)));}));}
+    private void text(String key,String value,Consumer<String> changed,int limit){rows.add(new Row(40,(x,y)->{var field=new EditBox(font,x,y+13,310,20,label(key));field.setMaxLength(limit);field.setValue(value==null?"":value);field.setResponder(changed);field.setTooltip(Tooltip.create(label(key)));addRenderableWidget(field);labels.add(new Label(x,y,label(key)));}));}
     private void slider(String key,double min,double max,DoubleSupplier value,DoubleConsumer changed){rows.add(new Row(24,(x,y)->addRenderableWidget(new AbstractSliderButton(x,y,310,20,Component.empty(),CcmlLimits.clamp((value.getAsDouble()-min)/(max-min),0,1)){
-        {updateMessage();}protected void updateMessage(){setMessage(label(key).copy().append(": "+String.format(Locale.ROOT,"%.2f",min+this.value*(max-min))));}protected void applyValue(){changed.accept(min+this.value*(max-min));}
+        {updateMessage();}protected void updateMessage(){setMessage(label(key).copy().append(": "+String.format(Locale.ROOT,"%.2f",min+this.value*(max-min))));setTooltip(Tooltip.create(getMessage()));}protected void applyValue(){changed.accept(min+this.value*(max-min));}
     })));}
     private void toggle(String key,BooleanSupplier value,Consumer<Boolean> changed){rows.add(new Row(24,(x,y)->button(x,y,310,label(key).copy().append(": ").append(state(value.getAsBoolean())),()->{changed.accept(!value.getAsBoolean());init();})));}
-    private void button(int x,int y,int width,Component text,Runnable action){addRenderableWidget(Button.builder(text,b->action.run()).bounds(x,y,width,20).build());}
+    private void button(int x,int y,int width,Component text,Runnable action){var button=Button.builder(text,b->action.run()).bounds(x,y,width,20).build();button.setTooltip(Tooltip.create(text));addRenderableWidget(button);}
     public void test(boolean talking){
         var p=CinematicChatClient.get().configs().copy(working,VoiceProfile.class);p.validate();p.enabled=true;if(!talking)p.playMode=VoiceProfile.PlayMode.ON_SUBTITLE_START;
         previewVoices.profiles=new ArrayList<>(List.of(p));previewVoices.defaultPlayer=p.id;previewVoices.masterVolume=owner.masterVolume;preview.configure(preview.config(),previewVoices);preview.clear();
-        var speaker=new SpeakerIdentity(ChatSource.PLAYER_CHAT,null,p.id,StyledText.plain(p.id));preview.capture(new ChatEnvelope(CinematicChatClient.get().nextPreviewId(),ChatSource.PLAYER_CHAT,speaker,StyledText.plain(talking?"你好，旅行者。Welcome to Cinematic Chat.":"Voice preview"),null,null));
+        var speaker=new SpeakerIdentity(ChatSource.PLAYER_CHAT,null,"Steve",StyledText.plain("Steve"));preview.capture(new ChatEnvelope(CinematicChatClient.get().nextPreviewId(),ChatSource.PLAYER_CHAT,speaker,StyledText.plain(UiText.welcome()),null,null));
     }
     @Override public boolean mouseScrolled(double x,double y,double horizontal,double vertical){scroll-=Integer.signum((int)vertical);init();return true;}
     @Override public void tick(){preview.tick(System.nanoTime(),new ClientState(true,false,Minecraft.getInstance().options.hideGui,false));}

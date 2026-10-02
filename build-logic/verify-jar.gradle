@@ -12,6 +12,16 @@ tasks.register('verifyModJar') {
             }
             if(names.any { it.startsWith('io/github/axiraa/cinematicchat/smoke/') || it.startsWith('net/minecraft/') })throw new GradleException('Development scenario or Minecraft classes leaked into release JAR')
             if(!names.contains('LICENSE'))throw new GradleException('MIT license missing')
+            def languageKeys=null
+            ['en_us','zh_cn','ja_jp','ko_kr'].each { language ->
+                def path="assets/cinematic_chat/lang/${language}.json".toString()
+                if(!names.contains(path))throw new GradleException("Missing language: ${language}")
+                def values=new groovy.json.JsonSlurper().parse(zip.getInputStream(zip.getEntry(path)))
+                if(values.any { k,v -> !(v instanceof String)||v.trim().isEmpty() })throw new GradleException("Empty translation: ${language}")
+                if(languageKeys!=null&&values.keySet()!=languageKeys)throw new GradleException("Language keys differ: ${language}")
+                languageKeys=values.keySet()
+            }
+            if(names.any { it.startsWith('tools/') || ['.py','.ps1','.sh','.bat','.gradle'].any { suffix -> it.endsWith(suffix) } || it.endsWith('Test.class') })throw new GradleException('Development files leaked into release JAR')
             names.findAll { it.endsWith('.mixins.json') }.each { name ->
                 def mixins=new groovy.json.JsonSlurper().parse(zip.getInputStream(zip.getEntry(name)))
                 if(mixins.required!=true || mixins.injectors.defaultRequire!=1)throw new GradleException("Mixin hooks must be required: ${name}")

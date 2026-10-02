@@ -1,5 +1,4 @@
 java.toolchain.languageVersion = JavaLanguageVersion.of(targetSpec.java)
-apply from: rootProject.repoFile('build-logic/neoforge-cache.gradle')
 neoForge {
     version = targetSpec.neoForge
     runs {

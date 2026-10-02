@@ -64,7 +64,7 @@ public final class CinematicChatClient {
     public void beforeSoundDeviceClose(){backend.beforeDeviceClose();}
     public SubtitleController preview(CinematicConfig settings){return new SubtitleController(settings,voices,backend,audio);}
     public SubtitleController preview(CinematicConfig settings,VoiceConfig voiceSettings){return new SubtitleController(settings,voiceSettings,backend,audio);}
-    public void sample(SubtitleController target){target.clear();for(String[] entry:new String[][]{{"Axira","北边的门打不开。"},{"Honma","那就从塔楼过去。"}}){long id=previewIds.getAndDecrement();var speaker=new SpeakerIdentity(ChatSource.PLAYER_CHAT,null,entry[0],StyledText.plain(entry[0]));target.capture(new ChatEnvelope(id,ChatSource.PLAYER_CHAT,speaker,StyledText.plain(entry[1]),null,null));}}
+    public void sample(SubtitleController target){target.clear();for(String[] entry:new String[][]{{"Steve",UiText.welcome()},{"Alex",UiText.welcome()}}){long id=previewIds.getAndDecrement();var speaker=new SpeakerIdentity(ChatSource.PLAYER_CHAT,null,entry[0],StyledText.plain(entry[0]));target.capture(new ChatEnvelope(id,ChatSource.PLAYER_CHAT,speaker,StyledText.plain(entry[1]),null,null));}}
     public void drawPreview(GuiCanvas graphics,SubtitleController target){if(!Minecraft.getInstance().options.hideGui)renderer.render(graphics,target);}
     public SubtitleRenderer.Bounds previewBounds(SubtitleController target,int width,int height){return renderer.bounds(target,width,height);}
     public void shutdown(){closed=true;configGeneration++;controller.clear();backend.reload();audio.close();configs.close();}

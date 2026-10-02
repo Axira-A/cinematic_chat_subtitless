@@ -1,7 +1,5 @@
 """Merge trusted, reviewed Gradle baselines for all entry points.
 
---official-cache includes hashes from the optional official-repository cache, so
-OS-specific native classifiers are verified on CI as well as this Windows host.
 This command changes the trust baseline; do not use it to bypass an unexpected
 checksum mismatch. It never downloads or resolves dependencies.
 """
@@ -14,7 +12,6 @@ import xml.etree.ElementTree as ET
 
 root = Path(__file__).resolve().parents[2]
 parser = argparse.ArgumentParser()
-parser.add_argument('--official-cache', type=Path)
 parser.add_argument('--loom-cache', type=Path, help='Reviewed generated mappings; validates Mojang inputs before adding hashes')
 args = parser.parse_args()
 ns = 'https://schema.gradle.org/dependency-verification'
@@ -74,22 +71,6 @@ if args.loom_cache:
             assert jar.read('mappings/mappings.tiny').startswith(b'tiny\t2\t0\tintermediary\tnamed')
         checksums=components.setdefault(('loom','mappings','layered+hash.2198'),{}).setdefault('mappings-layered+hash.2198.jar',{})
         checksums[hashlib.sha256(generated.read_bytes()).hexdigest()]=f'Loom generated mappings; Mojang {version} input hashes checked'
-
-if args.official_cache:
-    cache = args.official_cache.resolve()
-    for path in sorted(cache.rglob('*')):
-        if not path.is_file() or path.suffix not in ('.pom','.module','.jar','.zip'):
-            continue
-        parts = path.relative_to(cache).parts
-        if len(parts) < 4: continue
-        group, name, version = '.'.join(parts[:-3]), parts[-3], parts[-2]
-        if not all(re.fullmatch(r'[\w.+-]+', value) for value in (group,name,version)):
-            raise ValueError(f'Unexpected cache coordinate: {path}')
-        if not path.name.startswith(f'{name}-{version}'):
-            continue
-        digest = hashlib.sha256(path.read_bytes()).hexdigest()
-        checksums = components.setdefault((group,name,version),{}).setdefault(path.name,{})
-        checksums.setdefault(digest, 'Official repository cache; see docs/building.md')
 
 result = ET.Element(f'{{{ns}}}verification-metadata', {
     '{http://www.w3.org/2001/XMLSchema-instance}schemaLocation': f'{ns} {ns}/dependency-verification-1.3.xsd'})

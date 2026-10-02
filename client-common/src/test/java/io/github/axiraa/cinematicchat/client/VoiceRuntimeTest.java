@@ -101,8 +101,8 @@ class VoiceRuntimeTest {
     }
     @Test void fallbackInferenceIsOptInPerServerAndOriginalEnvelopeRemainsIntact()throws Exception{
         try(var audio=audio()){var cfg=new CinematicConfig();cfg.speakerFallbackEnabled=true;var rule=cfg.editSpeakerRule("trusted");rule.enabled=true;rule.prefix="[NPC] ";cfg.validate();var controller=new SubtitleController(cfg,new VoiceConfig(),new Backend(),audio);OriginalMessageRef original=new OriginalMessageRef(){};
-            var envelope=new ChatEnvelope(1,ChatSource.UNKNOWN,SpeakerIdentity.unknown(ChatSource.UNKNOWN),StyledText.plain("[NPC] Raan: hello"),original,null);controller.serverKey("other");controller.capture(envelope);controller.tick(1,new ClientState(true,false,false,false));assertFalse(controller.queue().visible().getFirst().pending().envelope().speaker().known());
-            controller.clear();controller.serverKey("trusted");controller.capture(envelope);controller.tick(2,new ClientState(true,false,false,false));var captured=controller.queue().visible().getFirst().pending().envelope();assertEquals("Raan",captured.speaker().displayName().text());assertSame(original,captured.original());assertEquals(envelope.body(),captured.body());
+            var envelope=new ChatEnvelope(1,ChatSource.UNKNOWN,SpeakerIdentity.unknown(ChatSource.UNKNOWN),StyledText.plain("[NPC] Steve: hello"),original,null);controller.serverKey("other");controller.capture(envelope);controller.tick(1,new ClientState(true,false,false,false));assertFalse(controller.queue().visible().getFirst().pending().envelope().speaker().known());
+            controller.clear();controller.serverKey("trusted");controller.capture(envelope);controller.tick(2,new ClientState(true,false,false,false));var captured=controller.queue().visible().getFirst().pending().envelope();assertEquals("Steve",captured.speaker().displayName().text());assertSame(original,captured.original());assertEquals(envelope.body(),captured.body());
         }
     }
 }

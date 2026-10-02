@@ -1,7 +1,0 @@
-// Optional cache location, useful when the system drive has little free space.
-if(providers.gradleProperty('neoFormCache').isPresent()) {
-    def runtimeTaskClass=plugins.getPlugin('net.neoforged.moddev').class.classLoader.loadClass('net.neoforged.nfrtgradle.NeoFormRuntimeTask')
-    tasks.withType(runtimeTaskClass).configureEach {
-        homeDirectory.set(rootProject.repoFile(providers.gradleProperty('neoFormCache').get()))
-    }
-}

@@ -8,14 +8,15 @@ import argparse
 import hashlib
 import json
 import re
+import os
 import xml.etree.ElementTree as ET
 import zipfile
 
 root = Path(__file__).resolve().parents[2]
 parser = argparse.ArgumentParser()
-parser.add_argument('--official-cache', required=True, type=Path)
+parser.add_argument('--gradle-home', type=Path, default=Path(os.environ.get('GRADLE_USER_HOME',Path.home()/'.gradle')))
 args = parser.parse_args()
-cache = args.official_cache.resolve()
+cache = args.gradle_home.resolve()/'caches/modules-2/files-2.1'
 ns = {'v': 'https://schema.gradle.org/dependency-verification'}
 components = {tuple(c.get(k) for k in ('group', 'name', 'version')): c
               for c in ET.parse(root / 'gradle/verification-metadata.xml').findall('v:components/v:component', ns)}
@@ -45,7 +46,9 @@ for target in json.loads((root / 'gradle/targets.json').read_text(encoding='utf-
         assert original_name != name, name
         original_group = group.removeprefix('remapped.')
         original_file = f'{original_name}-{revision}.jar'
-        original = cache / original_group.replace('.', '/') / original_name / revision / original_file
+        candidates=list((cache/original_group/original_name/revision).glob('*/'+original_file))
+        assert len(candidates)==1, f'Expected one reviewed Gradle artifact: {original_file}'
+        original=candidates[0]
         original_sha = hashlib.sha256(original.read_bytes()).hexdigest()
         component = components[(original_group, original_name, revision)]
         checksum = component.find(f'v:artifact[@name="{original_file}"]/v:sha256', ns)

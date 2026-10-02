@@ -22,11 +22,11 @@ public final class CcmlParser {
         }
         StyledText bounded = new StyledText(input, source.runs());
         if (!enabled) return plain(bounded, limits, List.of());
-        try{return scan(bounded,limits);}catch(RuntimeException error){return plain(bounded,limits,List.of("Parser fallback: "+error.getClass().getSimpleName()));}
+        try{return scan(bounded,limits);}catch(RuntimeException error){return plain(bounded,limits,List.of(new CcmlDiagnostic(CcmlDiagnostic.Code.PARSER_FALLBACK,-1,error.getClass().getSimpleName())));}
     }
     private SubtitleDocument scan(StyledText bounded,CcmlLimits limits){
         String input=bounded.text();
-        List<String> diagnostics = new ArrayList<>();
+        List<CcmlDiagnostic> diagnostics = new ArrayList<>();
         Deque<Frame> stack = new ArrayDeque<>(); stack.push(new Frame("", 0, null));
         int count = 0;
         for (int i = 0; i < input.length();) {
@@ -53,7 +53,7 @@ public final class CcmlParser {
                             i = close + 1; count++;
                         } else {
                             stack.peek().children.add(text(input.substring(i, close + 1), i)); i = close + 1; count++;
-                            if (diagnostics.size() < 16) diagnostics.add("Literal markup at " + start);
+                            if (diagnostics.size() < 16) diagnostics.add(new CcmlDiagnostic(CcmlDiagnostic.Code.LITERAL_MARKUP,start,""));
                         }
                     }
                 }
@@ -62,7 +62,7 @@ public final class CcmlParser {
                 while (i < input.length() && input.charAt(i) != '[' && input.charAt(i) != '\\') i++;
                 stack.peek().children.add(text(input.substring(start, i), start)); count++;
             }
-            if (count > limits.nodes()) return plain(bounded, limits, List.of("AST node limit: literal fallback"));
+            if (count > limits.nodes()) return plain(bounded, limits, List.of(new CcmlDiagnostic(CcmlDiagnostic.Code.NODE_LIMIT,-1,"")));
         }
         while (stack.size() > 1) {
             Frame frame = stack.pop();
@@ -72,7 +72,7 @@ public final class CcmlParser {
         return new SubtitleDocument(bounded, stack.pop().children, diagnostics, limits);
     }
     public SubtitleDocument parse(String source) { return parse(StyledText.plain(source), CcmlLimits.ABSOLUTE, true); }
-    private static SubtitleDocument plain(StyledText text, CcmlLimits limits, List<String> diagnostics) {
+    private static SubtitleDocument plain(StyledText text, CcmlLimits limits, List<CcmlDiagnostic> diagnostics) {
         return new SubtitleDocument(text, List.of(text(text.text(), 0)), diagnostics, limits);
     }
     private static SubtitleNode.Text text(String value, int offset) {

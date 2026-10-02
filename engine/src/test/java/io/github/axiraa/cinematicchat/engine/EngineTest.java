@@ -60,8 +60,8 @@ class EngineTest {
         assertTrue(events.stream().noneMatch(e -> e.kind() == SubtitleRuntimeEvent.Kind.REVEAL_UNIT_SHOWN && e.time() > pause.time() && e.time() < pause.time()+1));
     }
     @Test void replaceClearAndEraseStayInsideEntry() {
-        assertEquals("欢迎回来，罪人。", rendered("欢迎回来，勇者。[pause=1][replace]欢迎回来，罪人。"));
-        assertEquals("罪人。", rendered("勇者[wait][erase=2]罪人。"));
+        assertEquals("您好，欢迎使用Cinematic Chat。", rendered("Hello, welcome to Cinematic Chat.[pause=1][replace]您好，欢迎使用Cinematic Chat。"));
+        assertEquals("您好，欢迎使用Cinematic Chat。", rendered("你好[wait][erase=2]您好，欢迎使用Cinematic Chat。"));
         assertEquals("后文", rendered("前文[clear]后文"));
         assertEquals("后文", rendered("前文[erase=9999]后文"));
     }
@@ -72,9 +72,9 @@ class EngineTest {
     @Test void animationsAndEventsAreFrameRateIndependent() {
         List<SubtitleRuntimeEvent> expected = null;
         for (int fps : List.of(30,60,144,240)) {
-            var r = runtime("[speed=15]潮水正在上涨……[wait][pause=0.5]\\n快走。"); List<SubtitleRuntimeEvent> events = new ArrayList<>();
+            var r = runtime("[speed=15]您好，[wait][pause=0.5]\\n欢迎使用Cinematic Chat。"); List<SubtitleRuntimeEvent> events = new ArrayList<>();
             for (int i=0; i<=fps*5; i++) r.advance(i/(double)fps, events::add);
-            assertEquals("潮水正在上涨……\n快走。", r.snapshot().text());
+            assertEquals("您好，\n欢迎使用Cinematic Chat。", r.snapshot().text());
             if (expected == null) expected = events; else assertEquals(expected, events);
             int count = events.size(); r.advance(6, events::add); assertEquals(count, events.size());
         }

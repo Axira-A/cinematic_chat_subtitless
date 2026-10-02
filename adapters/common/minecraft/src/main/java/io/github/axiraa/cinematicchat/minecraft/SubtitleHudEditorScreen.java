@@ -44,23 +44,29 @@ public final class SubtitleHudEditorScreen extends CinematicScreen implements Pr
         button(12+cell,8,cell,"cinematic_chat.hud.reset_position",()->{working.hud.resetPosition();editor=new HudEditorModel(working.hud);});
         button(16+cell*2,8,cell,"cinematic_chat.hud.reset_size",()->{working.hud.resetSize();editor=new HudEditorModel(working.hud);});
         button(20+cell*3,8,cell,"cinematic_chat.hud.reset",()->{HudPresets.builtins().get("Cinematic").apply(working);editor=new HudEditorModel(working.hud);preview.configure(working,CinematicChatClient.get().voices());});
-        button(8, 32, 76, "cinematic_chat.hud.snap", () -> {working.hud.snap = !working.hud.snap;});
-        button(88, 32, 90, "cinematic_chat.hud.safe", () -> {working.hud.showSafeArea = !working.hud.showSafeArea;});
+        stateButton(8,32,76,"cinematic_chat.hud.snap",()->working.hud.snap,()->{working.hud.snap=!working.hud.snap;});
+        stateButton(88,32,90,"cinematic_chat.hud.safe",()->working.hud.showSafeArea,()->{working.hud.showSafeArea=!working.hud.showSafeArea;});
         int rowY = 56;
+        String presetValue=presetName==null?Component.translatable("cinematic_chat.preset.default_name").getString():presetName.getValue();
         presetName = new EditBox(font, 8, rowY, 100, 20, Component.translatable("cinematic_chat.preset.name"));
-        presetName.setMaxLength(64); presetName.setValue("My Cinematic"); addRenderableWidget(presetName);
+        presetName.setMaxLength(64); presetName.setValue(presetValue); addRenderableWidget(presetName);
         button(112, rowY, 82, "cinematic_chat.preset.save", () -> {String name = presetName.getValue().strip(); if (!name.isEmpty()) presets.presets.put(name, HudPresets.Visual.capture(working));});
-        addRenderableWidget(Button.builder(Component.literal(selectedPreset), b -> {
+        var presetButton=Button.builder(UiText.preset(selectedPreset,presets.presets.containsKey(selectedPreset)), b -> {
             var values = new ArrayList<>(allPresets().entrySet()); if (values.isEmpty()) return;
             var next = values.get(presetIndex++ % values.size()); selectedPreset = next.getKey(); next.getValue().apply(working);
-            editor = new HudEditorModel(working.hud); preview.configure(working, CinematicChatClient.get().voices()); CinematicChatClient.get().sample(preview); b.setMessage(Component.literal(selectedPreset));
-        }).bounds(184, 32, Math.min(170,width-192), 20).build());
+            editor = new HudEditorModel(working.hud); preview.configure(working, CinematicChatClient.get().voices()); CinematicChatClient.get().sample(preview); b.setMessage(UiText.preset(selectedPreset,presets.presets.containsKey(selectedPreset)));b.setTooltip(net.minecraft.client.gui.components.Tooltip.create(b.getMessage()));
+        }).bounds(184,32,Math.min(170,width-192),20).build();presetButton.setTooltip(net.minecraft.client.gui.components.Tooltip.create(presetButton.getMessage()));addRenderableWidget(presetButton);
         button(width / 2 - 104, height - 26, 100, "cinematic_chat.apply", () -> {applied.accept(working); presetsApplied.accept(presets); onClose();});
         button(width / 2 + 4, height - 26, 100, "gui.cancel", this::onClose);
     }
 
     private Map<String, HudPresets.Visual> allPresets() {var result = new LinkedHashMap<>(HudPresets.builtins()); result.putAll(presets.presets); return result;}
-    private void button(int x, int y, int w, String key, Runnable action) {addRenderableWidget(Button.builder(Component.translatable(key), b -> action.run()).bounds(x, y, w, 20).build());}
+    private void button(int x, int y, int w, String key, Runnable action) {var text=Component.translatable(key);var button=Button.builder(text,b->action.run()).bounds(x,y,w,20).build();button.setTooltip(net.minecraft.client.gui.components.Tooltip.create(text));addRenderableWidget(button);}
+    private void stateButton(int x,int y,int width,String key,java.util.function.BooleanSupplier state,Runnable action){
+        var label=Component.translatable(key);var text=UiText.value(label,UiText.state(state.getAsBoolean()));
+        var button=Button.builder(text,b->{action.run();b.setMessage(UiText.value(label,UiText.state(state.getAsBoolean())));b.setTooltip(net.minecraft.client.gui.components.Tooltip.create(b.getMessage()));}).bounds(x,y,width,20).build();
+        button.setTooltip(net.minecraft.client.gui.components.Tooltip.create(text));addRenderableWidget(button);
+    }
     public CinematicConfig workingCopy() {return working;}
     public SubtitleRenderer.Bounds bounds() {return CinematicChatClient.get().previewBounds(preview, width, height);}
 
@@ -99,8 +105,9 @@ public final class SubtitleHudEditorScreen extends CinematicScreen implements Pr
         g.fill(left-4, (top+bottom)/2-7, left+4, (top+bottom)/2+7, 0xff67bde5);
         g.fill(right-4, (top+bottom)/2-7, right+4, (top+bottom)/2+7, 0xff67bde5);
         g.fill(right-5, bottom-5, right+5, bottom+5, 0xfff4cc6a);
-        g.drawCenteredString(font, Component.translatable("cinematic_chat.hud.help"), width/2, height-42, 0xc0ffffff);
-        g.drawString(font, String.format(Locale.ROOT, "X %.1f%%  Y %.1f%%  W %.0f  %.2fx",working.hud.x(width)/width*100,working.hud.y(height)/height*100,working.hud.width(width),working.hud.scale),8,82,0xffcccccc,true);
+        var help=UiText.lines(Component.translatable("cinematic_chat.hud.help"),font,width-16);
+        for(int i=0;i<help.size();i++)g.drawCenteredString(font,help.get(i),width/2,height-34-(help.size()-1-i)*font.lineHeight,0xc0ffffff);
+        g.drawString(font, Component.translatable("cinematic_chat.hud.metrics",String.format(Locale.ROOT,"%.1f",working.hud.x(width)/width*100),String.format(Locale.ROOT,"%.1f",working.hud.y(height)/height*100),String.format(Locale.ROOT,"%.0f",working.hud.width(width)),String.format(Locale.ROOT,"%.2f",working.hud.scale)),8,82,0xffcccccc,true);
         super.renderContent(g, mouseX, mouseY, partialTick);
     }
     private static void line(GuiCanvas g,int x1,int y1,int x2,int y2,int color) {g.fill(x1,y1,x2==x1?x2+1:x2,y2==y1?y2+1:y2,color);}
