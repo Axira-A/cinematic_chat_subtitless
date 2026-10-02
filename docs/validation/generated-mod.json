@@ -1,0 +1,35 @@
+{
+  "minecraft": "1.21.1",
+  "baselineSha256": "26afb444273e16b931da535b8957cecf5301ebe073c42a0a2310ec5102e38321",
+  "checks": [
+    {
+      "message": "Remapped mod content checksum mismatch",
+      "probe": "contentSha256",
+      "exitCode": 1,
+      "logSha256": "a11956a563db95710c1a2dac2ff1259cda4c93e3f04a9b372b2647d3930d75dc",
+      "expectedFailure": true
+    },
+    {
+      "message": "Remapped mod entry set mismatch",
+      "probe": "entryCount",
+      "exitCode": 1,
+      "logSha256": "c5f1a306f52734f3121590c4b9c18ccaaf687e78691d76ee8027eced02fcadba",
+      "expectedFailure": true
+    },
+    {
+      "message": "Remapped mod artifact set mismatch",
+      "probe": "artifactSet",
+      "exitCode": 1,
+      "logSha256": "196fbb7b5cc97d20916d0ee9e98c3f0a41c3f5f23a4148ed763a95217bab687e",
+      "expectedFailure": true
+    },
+    {
+      "probe": "restored",
+      "passed": true,
+      "exitCode": 0,
+      "logSha256": "b69b20c9914b8e0768c612efd15699b0fc9ab301d54bf4b662b5c55c284ad51c"
+    }
+  ],
+  "command": "legacy/gradlew.bat -p E:\\cinematic_chat_subtitless\\legacy -PmcVersion=1.21.1 -Ploader=fabric --no-parallel :fabric:verifyGeneratedMods -PdependencyCache=tools/.cache/maven --offline",
+  "testedAt": "2026-10-02T02:58:24.7570387Z"
+}

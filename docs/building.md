@@ -75,6 +75,8 @@ python tools/verify/merge-verification.py
 
 `tools/verify/test-generated-mapping-verification.ps1` 串行验证错误的内容 pin 和输入 pin 都会使构建失败，并在 `finally` 中逐字节恢复基线，再检查正确基线成功；加 `-Game` 检查游戏派生物。运行此探针期间不能同时执行其他构建；它不修改下载缓存。实际记录见 [generated-mappings.json](validation/generated-mappings.json)、[generated-game.json](validation/generated-game.json)，15 个 Fabric 目标的严格构建复查见 [generated-game-builds.json](validation/generated-game-builds.json)。
 
+加 `-Mods` 验证重映射依赖的错误内容 pin、文件集合和 artifact 集合均被拒绝，再恢复原始基线验证成功。实际结果见 [generated-mod.json](validation/generated-mod.json)。全部 12 个旧版 Fabric 目标分别执行 `verifyGeneratedMods`，不把参考版本的结果推及其他版本。
+
 ## 输出与证据
 
 产物命名为 `cinematic-chat-0.1.0+mc<版本>-<loader>.jar`，每个目标单独发布。全量脚本复制到 `dist/` 并计算 SHA-256。源码、依赖锁、校验清单、文档和 CI 入 Git；JAR、assets、存档、运行目录、日志和缓存不入 Git。

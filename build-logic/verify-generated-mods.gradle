@@ -13,7 +13,7 @@ if (targetSpec.apiFamily == 'legacy') {
             }
             def actual = configurations.compileClasspath.resolvedConfiguration.resolvedArtifacts
                     .findAll { it.moduleVersion.id.group == 'remapped.net.fabricmc.fabric-api' }
-            def key = { artifact -> "${artifact.group}:${artifact.name}:${artifact.version}" }
+            def key = { artifact -> "${artifact.group}:${artifact.name}:${artifact.version}".toString() }
             def artifacts = actual.collectEntries { [key(it.moduleVersion.id), it.file] }
             if (actual.size() != expected.artifacts.size() || artifacts.keySet() != expected.artifacts.collect { key(it) }.toSet()) {
                 throw new GradleException("Remapped mod artifact set mismatch for ${targetSpec.minecraft}")
