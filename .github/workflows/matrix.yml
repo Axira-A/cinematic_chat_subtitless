@@ -1,7 +1,15 @@
 name: Build and client scenario matrix
 on:
   push:
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/validation/matrix.json'
+      - 'docs/validation/core-tests.json'
   pull_request:
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/validation/matrix.json'
+      - 'docs/validation/core-tests.json'
   workflow_dispatch:
     inputs:
       smoke:

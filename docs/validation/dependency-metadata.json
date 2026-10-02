@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "reviewedAt": "2026-10-02",
-  "reason": "Missing Gradle module metadata exposed by clean Ubuntu CI run 36950804809. Component coordinates checked against official repository contents.",
+  "reason": "Clean Ubuntu CI exposed missing metadata. Module coordinates and hashes were checked against official repositories for already-pinned dependencies whose POM advertises published-with-gradle-metadata, plus artifacts explicitly reported by CI. No new dependency versions or blanket trust rules added.",
   "artifacts": [
     {
       "coordinate": "net.fabricmc:stitch:0.6.2",
@@ -74,6 +74,840 @@
       "file": "junit-bom-5.11.4.pom",
       "sha256": "19d4b747b204805325b6334553296f986562277a4ac1cb5e593a5e4c4f5e4115",
       "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.11.4/junit-bom-5.11.4.pom"
+    },
+    {
+      "coordinate": "com.electronwill.night-config:toml:3.8.0",
+      "file": "toml-3.8.0.module",
+      "sha256": "34420249f1cff6ef781beed23bdcb3d09dc18efd448ccf05937fb83feec1ac51",
+      "source": "https://repo.maven.apache.org/maven2/com/electronwill/night-config/toml/3.8.0/toml-3.8.0.module"
+    },
+    {
+      "coordinate": "com.electronwill.night-config:core:3.8.0",
+      "file": "core-3.8.0.module",
+      "sha256": "a85952a4999e909f85f60ba31d210cbbe934873101e00508b5ac4005c718cd49",
+      "source": "https://repo.maven.apache.org/maven2/com/electronwill/night-config/core/3.8.0/core-3.8.0.module"
+    },
+    {
+      "coordinate": "com.electronwill.night-config:core:3.8.3",
+      "file": "core-3.8.3.module",
+      "sha256": "31343685663ca186a1d244124108fddfe1ff3aa7f4cf5cb6098fe6603270a2c7",
+      "source": "https://repo.maven.apache.org/maven2/com/electronwill/night-config/core/3.8.3/core-3.8.3.module"
+    },
+    {
+      "coordinate": "at.yawk.lz4:lz4-java:1.8.1",
+      "file": "lz4-java-1.8.1.module",
+      "sha256": "3ad650279ed9b70015803f90256ab90c2a3d42f052cf8f0662359493a67a6300",
+      "source": "https://repo.maven.apache.org/maven2/at/yawk/lz4/lz4-java/1.8.1/lz4-java-1.8.1.module"
+    },
+    {
+      "coordinate": "com.electronwill.night-config:toml:3.8.3",
+      "file": "toml-3.8.3.module",
+      "sha256": "2981d7579568d4275416f5e263a9c8e71161761030fd5d04edef0c02780e92fc",
+      "source": "https://repo.maven.apache.org/maven2/com/electronwill/night-config/toml/3.8.3/toml-3.8.3.module"
+    },
+    {
+      "coordinate": "at.yawk.lz4:lz4-java:1.10.1",
+      "file": "lz4-java-1.10.1.module",
+      "sha256": "1b166dac6bbedd08738791027edf926406ae2974f2da0736fb15782b9cc5a698",
+      "source": "https://repo.maven.apache.org/maven2/at/yawk/lz4/lz4-java/1.10.1/lz4-java-1.10.1.module"
+    },
+    {
+      "coordinate": "com.google.guava:guava:33.5.0-jre",
+      "file": "guava-33.5.0-jre.module",
+      "sha256": "77ed42c8c8b2cebbb93ac9e07543ff6418aa24bdb8517580cf5324e9a6510956",
+      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.5.0-jre/guava-33.5.0-jre.module"
+    },
+    {
+      "coordinate": "com.fasterxml.jackson.core:jackson-annotations:2.13.4",
+      "file": "jackson-annotations-2.13.4.module",
+      "sha256": "649d6a2770182c6361ed8e2d6ea546e5f7123ef7a62fe7fad135d43184156d8f",
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.13.4/jackson-annotations-2.13.4.module"
+    },
+    {
+      "coordinate": "com.google.guava:guava:32.1.2-jre",
+      "file": "guava-32.1.2-jre.module",
+      "sha256": "e40cf085ced05ab18f9c94e7c7bc197e1cdb695bc939afc344ab24c1414d6c7e",
+      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava/32.1.2-jre/guava-32.1.2-jre.module"
+    },
+    {
+      "coordinate": "com.google.guava:guava:33.3.1-jre",
+      "file": "guava-33.3.1-jre.module",
+      "sha256": "41858c84753fd96a6b7c51122fccef39558c91cc08264e08506bcf20e0e63733",
+      "source": "https://repo.maven.apache.org/maven2/com/google/guava/guava/33.3.1-jre/guava-33.3.1-jre.module"
+    },
+    {
+      "coordinate": "com.fasterxml.jackson.core:jackson-core:2.13.4",
+      "file": "jackson-core-2.13.4.module",
+      "sha256": "7b2d5efa46a913848ea9a7c12a5a5c1e112e610499c9a17299d42092e35b67f0",
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.13.4/jackson-core-2.13.4.module"
+    },
+    {
+      "coordinate": "com.fasterxml.jackson.core:jackson-databind:2.13.4.2",
+      "file": "jackson-databind-2.13.4.2.module",
+      "sha256": "e2dc82b1049c7bbf96ec56302cfbf381dd5114c793e0f9bf4bb3c4821fedd7f3",
+      "source": "https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.13.4.2/jackson-databind-2.13.4.2.module"
+    },
+    {
+      "coordinate": "com.mojang:datafixerupper:9.0.19",
+      "file": "datafixerupper-9.0.19.module",
+      "sha256": "9fe950b2a6ab8bc830173f746fbaf577777bb33718effa63bb121c8bf8cd1a15",
+      "source": "https://libraries.minecraft.net/com/mojang/datafixerupper/9.0.19/datafixerupper-9.0.19.module"
+    },
+    {
+      "coordinate": "com.mojang:authlib:6.0.54",
+      "file": "authlib-6.0.54.module",
+      "sha256": "a3fbfd1695e6ef5307b7a4ce288306859766c1ffd238c85d7eeb60cc945babdf",
+      "source": "https://libraries.minecraft.net/com/mojang/authlib/6.0.54/authlib-6.0.54.module"
+    },
+    {
+      "coordinate": "com.mojang:authlib:7.0.63",
+      "file": "authlib-7.0.63.module",
+      "sha256": "d3c110f8ca7d1652733779a1bb2ff5b45d14e750f8516a5888c73bbe1a429d24",
+      "source": "https://libraries.minecraft.net/com/mojang/authlib/7.0.63/authlib-7.0.63.module"
+    },
+    {
+      "coordinate": "com.mojang:authlib:7.0.61",
+      "file": "authlib-7.0.61.module",
+      "sha256": "4ecf4140249220cb574ff7cea1b8e32803a3cd4504a809208ff84c7723509c54",
+      "source": "https://libraries.minecraft.net/com/mojang/authlib/7.0.61/authlib-7.0.61.module"
+    },
+    {
+      "coordinate": "com.mojang:datafixerupper:8.0.16",
+      "file": "datafixerupper-8.0.16.module",
+      "sha256": "1004a7c99d09653f528ed6ac884808a7245264a33d6f3c6a3f8c092c35df20c9",
+      "source": "https://libraries.minecraft.net/com/mojang/datafixerupper/8.0.16/datafixerupper-8.0.16.module"
+    },
+    {
+      "coordinate": "com.mojang:logging:1.2.7",
+      "file": "logging-1.2.7.module",
+      "sha256": "b3e0fdff2406e4aae6bec3b3367a0c7067f7414983a99745f908166d9f8e98a2",
+      "source": "https://libraries.minecraft.net/com/mojang/logging/1.2.7/logging-1.2.7.module"
+    },
+    {
+      "coordinate": "com.mojang:jtracy:1.0.36",
+      "file": "jtracy-1.0.36.module",
+      "sha256": "db4c4a4b703833cb0cf9229508a24aab8f60bd97d7b9a046cf236f4496597f45",
+      "source": "https://libraries.minecraft.net/com/mojang/jtracy/1.0.36/jtracy-1.0.36.module"
+    },
+    {
+      "coordinate": "com.mojang:logging:1.6.11",
+      "file": "logging-1.6.11.module",
+      "sha256": "00bee3d4feaf26faecec1ae7974e119e8e06a7bd3f593b75b52a1eaca7f50e32",
+      "source": "https://libraries.minecraft.net/com/mojang/logging/1.6.11/logging-1.6.11.module"
+    },
+    {
+      "coordinate": "com.mojang:jtracy:1.0.37",
+      "file": "jtracy-1.0.37.module",
+      "sha256": "788cd9ce35434ea7a72d8874589597ecbcacbd1dd76449a40d2fef356eca49ce",
+      "source": "https://libraries.minecraft.net/com/mojang/jtracy/1.0.37/jtracy-1.0.37.module"
+    },
+    {
+      "coordinate": "com.mojang:authlib:6.0.55",
+      "file": "authlib-6.0.55.module",
+      "sha256": "67369474df208826319dc72ac16bb151d5492d6788cbced2a274b6750862127d",
+      "source": "https://libraries.minecraft.net/com/mojang/authlib/6.0.55/authlib-6.0.55.module"
+    },
+    {
+      "coordinate": "com.mojang:text2speech:1.17.9",
+      "file": "text2speech-1.17.9.module",
+      "sha256": "da8a76db15384b53736e3e86e0f3edfa0615e30e16a7c6816db9709f6f034373",
+      "source": "https://libraries.minecraft.net/com/mojang/text2speech/1.17.9/text2speech-1.17.9.module"
+    },
+    {
+      "coordinate": "cpw.mods:bootstraplauncher:2.0.2",
+      "file": "bootstraplauncher-2.0.2.module",
+      "sha256": "98d0df226928a8ad6b569961afd7ff8f5451b6e4567c6108d51c7694a461122f",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/bootstraplauncher/2.0.2/bootstraplauncher-2.0.2.module"
+    },
+    {
+      "coordinate": "cpw.mods:modlauncher:11.0.4",
+      "file": "modlauncher-11.0.4.module",
+      "sha256": "f8e290ff9819a6910de16f866e830ef63226d2b230cf88595f6f16cb3c3ca729",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/modlauncher/11.0.4/modlauncher-11.0.4.module"
+    },
+    {
+      "coordinate": "cpw.mods:modlauncher:11.0.5",
+      "file": "modlauncher-11.0.5.module",
+      "sha256": "3ef211f9e2cd89167c89330437ebee1d58aca2fefa0d4ace8a55e2acef1ee2ab",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/modlauncher/11.0.5/modlauncher-11.0.5.module"
+    },
+    {
+      "coordinate": "cpw.mods:modlauncher:10.1.10",
+      "file": "modlauncher-10.1.10.module",
+      "sha256": "eb4b5c86d8691b45b21f20009a3b92e5a8daea93bdc25e25c79fc0fee5047d3c",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/modlauncher/10.1.10/modlauncher-10.1.10.module"
+    },
+    {
+      "coordinate": "cpw.mods:modlauncher:11.0.3",
+      "file": "modlauncher-11.0.3.module",
+      "sha256": "2dd37e367647cb82613ca26d723d4c12d7acb2f10e22a2f21aedc657f386c064",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/modlauncher/11.0.3/modlauncher-11.0.3.module"
+    },
+    {
+      "coordinate": "cpw.mods:securejarhandler:3.0.8",
+      "file": "securejarhandler-3.0.8.module",
+      "sha256": "cf219ee9c1b4ad81bb301e5a8f08c98c1f8686896ff61622ebef3ce5cd8ac83a",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/securejarhandler/3.0.8/securejarhandler-3.0.8.module"
+    },
+    {
+      "coordinate": "cpw.mods:modlauncher:10.1.7",
+      "file": "modlauncher-10.1.7.module",
+      "sha256": "bd44f4de105c30f907dbd7a972518ca105ab4e53583ece38adfc448254647331",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/modlauncher/10.1.7/modlauncher-10.1.7.module"
+    },
+    {
+      "coordinate": "cpw.mods:securejarhandler:2.1.11",
+      "file": "securejarhandler-2.1.11.module",
+      "sha256": "5899fdafacb527e24389b057cdc6667de60f13a67480ce354e6bf1aa169db5ef",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/securejarhandler/2.1.11/securejarhandler-2.1.11.module"
+    },
+    {
+      "coordinate": "cpw.mods:securejarhandler:3.0.7",
+      "file": "securejarhandler-3.0.7.module",
+      "sha256": "43c8aa5e959542ed15e674ff01ac5f4ea9aaa35641addab44b6074b4d1460df7",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/securejarhandler/3.0.7/securejarhandler-3.0.7.module"
+    },
+    {
+      "coordinate": "cpw.mods:securejarhandler:3.0.4",
+      "file": "securejarhandler-3.0.4.module",
+      "sha256": "4e2ab4c60da8c7bf3c4ef7a32ba92849ff1529f88368c83a58682aabb21b71f2",
+      "source": "https://maven.neoforged.net/releases/cpw/mods/securejarhandler/3.0.4/securejarhandler-3.0.4.module"
+    },
+    {
+      "coordinate": "net.minecrell:terminalconsoleappender:1.3.0",
+      "file": "terminalconsoleappender-1.3.0.module",
+      "sha256": "ec65b16cc92b904961baf2ec64014100eb7b1c95e45108f0d8b826636eb46a82",
+      "source": "https://repo.maven.apache.org/maven2/net/minecrell/terminalconsoleappender/1.3.0/terminalconsoleappender-1.3.0.module"
+    },
+    {
+      "coordinate": "com.mojang:logging:1.4.9",
+      "file": "logging-1.4.9.module",
+      "sha256": "cef0bf199e24b3822fa22541d203964cb0839c4f7e69824100db9b80f487944b",
+      "source": "https://libraries.minecraft.net/com/mojang/logging/1.4.9/logging-1.4.9.module"
+    },
+    {
+      "coordinate": "net.neoforged:AutoRenamingTool:2.0.16",
+      "file": "AutoRenamingTool-2.0.16.module",
+      "sha256": "1203f331943d2877ac65bc79549ce0019658f6ebd732ff1244fb9f80681eb795",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/AutoRenamingTool/2.0.16/AutoRenamingTool-2.0.16.module"
+    },
+    {
+      "coordinate": "net.neoforged:AutoRenamingTool:2.0.8",
+      "file": "AutoRenamingTool-2.0.8.module",
+      "sha256": "456de9bbb87e4c076e58f0606c94b6230c3db6c6b32db04ac3a8d4d42970d33a",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/AutoRenamingTool/2.0.8/AutoRenamingTool-2.0.8.module"
+    },
+    {
+      "coordinate": "net.fabricmc:fabric-log4j-util:1.0.2",
+      "file": "fabric-log4j-util-1.0.2.module",
+      "sha256": "ac6e516f30638c086fa54090935df95f0dd2b693ba858520eb60af4f97380d09",
+      "source": "https://maven.fabricmc.net/net/fabricmc/fabric-log4j-util/1.0.2/fabric-log4j-util-1.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged:DevLaunch:1.0.2",
+      "file": "DevLaunch-1.0.2.module",
+      "sha256": "30a811979ec04fccbd1f78d4b1c387913acd08c52ebd0c97f87db08b0e61fddc",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/DevLaunch/1.0.2/DevLaunch-1.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged:AutoRenamingTool:2.0.5",
+      "file": "AutoRenamingTool-2.0.5.module",
+      "sha256": "d7137f37e6fdfd618cccf166db839f1af69393e1157aceb487a81f27c37ba329",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/AutoRenamingTool/2.0.5/AutoRenamingTool-2.0.5.module"
+    },
+    {
+      "coordinate": "net.neoforged:JarJarFileSystems:0.4.1",
+      "file": "JarJarFileSystems-0.4.1.module",
+      "sha256": "999743c5d6fe9a0e3aefb54bb7a4e4685d9ca758a551da7de6a2e0a1fd2bc5de",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/JarJarFileSystems/0.4.1/JarJarFileSystems-0.4.1.module"
+    },
+    {
+      "coordinate": "net.neoforged:AutoRenamingTool:2.0.15",
+      "file": "AutoRenamingTool-2.0.15.module",
+      "sha256": "e6a732a88bd39c581ace3474184170c93dce5e39599b56aa34434b1c441c543e",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/AutoRenamingTool/2.0.15/AutoRenamingTool-2.0.15.module"
+    },
+    {
+      "coordinate": "net.neoforged:JarJarMetadata:0.4.1",
+      "file": "JarJarMetadata-0.4.1.module",
+      "sha256": "9d63e4446491b4cff6cb9032c48872de48820fb34086473d716e56fbbe8be81d",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/JarJarMetadata/0.4.1/JarJarMetadata-0.4.1.module"
+    },
+    {
+      "coordinate": "net.neoforged:AutoRenamingTool:2.0.4",
+      "file": "AutoRenamingTool-2.0.4.module",
+      "sha256": "bd526df8b12a67cf67862fa4c534a38b2d9306d73941bcd965e067823eacb8a2",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/AutoRenamingTool/2.0.4/AutoRenamingTool-2.0.4.module"
+    },
+    {
+      "coordinate": "net.neoforged:JarJarMetadata:0.5.0",
+      "file": "JarJarMetadata-0.5.0.module",
+      "sha256": "250b7da5bd577bc220691495bf97531a3aec53232836b93a1e0af0c93ab05b5a",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/JarJarMetadata/0.5.0/JarJarMetadata-0.5.0.module"
+    },
+    {
+      "coordinate": "net.neoforged:JarJarSelector:0.4.1",
+      "file": "JarJarSelector-0.4.1.module",
+      "sha256": "fe7f076ff5a2adae05cfc9429149f8c0203b49a3943f93955564ea439b7ae323",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/JarJarSelector/0.4.1/JarJarSelector-0.4.1.module"
+    },
+    {
+      "coordinate": "net.neoforged:accesstransformers:10.0.1",
+      "file": "accesstransformers-10.0.1.module",
+      "sha256": "b3df09600aba72f2ac3ed1ba9f896fd7094aec0a774e50cdfaa10725118b2ed9",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/10.0.1/accesstransformers-10.0.1.module"
+    },
+    {
+      "coordinate": "net.neoforged:JarJarSelector:0.5.0",
+      "file": "JarJarSelector-0.5.0.module",
+      "sha256": "c878575fa740faa5e58e2714c87b8c998bc316802d63c8ff9c59b87e8c10ecea",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/JarJarSelector/0.5.0/JarJarSelector-0.5.0.module"
+    },
+    {
+      "coordinate": "net.neoforged:accesstransformers:11.0.2",
+      "file": "accesstransformers-11.0.2.module",
+      "sha256": "67c7e00f2572f255a5ae4786c45a215654c35e8ce2bbfbe125ebcc2eca02d19a",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/11.0.2/accesstransformers-11.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged:bus:8.0.5",
+      "file": "bus-8.0.5.module",
+      "sha256": "d888226def6220cb2f27a3ab6fb4732370a5ec957de013a4fe283dd4cf7e4f02",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/bus/8.0.5/bus-8.0.5.module"
+    },
+    {
+      "coordinate": "net.neoforged:bus:8.0.1",
+      "file": "bus-8.0.1.module",
+      "sha256": "094d6cd0314e4948f9f5bac4199d317b76dbff53ddda1c4a4f735c42ad908b23",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/bus/8.0.1/bus-8.0.1.module"
+    },
+    {
+      "coordinate": "net.neoforged:bus:8.0.2",
+      "file": "bus-8.0.2.module",
+      "sha256": "0eb4a10f64e4764b2e01778fa7142663e58abf23efaed1eced37e8377a4f690b",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/bus/8.0.2/bus-8.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged:coremods:7.0.3",
+      "file": "coremods-7.0.3.module",
+      "sha256": "c782f89319daf0818fab6910de20dc74edf35d587a83bf8bacbbb84559db8e64",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/coremods/7.0.3/coremods-7.0.3.module"
+    },
+    {
+      "coordinate": "net.neoforged:mergetool:2.0.0",
+      "file": "mergetool-2.0.0.module",
+      "sha256": "e1ea0d62fccefa0bb0476f568baf2fb181737a86e03a65670dce2a67a64d0251",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/mergetool/2.0.0/mergetool-2.0.0.module"
+    },
+    {
+      "coordinate": "net.neoforged:mergetool:2.0.3",
+      "file": "mergetool-2.0.3.module",
+      "sha256": "e9d6d181a84450c49d400e96336125c940aeff782084033a7c4790193d5ec687",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/mergetool/2.0.3/mergetool-2.0.3.module"
+    },
+    {
+      "coordinate": "net.neoforged:mergetool:2.0.7",
+      "file": "mergetool-2.0.7.module",
+      "sha256": "3d467a89adbdcba6a006fb80480f2a77cee42ce5b83aaf56bc019d380cf36e33",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/mergetool/2.0.7/mergetool-2.0.7.module"
+    },
+    {
+      "coordinate": "net.neoforged:accesstransformers:11.0.1",
+      "file": "accesstransformers-11.0.1.module",
+      "sha256": "6eae5ebf7b69fad34c206bd8c6c04c1569d80febcd055f860113d0361417d689",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/11.0.1/accesstransformers-11.0.1.module"
+    },
+    {
+      "coordinate": "net.neoforged:srgutils:1.0.10",
+      "file": "srgutils-1.0.10.module",
+      "sha256": "13197470d19bc772c0f9f5fd95c76f6fa40c0b1adfee984eb5842d94ad4da46f",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/srgutils/1.0.10/srgutils-1.0.10.module"
+    },
+    {
+      "coordinate": "net.neoforged:vineflower-plugins:0.1.5",
+      "file": "vineflower-plugins-0.1.5.module",
+      "sha256": "7f1917404683158868ea069ca7ac8ab272caab829863cb95feb31c2307ddbd6d",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/vineflower-plugins/0.1.5/vineflower-plugins-0.1.5.module"
+    },
+    {
+      "coordinate": "net.neoforged.accesstransformers:at-modlauncher:10.0.1",
+      "file": "at-modlauncher-10.0.1.module",
+      "sha256": "c7fa624126b4adccdc3f15429a883e4b8a9ecb429e48068c411ae30740f16405",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/at-modlauncher/10.0.1/at-modlauncher-10.0.1.module"
+    },
+    {
+      "coordinate": "net.neoforged.accesstransformers:at-parser:11.0.2",
+      "file": "at-parser-11.0.2.module",
+      "sha256": "aae4cd15246b8cfa1b6f9c13f6229795591d308ebe6e7c682faab21caadc2be6",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/at-parser/11.0.2/at-parser-11.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged.accesstransformers:at-modlauncher:11.0.2",
+      "file": "at-modlauncher-11.0.2.module",
+      "sha256": "60b44558938f6f137265e3a090def0262a0a918578acfd87acca746b2e8cf5f8",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/at-modlauncher/11.0.2/at-modlauncher-11.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:bootstraplauncher:9.0.14",
+      "file": "bootstraplauncher-9.0.14.module",
+      "sha256": "3c0afb154840c6c43fdbda7fa8d41d1ce3c4c92bd205cbe1fafa1103c24a246e",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/bootstraplauncher/9.0.14/bootstraplauncher-9.0.14.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:bootstraplauncher:9.0.18",
+      "file": "bootstraplauncher-9.0.18.module",
+      "sha256": "e0f069606a3f0cef7dab15e27c56e504cd50c07c7ba869c0a555d83fa13d4a3b",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/bootstraplauncher/9.0.18/bootstraplauncher-9.0.18.module"
+    },
+    {
+      "coordinate": "net.neoforged.accesstransformers:at-modlauncher:11.0.1",
+      "file": "at-modlauncher-11.0.1.module",
+      "sha256": "b002c8065c43f412d6847b042dc3d7ff1bcdfc06e261cbcea1b815982a358fe9",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/at-modlauncher/11.0.1/at-modlauncher-11.0.1.module"
+    },
+    {
+      "coordinate": "net.neoforged.accesstransformers:at-parser:11.0.1",
+      "file": "at-parser-11.0.1.module",
+      "sha256": "fb6beb80d0797f17e9afb55955ddb01853c73ac868883d329a775f6ff57f6cdc",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/at-parser/11.0.1/at-parser-11.0.1.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:11.0.15",
+      "file": "earlydisplay-11.0.15.module",
+      "sha256": "d5f5745ddaf0a0be747cb4f5c5ebb050abb3855310636f8644b863356af0782f",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/11.0.15/earlydisplay-11.0.15.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:bootstraplauncher:9.0.2",
+      "file": "bootstraplauncher-9.0.2.module",
+      "sha256": "59b81f2227c3efa4ed3b2a8a2b6983d34a1768201586697c078158c5094d08df",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/bootstraplauncher/9.0.2/bootstraplauncher-9.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:10.0.32",
+      "file": "earlydisplay-10.0.32.module",
+      "sha256": "ce8701e5d529868aab5438719de938465b68f209ddd23f28fe1a3ab9a14ac661",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/10.0.32/earlydisplay-10.0.32.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:10.0.14",
+      "file": "earlydisplay-10.0.14.module",
+      "sha256": "9ade125246ce8d04f698c8034eff45610123260c4c9786122f8c4f99c07a9c2b",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/10.0.14/earlydisplay-10.0.14.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:4.0.29",
+      "file": "earlydisplay-4.0.29.module",
+      "sha256": "a22a2c0a12489ef39bd6737c6b95b489f1827eb0785b70a07e1d570d8d4392a4",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/4.0.29/earlydisplay-4.0.29.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:11.0.5",
+      "file": "earlydisplay-11.0.5.module",
+      "sha256": "e6f9f455ad6ef81136e43f5dde2e53e0b916caf3dd873d2a126dfefbcb9feb11",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/11.0.5/earlydisplay-11.0.5.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:10.0.36",
+      "file": "earlydisplay-10.0.36.module",
+      "sha256": "138e4882101e82730952fdacf00963fc6771ff915cd49d514b8c81084774688c",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/10.0.36/earlydisplay-10.0.36.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:6.0.18",
+      "file": "earlydisplay-6.0.18.module",
+      "sha256": "80ba0156058bcd40d05e0f3612ac2a42b4384dc31bde6c00f59ac176457dea5b",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/6.0.18/earlydisplay-6.0.18.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:9.0.14",
+      "file": "earlydisplay-9.0.14.module",
+      "sha256": "c6d8175d01f7ecc8c4bc666e44dd8eb384cce5ea70d645a87b44009ffc317042",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/9.0.14/earlydisplay-9.0.14.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:7.0.13",
+      "file": "earlydisplay-7.0.13.module",
+      "sha256": "2643a8bad61ba7dcf906c08dfe9a1bb6071657b684eb8b5cf1618beb0ac9efc9",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/7.0.13/earlydisplay-7.0.13.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:5.0.8",
+      "file": "earlydisplay-5.0.8.module",
+      "sha256": "98d4e6cb4e73b061037b5ddc366025040354e8ab0c960178cdd5da4877a009a4",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/5.0.8/earlydisplay-5.0.8.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:9.0.18",
+      "file": "earlydisplay-9.0.18.module",
+      "sha256": "580d715c13a38525a1078dfa37f661b637529f62510342baa4a1cb652f6d5638",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/9.0.18/earlydisplay-9.0.18.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:earlydisplay:9.0.2",
+      "file": "earlydisplay-9.0.2.module",
+      "sha256": "e4844deb32bad2f52dd027179972c59e4856fba0936612151bcef96080ab6dc7",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/earlydisplay/9.0.2/earlydisplay-9.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:11.0.15",
+      "file": "junit-fml-11.0.15.module",
+      "sha256": "372c406f4be06d4effd67dec3c8964faecbe9e080600ebed871b4e139c9073dc",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/11.0.15/junit-fml-11.0.15.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:10.0.32",
+      "file": "junit-fml-10.0.32.module",
+      "sha256": "8be1da450907e6e240033fc888d6e00377889dc4b8cf450d9faabf8655bdf796",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/10.0.32/junit-fml-10.0.32.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:10.0.14",
+      "file": "junit-fml-10.0.14.module",
+      "sha256": "f2133a46d00d9039c2934d628a1724c52631f00fc9b027a0063c713712a741cf",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/10.0.14/junit-fml-10.0.14.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:10.0.36",
+      "file": "junit-fml-10.0.36.module",
+      "sha256": "878133bd493553a3b549940ff90aa34bc2e26653779fbf9144c1749823f3e926",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/10.0.36/junit-fml-10.0.36.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:11.0.5",
+      "file": "junit-fml-11.0.5.module",
+      "sha256": "6f31b4777880a15ef30add982b9a473a5415fc081d4be259e19a5ac69c9cf052",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/11.0.5/junit-fml-11.0.5.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:4.0.29",
+      "file": "junit-fml-4.0.29.module",
+      "sha256": "158fe9625439073e60f78df86c3e10b5a7c3b2893afd14f7ad829a4c555987fe",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/4.0.29/junit-fml-4.0.29.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:4.0.44",
+      "file": "junit-fml-4.0.44.module",
+      "sha256": "889d7b29d8e3bc2eafd1282d81c64ffebb16a26b05551af1cefdecfc3bf96dc3",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/4.0.44/junit-fml-4.0.44.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:5.0.8",
+      "file": "junit-fml-5.0.8.module",
+      "sha256": "89b8645377cc248908d405bd041e44a7084514afa5632e538b9977fbe42acc87",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/5.0.8/junit-fml-5.0.8.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:6.0.18",
+      "file": "junit-fml-6.0.18.module",
+      "sha256": "9bf18deff3bd2ed5054fcd62265149379b510d5e892941e4f96bc7cdb4b5ba45",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/6.0.18/junit-fml-6.0.18.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:7.0.13",
+      "file": "junit-fml-7.0.13.module",
+      "sha256": "3013c6077c1fc759bd95eba3713a47fee30a3ecc0c2e529b34cf64f605dd3bd6",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/7.0.13/junit-fml-7.0.13.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:9.0.14",
+      "file": "junit-fml-9.0.14.module",
+      "sha256": "ff8ceed92652b80e2d3e4ab52251b6c78541940cc2c41bc6ad1d6550262ed17e",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/9.0.14/junit-fml-9.0.14.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:11.0.15",
+      "file": "loader-11.0.15.module",
+      "sha256": "362796f7ec9ae68bff81cf5f8d9af0f9097d4ff04e8e6204f88a65bbcae3192f",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/11.0.15/loader-11.0.15.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:9.0.18",
+      "file": "junit-fml-9.0.18.module",
+      "sha256": "a441b00b74ac7ccbc5f40451b89b0854fa5837cb5c342b48f2b3bb6df463dff9",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/9.0.18/junit-fml-9.0.18.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:junit-fml:9.0.2",
+      "file": "junit-fml-9.0.2.module",
+      "sha256": "a6cb4701d764d9f437b64c70da16cb7465670ffb99352aff82f2f4e84fbc2eb4",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/junit-fml/9.0.2/junit-fml-9.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:10.0.32",
+      "file": "loader-10.0.32.module",
+      "sha256": "f1b975c27271e418d9245ed3ce5a34c7615d63dd1417cbc4737e2855b4dbec3b",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/10.0.32/loader-10.0.32.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:10.0.36",
+      "file": "loader-10.0.36.module",
+      "sha256": "bbc3a8e75101c934a200b93546307c777f4ae09a3fe862d1a6a4ae66891e62e8",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/10.0.36/loader-10.0.36.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:10.0.14",
+      "file": "loader-10.0.14.module",
+      "sha256": "95f39cb9bfa28ecc4e252b3089027638fdb3e02108100a114fdc050f2a738240",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/10.0.14/loader-10.0.14.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:4.0.29",
+      "file": "loader-4.0.29.module",
+      "sha256": "20fab1d5a8b01feb153807cbaaee73a3d7cb43f582ec976e56e7ce9d28ad4c07",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/4.0.29/loader-4.0.29.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:11.0.5",
+      "file": "loader-11.0.5.module",
+      "sha256": "629a8d2ee089504038799d7c1f80ce5df1c807c39447f1e28585b4bf5b0f0a41",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/11.0.5/loader-11.0.5.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:5.0.8",
+      "file": "loader-5.0.8.module",
+      "sha256": "e533e59ebc1df1ddba9325d5b187a7520706ab411e5e9a1cce92655b6f7b4c1c",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/5.0.8/loader-5.0.8.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:9.0.14",
+      "file": "loader-9.0.14.module",
+      "sha256": "b3fdef3d4e8f31ac217d28a00346524bdd15d894a6fc81b47b47016f6bbcc916",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/9.0.14/loader-9.0.14.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:6.0.18",
+      "file": "loader-6.0.18.module",
+      "sha256": "a776dc6488360847638d636cfac2f2de862cf48d6e624a9bbf944f1438c601a5",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/6.0.18/loader-6.0.18.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:9.0.18",
+      "file": "loader-9.0.18.module",
+      "sha256": "df11e23fe4fc3a571dd104a9477063c56a64384e725fdc1464692a291318d2fb",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/9.0.18/loader-9.0.18.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:7.0.13",
+      "file": "loader-7.0.13.module",
+      "sha256": "ebd086413888e8449fd76bc8d77599b59b0b38cf710ae931153f9db2eeb85441",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/7.0.13/loader-7.0.13.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:loader:9.0.2",
+      "file": "loader-9.0.2.module",
+      "sha256": "dc72aec5059e6b7890691633ab585129b1cac911a65d39938e3cee32d0d18532",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/loader/9.0.2/loader-9.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:binarypatcher:4.0.16",
+      "file": "binarypatcher-4.0.16.module",
+      "sha256": "2980d10767c5860a17a3c5b65ceaf3416558a71a5b0e7c20028f1f51943ce17a",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/binarypatcher/4.0.16/binarypatcher-4.0.16.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:securejarhandler:9.0.14",
+      "file": "securejarhandler-9.0.14.module",
+      "sha256": "7256104be07478b8e63ec190e8e97194e87e7cd4464fb23dca3b39c6e775a275",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/securejarhandler/9.0.14/securejarhandler-9.0.14.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:securejarhandler:9.0.18",
+      "file": "securejarhandler-9.0.18.module",
+      "sha256": "032aae7657b87c213bdfedb5c4d89490439a8dc4baf92add1f154774cc769abc",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/securejarhandler/9.0.18/securejarhandler-9.0.18.module"
+    },
+    {
+      "coordinate": "net.neoforged.fancymodloader:securejarhandler:9.0.2",
+      "file": "securejarhandler-9.0.2.module",
+      "sha256": "fb6e1658c9824c79138f03682ce42dfb4fe9144adc598a55290812d4becff25a",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/fancymodloader/securejarhandler/9.0.2/securejarhandler-9.0.2.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:cli-utils:4.0.16",
+      "file": "cli-utils-4.0.16.module",
+      "sha256": "ee3e767de83542b37fab35eaab61465ab7f4476a2b79abc67b0bccced7ba8abf",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/cli-utils/4.0.16/cli-utils-4.0.16.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:installertools:2.1.2",
+      "file": "installertools-2.1.2.module",
+      "sha256": "ac592cdfb16e7acdf17f6dd4d4f01e8b2dd5398c3851d78e73866105d052d0ba",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/installertools/2.1.2/installertools-2.1.2.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:cli-utils:2.1.2",
+      "file": "cli-utils-2.1.2.module",
+      "sha256": "72e34ed2df39dfc2491e7e94ea1aab92d0508315c08b242ee20a7141902d7083",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/cli-utils/2.1.2/cli-utils-2.1.2.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:binarypatcher:4.0.7",
+      "file": "binarypatcher-4.0.7.module",
+      "sha256": "231461fc16a5309d38007807d2c42b6e7d825a0e678905c149bfc770af9caf95",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/binarypatcher/4.0.7/binarypatcher-4.0.7.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:cli-utils:3.0.13",
+      "file": "cli-utils-3.0.13.module",
+      "sha256": "79d8b0d5d752a3c734dd730ad581c9980ea8c9631a546ff19d3cf384ec2ab518",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/cli-utils/3.0.13/cli-utils-3.0.13.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:installertools:4.0.16",
+      "file": "installertools-4.0.16.module",
+      "sha256": "9e9a26e397ca56138faf5b2b56bdc891fc4e823482da95b6060a60442e27cd00",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/installertools/4.0.16/installertools-4.0.16.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:cli-utils:4.0.7",
+      "file": "cli-utils-4.0.7.module",
+      "sha256": "eccc7cd65638149ff718cba78d3a38e7de1a09d915143d0e5b80914f6a58aa6c",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/cli-utils/4.0.7/cli-utils-4.0.7.module"
+    },
+    {
+      "coordinate": "org.apache.logging.log4j:log4j-api:2.25.2",
+      "file": "log4j-api-2.25.2.module",
+      "sha256": "58f785ebabbacc303f3b0e5a485f755fdab3290f69e49b034f8963d27823655e",
+      "source": "https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-api/2.25.2/log4j-api-2.25.2.module"
+    },
+    {
+      "coordinate": "org.apache.groovy:groovy-bom:4.0.27",
+      "file": "groovy-bom-4.0.27.module",
+      "sha256": "d6c2254c8347b84cda84caf74914a187c2f377e4284e8d8bb3f901521810aa8b",
+      "source": "https://repo.maven.apache.org/maven2/org/apache/groovy/groovy-bom/4.0.27/groovy-bom-4.0.27.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:installertools:3.0.13",
+      "file": "installertools-3.0.13.module",
+      "sha256": "34ccd28dd811dc9ef3200a16dcd2b442a976bbe78d5ab7ef0f94d5cc0d05b91b",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/installertools/3.0.13/installertools-3.0.13.module"
+    },
+    {
+      "coordinate": "org.apache.logging.log4j:log4j-core:2.25.2",
+      "file": "log4j-core-2.25.2.module",
+      "sha256": "2514127377850f047cde325b73b79fae21332922beb649a2533afd0842258a11",
+      "source": "https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-core/2.25.2/log4j-core-2.25.2.module"
+    },
+    {
+      "coordinate": "org.apache.logging.log4j:log4j-slf4j2-impl:2.25.2",
+      "file": "log4j-slf4j2-impl-2.25.2.module",
+      "sha256": "d2cf9f683bfba1e93b70560940b6aaa01ee9fdb4d8fa305fd7930737df282afc",
+      "source": "https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-slf4j2-impl/2.25.2/log4j-slf4j2-impl-2.25.2.module"
+    },
+    {
+      "coordinate": "org.checkerframework:checker-qual:3.33.0",
+      "file": "checker-qual-3.33.0.module",
+      "sha256": "e8521d75625d41272c767d262a153ac163cc505b66644a2ef705fa8949ffb4e5",
+      "source": "https://repo.maven.apache.org/maven2/org/checkerframework/checker-qual/3.33.0/checker-qual-3.33.0.module"
+    },
+    {
+      "coordinate": "org.jetbrains:annotations:26.0.1",
+      "file": "annotations-26.0.1.module",
+      "sha256": "c7f9e349b34df8b211470e229862449c3cc13cbc1e78c79b297a374727b2e605",
+      "source": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/26.0.1/annotations-26.0.1.module"
+    },
+    {
+      "coordinate": "org.jetbrains:annotations:26.0.2",
+      "file": "annotations-26.0.2.module",
+      "sha256": "bef0b8352b2dfd4cb7155ecc2a39227bf16a3e08667babec650c76b1abbfcecb",
+      "source": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/26.0.2/annotations-26.0.2.module"
+    },
+    {
+      "coordinate": "org.joml:joml:1.10.8",
+      "file": "joml-1.10.8.module",
+      "sha256": "827732f57b3355f5bcdb5baa997338aac9c7d4483deba560a7575231239ee315",
+      "source": "https://repo.maven.apache.org/maven2/org/joml/joml/1.10.8/joml-1.10.8.module"
+    },
+    {
+      "coordinate": "org.jspecify:jspecify:1.0.0",
+      "file": "jspecify-1.0.0.module",
+      "sha256": "d307ca77a54e18ac1ef1aaed4e5bbe014bd2f49f29e1d2f813e47c278283195b",
+      "source": "https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.module"
+    },
+    {
+      "coordinate": "org.jetbrains:annotations:26.0.2-1",
+      "file": "annotations-26.0.2-1.module",
+      "sha256": "9fe86aeb64b86323e8e579503b11a038a140694c13b6804343f8a4dc9a3a46b1",
+      "source": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/26.0.2-1/annotations-26.0.2-1.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.10.0",
+      "file": "junit-bom-5.10.0.module",
+      "sha256": "eb3ee6127608010694a898056e7407d117296003aba5f5db801df430b9887fcf",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.10.0/junit-bom-5.10.0.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.10.1",
+      "file": "junit-bom-5.10.1.module",
+      "sha256": "21b0afcfffe2ecb3770f5eb00ae7a19feaee94e771fa3918173850dae78067b7",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.10.1/junit-bom-5.10.1.module"
+    },
+    {
+      "coordinate": "net.neoforged.installertools:installertools:4.0.7",
+      "file": "installertools-4.0.7.module",
+      "sha256": "aec199590dd5579c3d96a944c011de51cdf1231e6248538faa7b4c212fe967eb",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/installertools/installertools/4.0.7/installertools-4.0.7.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.10.3",
+      "file": "junit-bom-5.10.3.module",
+      "sha256": "aa7940c9d68312e39d89a65285aa9af45f14d8f434d850ee8d93db6a56d167bb",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.10.3/junit-bom-5.10.3.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.13.1",
+      "file": "junit-bom-5.13.1.module",
+      "sha256": "33c07ab9724790a6e5859ba07d69117ac530439724545a81c4179e3272c75de8",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.13.1/junit-bom-5.13.1.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.13.2",
+      "file": "junit-bom-5.13.2.module",
+      "sha256": "ed67e15221404ac42b5e598102edf762dd6a952dc95001e9c0c4ee74a04e8283",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.13.2/junit-bom-5.13.2.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.13.4",
+      "file": "junit-bom-5.13.4.module",
+      "sha256": "e959288fde1b1b050d9bc082fc786789128da5d2853091468fca504104bdf400",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.13.4/junit-bom-5.13.4.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.7.2",
+      "file": "junit-bom-5.7.2.module",
+      "sha256": "f3bceb1c59dd4f6993f4304dffa580172b8df65a76cd36fa4fd92c0578d28ad8",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.7.2/junit-bom-5.7.2.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.7.1",
+      "file": "junit-bom-5.7.1.module",
+      "sha256": "9854e3894d64b2485207e0046bca07b3d42d169e782f4fa8c9ce229a78faee04",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.7.1/junit-bom-5.7.1.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.9.3",
+      "file": "junit-bom-5.9.3.module",
+      "sha256": "b401fd25901e582a524aa5343c4b39e28bc56e24961c1069bf2b4bbfcee46b93",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.9.3/junit-bom-5.9.3.module"
+    },
+    {
+      "coordinate": "org.lwjgl:lwjgl-bom:3.4.1",
+      "file": "lwjgl-bom-3.4.1.module",
+      "sha256": "4f206cb5a430aee87724fe6c047000f046cad45eff997f29f3230d904fdf5400",
+      "source": "https://repo.maven.apache.org/maven2/org/lwjgl/lwjgl-bom/3.4.1/lwjgl-bom-3.4.1.module"
+    },
+    {
+      "coordinate": "org.lwjgl:lwjgl-bom:3.3.3",
+      "file": "lwjgl-bom-3.3.3.module",
+      "sha256": "d67acea17a200a6df63f6e5c1856b64ea402fa1736ae13532350f4d126f1817c",
+      "source": "https://repo.maven.apache.org/maven2/org/lwjgl/lwjgl-bom/3.3.3/lwjgl-bom-3.3.3.module"
+    },
+    {
+      "coordinate": "org.springframework:spring-framework-bom:5.3.39",
+      "file": "spring-framework-bom-5.3.39.module",
+      "sha256": "f88b40e2a50333b40b42f181eee272b75ec75dd8666cb145bd90b15b97e183e3",
+      "source": "https://repo.maven.apache.org/maven2/org/springframework/spring-framework-bom/5.3.39/spring-framework-bom-5.3.39.module"
     }
   ]
 }
