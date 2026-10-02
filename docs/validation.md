@@ -4,7 +4,7 @@
 
 ## 构建与纯 Java
 
-legacy Gradle 9.2.1、modern Gradle 9.4.0 均执行独立构建。共享核心以 `--release 21` 编译；26.1.x adapter/Loader 为 Java 25。Wrapper JAR 与 distribution pin 通过 `python tools/verify-wrapper.py`。
+legacy Gradle 9.2.1、modern Gradle 9.4.0 均执行独立构建。共享核心以 `--release 21` 编译；26.1.x adapter/Loader 为 Java 25。Wrapper JAR 与 distribution pin 通过 `python tools/verify/verify-wrapper.py`。
 
 `check` 覆盖 EngineTest、RequiredFixtureTest、ClientCommonTest、VoiceRuntimeTest，共 53 个不同测试；legacy、modern 入口分别执行且失败/错误/跳过为 0。原需求 A–H 的完整字符串各自作为 fixture 执行。测试方法、时间与数量见 [core-tests.json](validation/core-tests.json)。覆盖：
 
@@ -32,7 +32,7 @@ legacy Gradle 9.2.1、modern Gradle 9.4.0 均执行独立构建。共享核心�
 本机缓存构建命令形式为：
 
 ```powershell
-.\tools\build-matrix.ps1 -Smoke -DependencyCache 'tools/.cache/maven' -NeoFormCache 'tools/.cache/neoformruntime' -Offline
+.\tools\build\build-matrix.ps1 -Smoke -DependencyCache 'tools/.cache/maven' -NeoFormCache 'tools/.cache/neoformruntime' -Offline
 ```
 
 统一命名的 30 个 JAR、日志、场景报告和 `SHA256SUMS` 位于被 Git 忽略的 `dist/`。原始截图位于各目标 `run-smoke/screenshots/`。源码、锁文件、校验清单、文档及 CI 纳入版本管理。
@@ -47,4 +47,4 @@ legacy Gradle 9.2.1、modern Gradle 9.4.0 均执行独立构建。共享核心�
 
 ## 未完成的外部及人工验收
 
-已认证 Signed Chat、实体 Shift/Alt、hover 弹窗、全部配置/命令路径、人工听感、自定义字体资源包、其他聊天模组组合、长时性能及远端跨平台 CI 仍待执行。逐项状态见 [acceptance.md](acceptance.md)；116 节定位见 [traceability.md](requirements/traceability.md)。所有目标仍为 `supported=false`。
+已认证 Signed Chat、实体 Shift/Alt、hover 弹窗、全部配置/命令路径、人工听感、自定义字体资源包、其他聊天模组组合、长时性能及 macOS 验证仍待执行；Linux CI 的实际结果见 [CI 记录](ci-status.md)。逐项状态见 [acceptance.md](acceptance.md)；116 节定位见 [traceability.md](requirements/traceability.md)。所有目标仍为 `supported=false`。

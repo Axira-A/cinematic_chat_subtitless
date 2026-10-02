@@ -1,0 +1,27 @@
+// Ordered source roots: common logic, explicit API family, reviewed overrides,
+// and target-local changes. A higher root replaces the same relative Java file.
+def component = project.name == 'minecraft-adapter' ? 'minecraft' : targetSpec.loader
+def layoutSpec = new groovy.json.JsonSlurper().parse(rootProject.repoFile('gradle/source-layout.json'))
+if (!(targetSpec.apiFamily in ['legacy', 'mc26.1'])) {
+    throw new GradleException("Unknown API family ${targetSpec.apiFamily}")
+}
+def roots = [rootProject.repoFile("adapters/common/${component}"),
+             rootProject.repoFile("adapters/api/legacy/${component}")]
+if (targetSpec.apiFamily == 'mc26.1') roots.add(rootProject.repoFile("adapters/api/mc26.1/${component}"))
+layoutSpec.overrides.findAll { it.component == component && targetSpec.minecraft in it.minecraft }
+        .each { roots.add(rootProject.repoFile(it.directory)) }
+roots.add(projectDir)
+
+['main', 'smoke'].each { kind ->
+    def directories = roots.collect { new File(it, "src/${kind}/java") }.findAll { it.isDirectory() }
+    sourceSets[kind].java.setSrcDirs(directories)
+    sourceSets[kind].java.exclude { entry ->
+        def owner = directories.findIndexOf { entry.file.toPath().startsWith(it.toPath()) }
+        owner >= 0 && directories.drop(owner + 1).any { new File(it, entry.path).isFile() }
+    }
+    sourceSets[kind].resources.setSrcDirs(roots.collect { new File(it, "src/${kind}/resources") }.findAll { it.isDirectory() })
+}
+tasks.named('processResources') {
+    inputs.property('mixinJava', targetSpec.java)
+    filesMatching('*.mixins.json') { expand mixinJava: targetSpec.java }
+}

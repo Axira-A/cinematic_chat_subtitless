@@ -1,6 +1,6 @@
 # 30 目标实际执行结果
 
-由 `python tools/write-matrix-report.py --archive` 从日志、JAR 与场景报告生成。Supported 全部为 false；验收限制见 [验收清单](../acceptance.md)。
+由 `python tools/reports/write-matrix-report.py --archive` 从日志、JAR 与场景报告生成。Supported 全部为 false；验收限制见 [验收清单](../acceptance.md)。
 
 | Minecraft | Loader | Java | Build | Launch | Gameplay | 断言/记录 | JAR SHA-256 |
 |---|---|---|---|---|---|---|---|

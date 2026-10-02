@@ -2,7 +2,7 @@
 
 编号与标题来自两份原始需求。这是实现定位和证据索引，不代表每节已通过完整人工验收。Core = 纯 Java 自动测试；Native = 真实 Minecraft 临时世界场景；源码 = 已实现且可审阅，未声称执行该项端到端操作。
 
-统一测试源码：[EngineTest](../../engine/src/test/java/io/github/axiraa/cinematicchat/engine/EngineTest.java)、[RequiredFixtureTest](../../engine/src/test/java/io/github/axiraa/cinematicchat/engine/RequiredFixtureTest.java)、[ClientCommonTest](../../client-common/src/test/java/io/github/axiraa/cinematicchat/client/ClientCommonTest.java)、[VoiceRuntimeTest](../../client-common/src/test/java/io/github/axiraa/cinematicchat/client/VoiceRuntimeTest.java)、[ClientScenario](../../targets/1.21.1/minecraft/src/smoke/java/io/github/axiraa/cinematicchat/smoke/ClientScenario.java)。
+统一测试源码：[EngineTest](../../engine/src/test/java/io/github/axiraa/cinematicchat/engine/EngineTest.java)、[RequiredFixtureTest](../../engine/src/test/java/io/github/axiraa/cinematicchat/engine/RequiredFixtureTest.java)、[ClientCommonTest](../../client-common/src/test/java/io/github/axiraa/cinematicchat/client/ClientCommonTest.java)、[VoiceRuntimeTest](../../client-common/src/test/java/io/github/axiraa/cinematicchat/client/VoiceRuntimeTest.java)、[ClientScenario](../../adapters/common/minecraft/src/smoke/java/io/github/axiraa/cinematicchat/smoke/ClientScenario.java)。
 
 实际结果：[30 目标矩阵](../validation/matrix.md)、[验收条目](../acceptance.md)、[交付报告](../final-report.md)。
 
@@ -44,7 +44,7 @@
 | 34 | 三十四、CCML 示例测试 | RequiredFixtureTest / EngineTest | 原需求完整 A–H fixture、fade 范围与演出语义 Core |
 | 35 | 三十五、Core Unit Tests | EngineTest / ClientCommonTest / VoiceRuntimeTest | 纯 Java 测试结果汇总 core-tests.json |
 | 36 | 三十六、Minecraft Integration Tests | ClientScenario / NativeSmokeProbes | 每目标真实临时世界、日志、JSON 与 17 张截图 |
-| 37 | 三十七、版本兼容 CI | .github/workflows/matrix.yml | 完整 30 行 CI 源码；远端 CI 尚未执行 |
+| 37 | 三十七、版本兼容 CI | .github/workflows/matrix.yml | 完整 30 行 CI；首次远端运行依赖校验失败，当前状态见 docs/ci-status.md |
 | 38 | 三十八、Gradle 策略 | legacy / modern / convention scripts | Gradle 9.2.1/9.4.0，Java 21/25，锁文件与 SHA-256 严格构建 |
 | 39 | 三十九、Artifact 命名 | target-properties.gradle / verifyModJar | 每 MC/Loader 独立命名；dist JAR hash |
 | 40 | 四十、不要提交构建产物 | .gitignore / .gitattributes | 构建/运行/缓存不入 Git，脚本行尾规则；暂存清单检查 |

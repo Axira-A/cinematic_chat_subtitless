@@ -1,7 +1,7 @@
 java.toolchain.languageVersion = JavaLanguageVersion.of(targetSpec.java)
 dependencies {
     minecraft "com.mojang:minecraft:${targetSpec.minecraft}"
-    if(targetSpec.java<25){
+    if(targetSpec.apiFamily == 'legacy'){
         mappings loom.officialMojangMappings()
         modImplementation 'net.fabricmc:fabric-loader:0.19.5'
     }else{

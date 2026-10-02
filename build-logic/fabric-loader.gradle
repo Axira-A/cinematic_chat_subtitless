@@ -3,7 +3,7 @@ sourceSets { smoke { compileClasspath += sourceSets.main.output + configurations
 java.toolchain.languageVersion = JavaLanguageVersion.of(targetSpec.java)
 dependencies {
     minecraft "com.mojang:minecraft:${targetSpec.minecraft}"
-    if(targetSpec.java<25){
+    if(targetSpec.apiFamily == 'legacy'){
         mappings loom.officialMojangMappings()
         modImplementation 'net.fabricmc:fabric-loader:0.19.5'
         modImplementation "net.fabricmc.fabric-api:fabric-api:${targetSpec.fabricApi}"
@@ -28,7 +28,7 @@ jar {
     from project(':minecraft-api').sourceSets.main.output
     from rootProject.repoFile('LICENSE')
 }
-tasks.named(targetSpec.java<25?'remapJar':'jar') { archiveFileName = "cinematic-chat-${project.version}+mc${targetSpec.minecraft}-fabric.jar" }
+tasks.named(targetSpec.apiFamily == 'legacy'?'remapJar':'jar') { archiveFileName = "cinematic-chat-${project.version}+mc${targetSpec.minecraft}-fabric.jar" }
 apply from: rootProject.repoFile('build-logic/verify-jar.gradle')
 processResources { inputs.property 'version', project.version; inputs.property 'javaVersion',targetSpec.java; filesMatching('fabric.mod.json') { expand version: project.version, minecraft: targetSpec.minecraft, javaVersion:targetSpec.java } }
 tasks.named('runSmoke') {

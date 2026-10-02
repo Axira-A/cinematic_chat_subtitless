@@ -1,6 +1,3 @@
 plugins { id 'java-library'; id 'net.neoforged.moddev' version '2.0.148' }
 apply from: rootProject.repoFile('build-logic/neoforge-adapter.gradle')
-sourceSets {
-    main { java.srcDir rootProject.repoFile('targets/1.21.1/minecraft/src/main/java'); resources.srcDir rootProject.repoFile('targets/1.21.1/minecraft/src/main/resources') }
-    smoke { java.srcDir rootProject.repoFile('targets/1.21.1/minecraft/src/smoke/java') }
-}
+apply from: rootProject.repoFile('build-logic/source-layout.gradle')

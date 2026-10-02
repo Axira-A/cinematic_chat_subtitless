@@ -1,4 +1,4 @@
-def releaseTask=targetSpec.loader=='fabric'&&targetSpec.java<25?'remapJar':'jar'
+def releaseTask=targetSpec.loader=='fabric'&&targetSpec.apiFamily == 'legacy'?'remapJar':'jar'
 tasks.register('verifyModJar') {
     dependsOn tasks.named(releaseTask)
     inputs.file(tasks.named(releaseTask).flatMap { it.archiveFile })

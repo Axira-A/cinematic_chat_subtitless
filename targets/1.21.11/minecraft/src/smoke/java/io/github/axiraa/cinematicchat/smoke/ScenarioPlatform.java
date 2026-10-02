@@ -16,4 +16,8 @@ public final class ScenarioPlatform {
     public static Component rich(){return Component.literal("Rich original").withStyle(Style.EMPTY.withClickEvent(new ClickEvent.SuggestCommand("/say hello")).withHoverEvent(new HoverEvent.ShowText(Component.literal("Hover retained"))));}
     public static void enter(Minecraft mc){mc.screen.keyPressed(new net.minecraft.client.input.KeyEvent(257,0,0));}
     static void screenshot(Minecraft mc,String name){net.minecraft.client.Screenshot.grab(mc.gameDirectory,name,mc.getMainRenderTarget(),1,c->{});}
+
+    public static void resizeGui(Minecraft mc){mc.resizeDisplay();}
+    public static void addSystemMessage(Minecraft mc,Component message){mc.gui.getChat().addMessage(message);}
+    public static void addPlayerMessage(Minecraft mc,Component message,MessageSignature signature,net.minecraft.client.GuiMessageTag tag){mc.gui.getChat().addMessage(message,signature,tag);}
 }

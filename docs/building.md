@@ -11,12 +11,14 @@ Windows 使用 `gradlew.bat`，Linux/macOS 使用 `bash gradlew`。版本属性�
 .\legacy\gradlew.bat -p legacy '-PmcVersion=1.21.1' -Ploader=neoforge :neoforge:build check
 .\legacy\gradlew.bat -p legacy '-PmcVersion=1.21.1' -Ploader=fabric :fabric:runSmoke
 .\modern\gradlew.bat -p modern '-PmcVersion=26.1.2' -Ploader=fabric :fabric:build check
-.\tools\build-matrix.ps1 -Smoke
+.\tools\build\build-matrix.ps1 -Smoke
 ```
 
 根目录 Wrapper 是 legacy 的快捷入口。modern 的 daemon JVM 条件固定为 Java 25，共享模块仍以 `--release 21` 编译。只构建需要的 Loader，不在一次 Gradle 调用中加载两个 Loader 插件。版本、Fabric API、NeoForge、Loader 和插件初始选择见 [targets.json](../gradle/targets.json)。
 
-全量脚本按 30 行独立顺序执行，支持 `-Minecraft`、`-Loader` 子集。Windows 辅助脚本使用 PowerShell 7；Linux/macOS 使用 Bash、Python 3 与 `bash tools/build-matrix.sh --smoke`。运行需要图形及 OpenAL 环境；CI 使用 Xvfb、Mesa 和 OpenAL null 驱动，人工听感需要有声设备。
+`targets.json` 的 `apiFamily` 明确选择 legacy 或 mc26.1 接口实现。共享源码位于 `adapters/common`，版本边界在 `adapters/api`，字节一致的 override 按 [source-layout.json](../gradle/source-layout.json) 中明确列出的版本复用。每个版本目录只包含构建入口和剩余本地差异，不再承担公共源码根目录。
+
+全量脚本按 30 行独立顺序执行，支持 `-Minecraft`、`-Loader` 子集。Windows 辅助脚本使用 PowerShell 7；Linux/macOS 使用 Bash、Python 3 与 `bash tools/build/build-matrix.sh --smoke`。运行需要图形及 OpenAL 环境；CI 使用 Xvfb、Mesa 和 OpenAL null 驱动，人工听感需要有声设备。
 
 `build` 包含资源处理、打包和 `verifyModJar`：检查共享核心、MIT、客户端 metadata、精确 Minecraft 版本、必需 Mixin、字节码级别，以及测试/Minecraft 类未混入发布 JAR。客户端实际启动才验证 Mixin 能否注入运行中的方法。
 
@@ -25,9 +27,9 @@ Windows 使用 `gradlew.bat`，Linux/macOS 使用 `bash gradlew`。版本属性�
 本机 Java HTTPS 访问部分仓库发生连接重置。`cache-*.ps1` 仅从 Fabric、NeoForge、Forge、Mojang、Maven Central 和 Gradle Plugin Portal 官方地址缓存文件；Mojang 游戏 JAR、映射和 assets 使用官方清单的内容 hash 校验。缓存不提交，不改变发布依赖。
 
 ```powershell
-.\tools\cache-neoforge-target.ps1 -Minecraft 1.21.1
-.\tools\cache-fabric-api.ps1 -Version '0.116.17+1.21.1'
-.\tools\cache-minecraft-libraries.ps1 -Minecraft 1.21.1
+.\tools\dev-cache\cache-neoforge-target.ps1 -Minecraft 1.21.1
+.\tools\dev-cache\cache-fabric-api.ps1 -Version '0.116.17+1.21.1'
+.\tools\dev-cache\cache-minecraft-libraries.ps1 -Minecraft 1.21.1
 .\legacy\gradlew.bat -p legacy '-PmcVersion=1.21.1' -Ploader=neoforge '-PdependencyCache=tools/.cache/maven' '-PneoFormCache=tools/.cache/neoformruntime' --offline :neoforge:build
 ```
 
@@ -35,17 +37,19 @@ Windows 使用 `gradlew.bat`，Linux/macOS 使用 `bash gradlew`。版本属性�
 
 ## 锁定与校验
 
-Wrapper JAR 与 distribution SHA-256 均固定在版本管理中。运行 `python tools/verify-wrapper.py` 验证三个入口。JAR 官方校验来源为 `https://services.gradle.org/distributions/gradle-<版本>-wrapper.jar.sha256`，distribution 来源为相同官方目录的 `gradle-<版本>-bin.zip.sha256`。
+Wrapper JAR 与 distribution SHA-256 均固定在版本管理中。运行 `python tools/verify/verify-wrapper.py` 验证三个入口。JAR 官方校验来源为 `https://services.gradle.org/distributions/gradle-<版本>-wrapper.jar.sha256`，distribution 来源为相同官方目录的 `gradle-<版本>-bin.zip.sha256`。
 
 传递依赖锁文件放在 `gradle/dependency-locks/`。纯 Java 模块共享锁文件；adapter 与 Loader 按 Minecraft/Loader 分开，避免不同目标覆盖彼此的锁状态。[Gradle 锁定说明](https://docs.gradle.org/current/userguide/dependency_locking.html)
 
 三个入口各自的 `gradle/verification-metadata.xml` 使用 SHA-256，校验 metadata 与二进制。首次生成清单是信任基线的建立，需要审阅；它不能证明上游文件不存在恶意行为。[Gradle 校验说明](https://docs.gradle.org/current/userguide/dependency_verification.html)
 
+运行 `python tools/verify/verify-source-layout.py` 检查三个入口的校验文件一致、已审阅的 `.module` 校验以及全部目标的有效源码归属。工具在 CI 的独立核心任务中执行，随后才运行完整目标矩阵。首次 CI 暴露的元数据缺失和复测结果见 [CI 记录](ci-status.md)。
+
 明确更新依赖时才使用：
 
 ```powershell
-.\tools\build-matrix.ps1 -UpdateDependencyBaseline -DependencyCache 'tools/.cache/maven' -Offline
-python tools/merge-verification.py --official-cache tools/.cache/maven
+.\tools\build\build-matrix.ps1 -UpdateDependencyBaseline -DependencyCache 'tools/.cache/maven' -Offline
+python tools/verify/merge-verification.py --official-cache tools/.cache/maven
 ```
 
 合并工具保留 legacy/modern 已生成的校验，包括 Gradle 的 `also-trust` 多校验值，并加入官方缓存中的其他操作系统 native classifier 校验。更新后需执行开启正常校验的构建和客户端场景；不能用更新基线来忽略意外 hash 不匹配。
@@ -57,14 +61,14 @@ Loom 1.15.5 的本地派生映射及游戏 ZIP 使用生成时间，并且不同
 只有明确审阅输入与变更后才更新派生内容基线：
 
 ```powershell
-python tools/write-mapping-baseline.py --loom-cache "$env:USERPROFILE/.gradle/caches/fabric-loom"
-python tools/write-generated-game-baseline.py --loom-cache "$env:USERPROFILE/.gradle/caches/fabric-loom"
-python tools/merge-verification.py
+python tools/verify/write-mapping-baseline.py --loom-cache "$env:USERPROFILE/.gradle/caches/fabric-loom"
+python tools/verify/write-generated-game-baseline.py --loom-cache "$env:USERPROFILE/.gradle/caches/fabric-loom"
+python tools/verify/merge-verification.py
 ```
 
 该工具核对每版本 Mojang 清单的输入 hash，再记录解包内容，不记录 ZIP 时间戳。`--allow-incomplete` 仅用于本地准备，缺失行会使 Gradle 校验失败，不能用于交付。缓存只有生成 ZIP、缺少原始映射输入时，应使用 `--refresh-dependencies` 重新生成完整缓存。
 
-`tools/test-generated-mapping-verification.ps1` 串行验证错误的内容 pin 和输入 pin 都会使构建失败，并在 `finally` 中逐字节恢复基线，再检查正确基线成功；加 `-Game` 检查游戏派生物。运行此探针期间不能同时执行其他构建；它不修改下载缓存。实际记录见 [generated-mappings.json](validation/generated-mappings.json)、[generated-game.json](validation/generated-game.json)，15 个 Fabric 目标的严格构建复查见 [generated-game-builds.json](validation/generated-game-builds.json)。
+`tools/verify/test-generated-mapping-verification.ps1` 串行验证错误的内容 pin 和输入 pin 都会使构建失败，并在 `finally` 中逐字节恢复基线，再检查正确基线成功；加 `-Game` 检查游戏派生物。运行此探针期间不能同时执行其他构建；它不修改下载缓存。实际记录见 [generated-mappings.json](validation/generated-mappings.json)、[generated-game.json](validation/generated-game.json)，15 个 Fabric 目标的严格构建复查见 [generated-game-builds.json](validation/generated-game-builds.json)。
 
 ## 输出与证据
 

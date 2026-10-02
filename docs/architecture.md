@@ -4,6 +4,12 @@
 
 `client-common` 管理配置工作副本、异步原子保存、HUD 编辑模型、视觉预设、说话者匹配、shuffle bag、揭示事件节流、受限音频路径与异步解码缓存。版本 adapter 负责 Component 转换、实际字体和 HUD、原生 Screen、OGG 解码及 Minecraft 声道桥接。Loader 层注册事件、客户端命令、按键和 metadata。
 
+共享 adapter、界面和 Loader 源码放在 `adapters/common`。`adapters/api/legacy` 提供旧 API 的默认桥接；`adapters/api/mc26.1` 显式提供新版绘制、Screen 生命周期、聊天与测试平台桥接。共享 renderer 与界面只使用 `GuiCanvas`，每个 API 家族用实际 Minecraft 类型实现它；Screen 通过 `renderContent`、`renderBackdrop` 调用共享界面逻辑。
+
+`gradle/targets.json` 明确选择 `apiFamily`，不以 Java 版本推测 Minecraft API。源码优先级为 common → legacy 默认 → 显式 API 家族 → source-layout.json 中列出的共享 override → 目标本地 override。同一相对路径由最高优先级提供。只有字节一致且经过相同版本测试的 override 才共享；每个目标依然独立编译、打包和启动。
+
+根目录、legacy、modern 保留 Gradle 必需的独立校验文件；`verify-source-layout.py` 检查三份内容一致、已审阅元数据 pin 和所有目标的源码归属。构建不生成 Java 源码；Mixin 的 Java 兼容级别通过资源模板展开。
+
 ## 消息流程
 
 ```mermaid

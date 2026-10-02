@@ -1,7 +1,3 @@
 plugins { id 'java-library'; id 'net.fabricmc.fabric-loom' version '1.15.5' }
 apply from: rootProject.repoFile('build-logic/fabric-loader.gradle')
-apply from: rootProject.repoFile('build-logic/loader-overrides.gradle')
-sourceSets {
-    main { java.srcDir rootProject.repoFile('targets/1.21.1/fabric/src/main/java'); resources.srcDir rootProject.repoFile('targets/1.21.1/fabric/src/main/resources') }
-    smoke { java.srcDir rootProject.repoFile('targets/1.21.1/fabric/src/smoke/java'); resources.srcDir rootProject.repoFile('targets/1.21.1/fabric/src/smoke/resources') }
-}
+apply from: rootProject.repoFile('build-logic/source-layout.gradle')

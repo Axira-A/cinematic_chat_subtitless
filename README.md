@@ -4,6 +4,8 @@
 
 **15 个 Minecraft 版本 × NeoForge / Fabric，共 30 个目标** 已实现并独立编译、启动和运行临时世界自动场景，覆盖 1.21 至 1.21.11、26.1、26.1.1、26.1.2。当前产物属于实验版本：已认证 Signed Chat、人工听感和部分实体输入验收仍待验证，尚不标记 Supported。逐目标证据与限制见 [实际验证](docs/validation.md) 和 [验收清单](docs/acceptance.md)。
 
+本机与 GitHub Actions 的结果分别记录：[远端 CI 状态](docs/ci-status.md)。首次远端构建因缺少依赖元数据校验失败，修复后按真实运行结果更新。
+
 ## 开发与验证
 
 legacy 入口：Java 21、Gradle Wrapper 9.2.1；modern 入口：Java 25、Gradle Wrapper 9.4.0。共享核心始终编译为 Java 21。根目录 Wrapper 是 legacy 快捷入口。Windows：
@@ -15,12 +17,12 @@ legacy 入口：Java 21、Gradle Wrapper 9.2.1；modern 入口：Java 25、Gradl
 .\gradlew.bat -Ploader=fabric :fabric:build
 .\legacy\gradlew.bat -p legacy '-PmcVersion=1.21.3' -Ploader=fabric :fabric:build
 .\modern\gradlew.bat -p modern -PcoreOnly check
-.\tools\build-matrix.ps1 -Smoke
+.\tools\build\build-matrix.ps1 -Smoke
 ```
 
-Linux/macOS 将 `gradlew.bat` 换为 `bash gradlew`，全矩阵用 `bash tools/build-matrix.sh --smoke`。运行客户端需要图形和音频环境。开发测试会创建临时单人世界，不使用现有存档。测试专用源码不进入发布 JAR；只有显式 smoke 属性才执行场景。构建或场景失败会返回非零结果，脚本不会根据依赖表推断支持。
+Linux/macOS 将 `gradlew.bat` 换为 `bash gradlew`，全矩阵用 `bash tools/build/build-matrix.sh --smoke`。运行客户端需要图形和音频环境。开发测试会创建临时单人世界，不使用现有存档。测试专用源码不进入发布 JAR；只有显式 smoke 属性才执行场景。构建或场景失败会返回非零结果，脚本不会根据依赖表推断支持。
 
-本机 Java HTTPS 连接部分 Maven 仓库时出现连接重置。可选的 `tools/cache-*.ps1` 从官方仓库下载到被 Git 忽略的 `tools/.cache/maven`，再使用 `'-PdependencyCache=tools/.cache/maven' --offline`。这些缓存不是发布依赖，不应提交。
+本机 Java HTTPS 连接部分 Maven 仓库时出现连接重置。可选的 `tools/dev-cache/cache-*.ps1` 从官方仓库下载到被 Git 忽略的 `tools/.cache/maven`，再使用 `'-PdependencyCache=tools/.cache/maven' --offline`。这些缓存不是发布依赖，不应提交。
 
 ## 使用
 

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-02",
+  "reason": "Missing Gradle module metadata exposed by clean Ubuntu CI run 36950804809. Component coordinates checked against official repository contents.",
+  "artifacts": [
+    {
+      "coordinate": "net.fabricmc:stitch:0.6.2",
+      "sha256": "d1e2e12275ef0d7d043f9693838f01fc4092ee1e115bebdbf4f39bdece4ecea0",
+      "source": "https://maven.fabricmc.net/net/fabricmc/stitch/0.6.2/stitch-0.6.2.module"
+    },
+    {
+      "coordinate": "net.fabricmc:class-tweaker:0.1.1",
+      "sha256": "a5e85c0bdfcb422be33f6d11158a12eaf18a73b4c47916d127688daa0c0a4550",
+      "source": "https://maven.fabricmc.net/net/fabricmc/class-tweaker/0.1.1/class-tweaker-0.1.1.module"
+    },
+    {
+      "coordinate": "net.fabricmc:lorenz-tiny:4.0.2",
+      "sha256": "515c5ce9eddd85e8a2b4540238e4acfa98cbeb75111261e5b4c8686923863c09",
+      "source": "https://maven.fabricmc.net/net/fabricmc/lorenz-tiny/4.0.2/lorenz-tiny-4.0.2.module"
+    },
+    {
+      "coordinate": "net.fabricmc:mercurymixin:0.2.2",
+      "sha256": "169b210ce5509728e9b70ae2feed566ef539b3702c8a5de2b8a93a4a92b73c1c",
+      "source": "https://maven.fabricmc.net/net/fabricmc/mercurymixin/0.2.2/mercurymixin-0.2.2.module"
+    },
+    {
+      "coordinate": "net.fabricmc:tiny-mappings-parser:0.3.0+build.17",
+      "sha256": "ecf3ce9b18344decb3cc2fbc2c4ff4fa421d825c9e5a1126e5a29e0424995003",
+      "source": "https://maven.fabricmc.net/net/fabricmc/tiny-mappings-parser/0.3.0+build.17/tiny-mappings-parser-0.3.0+build.17.module"
+    },
+    {
+      "coordinate": "net.fabricmc.unpick:unpick:3.0.0-beta.13",
+      "sha256": "8057d144e6213dc1fed0b4c568afcf5e3f45256e9dcc0224aa89df81df9e5188",
+      "source": "https://maven.fabricmc.net/net/fabricmc/unpick/unpick/3.0.0-beta.13/unpick-3.0.0-beta.13.module"
+    },
+    {
+      "coordinate": "net.fabricmc.unpick:unpick-format-utils:3.0.0-beta.13",
+      "sha256": "27675ce7e6dc3d71b36eb26aae2be5d56329c904309def192484b6bd338eea46",
+      "source": "https://maven.fabricmc.net/net/fabricmc/unpick/unpick-format-utils/3.0.0-beta.13/unpick-format-utils-3.0.0-beta.13.module"
+    },
+    {
+      "coordinate": "net.neoforged.accesstransformers:at-parser:13.0.1",
+      "sha256": "1353f0f38944a564a4860933981b539ace996fbb3c013f0f46921f1a20f4e0b5",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/at-parser/13.0.1/at-parser-13.0.1.module"
+    },
+    {
+      "coordinate": "net.minecraftforge:mergetool:1.1.7",
+      "sha256": "3baa6fc1adf9363b9636b34cf5c1df3131309f238022f83ec87d9bab627a0a4f",
+      "source": "https://maven.neoforged.net/releases/net/minecraftforge/mergetool/1.1.7/mergetool-1.1.7.module"
+    },
+    {
+      "coordinate": "net.neoforged:AutoRenamingTool:2.0.17",
+      "sha256": "8bc07180f90fa50244516905ca0e88e9931808e3874bbb8009b4042145b9776d",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/AutoRenamingTool/2.0.17/AutoRenamingTool-2.0.17.module"
+    },
+    {
+      "coordinate": "net.neoforged:accesstransformers:13.0.1",
+      "sha256": "fa146c44dd3452b2dc8254c8e3fdea5701697d9048855be7f727f27ed29f2f4b",
+      "source": "https://maven.neoforged.net/releases/net/neoforged/accesstransformers/13.0.1/accesstransformers-13.0.1.module"
+    },
+    {
+      "coordinate": "net.minecraftforge:srgutils:0.4.15",
+      "sha256": "c118768ef5b59d9baea1474019b2e850e4bfb8e9ec0f82bc6076da4ef3eb8155",
+      "source": "https://maven.neoforged.net/releases/net/minecraftforge/srgutils/0.4.15/srgutils-0.4.15.module"
+    }
+  ]
+}

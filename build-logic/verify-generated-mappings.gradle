@@ -1,7 +1,7 @@
 // Loom's local layered ZIP uses generation timestamps. Pin the mapping data,
 // its Mojang inputs and exact ZIP entry set; all external artifacts stay under
 // normal Gradle SHA-256 verification, including intermediary and Loom itself.
-if(targetSpec.java<25){
+if(targetSpec.apiFamily == 'legacy'){
     def baseline=rootProject.repoFile('gradle/generated-mappings-checksums.json')
     def mappingDir=new File(gradle.gradleUserHomeDir,"caches/fabric-loom/${targetSpec.minecraft}/layered")
     def mappingZip=new File(mappingDir,'loom.mappings-layered+hash.2198.jar')

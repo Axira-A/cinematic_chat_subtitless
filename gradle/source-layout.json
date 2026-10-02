@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "overrides": [
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.9",
+        "1.21.10",
+        "1.21.11"
+      ],
+      "directory": "adapters/overrides/CinematicScreen-1.21.9/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.9",
+        "1.21.10"
+      ],
+      "directory": "adapters/overrides/ClientKeyBindings-1.21.9/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.2",
+        "1.21.3",
+        "1.21.4",
+        "1.21.5",
+        "1.21.6",
+        "1.21.7",
+        "1.21.8",
+        "1.21.9",
+        "1.21.10",
+        "1.21.11"
+      ],
+      "directory": "adapters/overrides/ClientTasks-1.21.2/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.9",
+        "1.21.10"
+      ],
+      "directory": "adapters/overrides/ComponentBridge-1.21.9/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.9",
+        "1.21.10"
+      ],
+      "directory": "adapters/overrides/GuiPose-1.21.9/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.9",
+        "1.21.10"
+      ],
+      "directory": "adapters/overrides/PlayerProfileBridge-1.21.9/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.9",
+        "1.21.10"
+      ],
+      "directory": "adapters/overrides/ScenarioPlatform-1.21.9/minecraft"
+    },
+    {
+      "component": "neoforge",
+      "minecraft": [
+        "1.21.5",
+        "1.21.6",
+        "1.21.7",
+        "1.21.8",
+        "1.21.9",
+        "1.21.10"
+      ],
+      "directory": "adapters/overrides/ClientBootstrap-1.21.5/neoforge"
+    },
+    {
+      "component": "neoforge",
+      "minecraft": [
+        "1.21.4",
+        "1.21.5",
+        "1.21.6",
+        "1.21.7",
+        "1.21.8",
+        "1.21.9",
+        "1.21.10"
+      ],
+      "directory": "adapters/overrides/ReloadRegistration-1.21.4/neoforge"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.2",
+        "1.21.3",
+        "1.21.4",
+        "1.21.5"
+      ],
+      "directory": "adapters/overrides/CinematicScreen-1.21.2/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.2",
+        "1.21.3",
+        "1.21.4"
+      ],
+      "directory": "adapters/overrides/ScenarioPlatform-1.21.2/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.6",
+        "1.21.7",
+        "1.21.8"
+      ],
+      "directory": "adapters/overrides/CinematicScreen-1.21.6/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.6",
+        "1.21.7",
+        "1.21.8"
+      ],
+      "directory": "adapters/overrides/GuiPose-1.21.6/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.6",
+        "1.21.7",
+        "1.21.8"
+      ],
+      "directory": "adapters/overrides/ScenarioPlatform-1.21.6/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.11",
+        "26.1",
+        "26.1.1",
+        "26.1.2"
+      ],
+      "directory": "adapters/overrides/ClientKeyBindings-1.21.11/minecraft"
+    },
+    {
+      "component": "minecraft",
+      "minecraft": [
+        "1.21.11",
+        "26.1",
+        "26.1.1",
+        "26.1.2"
+      ],
+      "directory": "adapters/overrides/PlayerProfileBridge-1.21.11/minecraft"
+    },
+    {
+      "component": "neoforge",
+      "minecraft": [
+        "1.21.11",
+        "26.1",
+        "26.1.1",
+        "26.1.2"
+      ],
+      "directory": "adapters/overrides/ClientBootstrap-1.21.11/neoforge"
+    },
+    {
+      "component": "neoforge",
+      "minecraft": [
+        "1.21.11",
+        "26.1",
+        "26.1.1",
+        "26.1.2"
+      ],
+      "directory": "adapters/overrides/ReloadRegistration-1.21.11/neoforge"
+    }
+  ]
+}
