@@ -35,6 +35,8 @@ Windows 使用 `gradlew.bat`，Linux/macOS 使用 `bash gradlew`。版本属性�
 
 `dependencyCache` 是优先查找的本地 Maven 目录，也覆盖插件创建的 Mojang 元数据/库仓库。`neoFormCache` 可将 NeoForm 的游戏 assets 和中间结果放在空间较大的磁盘。使用离线模式前需要缓存完整父 POM、BOM 和运行依赖。`cache-build-failures.ps1 -LogPath <日志>` 只补充 Gradle 明确报告的坐标，不能修复源码编译错误。
 
+NeoForge 的 Mojang 库仓库明确使用 POM 图并忽略 Gradle metadata 重定向，使可选镜像中额外存在的 Central `.module` 不会改变版本图。Mojang Meta 仓库仍读取它自己的 module；Central、Fabric 和 NeoForge 工具仓库继续正常读取并校验 module。此策略在在线和离线构建中一致。
+
 ## 锁定与校验
 
 Wrapper JAR 与 distribution SHA-256 均固定在版本管理中。运行 `python tools/verify/verify-wrapper.py` 验证三个入口。JAR 官方校验来源为 `https://services.gradle.org/distributions/gradle-<版本>-wrapper.jar.sha256`，distribution 来源为相同官方目录的 `gradle-<版本>-bin.zip.sha256`。
@@ -56,7 +58,7 @@ python tools/verify/merge-verification.py --official-cache tools/.cache/maven
 
 合并工具保留 legacy/modern 已生成的校验，包括 Gradle 的 `also-trust` 多校验值，并加入官方缓存中的其他操作系统 native classifier 校验。更新后需执行开启正常校验的构建和客户端场景；不能用更新基线来忽略意外 hash 不匹配。
 
-Loom 1.15.5 的本地派生映射及游戏 ZIP 使用生成时间，并且不同 1.21.x 版本复用 `loom:mappings:layered+hash.2198` 坐标。直接锁 ZIP SHA-256 会在干净缓存/CI 重建时报错。Gradle `trusted-artifacts` 例外逐个精确限定 1 个映射 JAR 和 30 个列明的游戏派生 JAR，没有坐标或文件正则；其 POM、Loom、intermediary 和其他下载依赖仍正常校验。
+Loom 1.15.5 的本地派生 ZIP 使用生成时间，并且不同 1.21.x 版本复用 `loom:mappings:layered+hash.2198` 坐标。直接锁 ZIP SHA-256 会在干净缓存/CI 重建时报错。Gradle `trusted-artifacts` 例外逐个精确限定 1 个映射 JAR、30 个游戏派生 JAR 和 571 个 Fabric API 重映射 JAR，没有坐标或文件正则；其 POM、Loom、intermediary 和其他下载依赖仍正常校验。
 
 `verifyGeneratedMappings` 在 adapter compile/check 前校验 ZIP 只含 `mappings/mappings.tiny`，逐版本固定该内容的 SHA-256 和原始 client/server 映射输入 hash，拒绝内容变化或额外 ZIP 文件。记录在 [generated-mappings-checksums.json](../gradle/generated-mappings-checksums.json)。`verifyGeneratedGame` 对每个 Fabric 目标校验官方 client/server 游戏输入 hash、base/processed 两个 JAR 的完整文件集和每个文件的内容，排除 ZIP 日期及压缩差异。逐文件 SHA-256 与文件名排序后再次 SHA-256，记录在 [generated-game-checksums.json](../gradle/generated-game-checksums.json)。校验任务没有缓存输出，每次 compile/check 都执行。精确例外只解决容器差异，不忽略内容校验。[Gradle 精确例外说明](https://docs.gradle.org/current/userguide/dependency_verification.html#sec:trusted-artifacts)
 

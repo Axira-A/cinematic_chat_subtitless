@@ -5,11 +5,13 @@ on:
       - '**/*.md'
       - 'docs/validation/matrix.json'
       - 'docs/validation/core-tests.json'
+      - 'docs/validation/ci-matrix.json'
   pull_request:
     paths-ignore:
       - '**/*.md'
       - 'docs/validation/matrix.json'
       - 'docs/validation/core-tests.json'
+      - 'docs/validation/ci-matrix.json'
   workflow_dispatch:
     inputs:
       smoke:
@@ -93,6 +95,7 @@ jobs:
           entry=legacy
           [[ '${{ matrix.java }}' == 25 ]] && entry=modern
           bash "$entry/gradlew" -p "$entry" '-PmcVersion=${{ matrix.minecraft }}' '-Ploader=${{ matrix.loader }}' --no-parallel ':${{ matrix.loader }}:build' ':${{ matrix.loader }}:smokeClasses' 2>&1 | tee ci-logs/build.log
+          sha256sum 'targets/${{ matrix.minecraft }}/${{ matrix.loader }}/build/libs/${{ matrix.artifact }}' | tee ci-logs/jar-sha256.txt
       - name: Install headless graphics
         if: github.event_name != 'workflow_dispatch' || inputs.smoke
         run: sudo apt-get update && sudo apt-get install -y xvfb libgl1-mesa-dri libopenal1

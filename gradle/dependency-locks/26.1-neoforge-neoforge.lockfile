@@ -2,13 +2,11 @@
 # Manual edits can break the build and are not advised.
 # This file is expected to be part of source control.
 at.yawk.lz4:lz4-java:1.10.1=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
-biz.aQute.bnd:biz.aQute.bnd.annotation:7.1.0=compileClasspath,neoFormRuntimeDependenciesCompileClasspath
 ca.weblite:java-objc-bridge:1.1=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
 com.azure:azure-json:1.4.0=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
 com.electronwill.night-config:core:3.8.3=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
 com.electronwill.night-config:toml:3.8.3=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
 com.github.oshi:oshi-core:6.9.0=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
-com.github.spotbugs:spotbugs-annotations:4.8.6=compileClasspath,neoFormRuntimeDependenciesCompileClasspath
 com.google.code.findbugs:jsr305:3.0.2=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
 com.google.code.gson:gson:2.10.1=neoFormRuntimeDependenciesNeoForgeClasses,neoFormRuntimeExternalTools
 com.google.code.gson:gson:2.13.2=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
@@ -107,10 +105,6 @@ org.lwjgl:lwjgl-opengl:3.4.1=compileClasspath,neoFormRuntimeDependenciesCompileC
 org.lwjgl:lwjgl-stb:3.4.1=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
 org.lwjgl:lwjgl-tinyfd:3.4.1=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
 org.lwjgl:lwjgl:3.4.1=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
-org.osgi:org.osgi.annotation.bundle:2.0.0=compileClasspath,neoFormRuntimeDependenciesCompileClasspath
-org.osgi:org.osgi.annotation.versioning:1.1.2=compileClasspath,neoFormRuntimeDependenciesCompileClasspath
-org.osgi:org.osgi.resource:1.0.0=compileClasspath,neoFormRuntimeDependenciesCompileClasspath
-org.osgi:org.osgi.service.serviceloader:1.0.0=compileClasspath,neoFormRuntimeDependenciesCompileClasspath
 org.ow2.asm:asm-analysis:9.5=neoFormRuntimeExternalTools
 org.ow2.asm:asm-analysis:9.9.1=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesRuntimeClasspath,runtimeClasspath
 org.ow2.asm:asm-commons:9.9.1=compileClasspath,neoFormRuntimeDependenciesCompileClasspath,neoFormRuntimeDependenciesNeoForgeClasses,neoFormRuntimeDependenciesRuntimeClasspath,neoFormRuntimeExternalTools,runtimeClasspath

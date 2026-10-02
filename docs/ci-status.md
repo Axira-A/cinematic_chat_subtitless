@@ -15,3 +15,5 @@
 提交 `2ffa352` 的运行 [36956715453](https://github.com/Axira-A/cinematic_chat_subtitless/actions/runs/36956715453) 核心任务通过。最早完成的 Fabric 目标被 Loom 本地重映射 JAR 的 ZIP hash 差异挡住；NeoForge 目标发现 Linux 专用 Netty transport 不在 Windows 生成的锁状态中。正在通过精确派生产物内容 pin 与配置对应的固定 Netty 版本处理，尚未将本次目标矩阵记录为通过。
 
 提交 `7d7efa0` 的运行 [36957527394](https://github.com/Axira-A/cinematic_chat_subtitless/actions/runs/36957527394) 核心任务与 1.21、1.21.1、1.21.2 NeoForge 的构建及客户端场景通过。Fabric 新校验器发现 Groovy GString map key 查找失败，已改为 String 并在本机全部 12 个旧版目标验证通过。错误内容 pin、ZIP 文件集合、artifact 集合三个探针均按预期失败，恢复后通过。另补齐 Log4j module 声明的六个编译注解依赖校验，并用 Gradle 重新生成全部 NeoForge 锁状态。
+
+提交 `689cd7e` 的运行 [36958332209](https://github.com/Axira-A/cinematic_chat_subtitless/actions/runs/36958332209) 核心测试、1.21 与 1.21.1 Fabric 的构建及客户端场景通过。NeoForge 发现本地缓存与 Mojang 线上库的依赖图差异：本地 Central 的 Guava module 引入了线上 Mojang POM 图没有的 parent platform。修复让 Mojang 库仓库在两种路径都使用 POM 并忽略 Gradle metadata 重定向；其他仓库继续使用 module 校验。重新生成锁状态，撤掉这一镜像差异引入的六个无须使用的注解坐标。上述两轮在取得失败原因后取消未完成任务，已完成目标结果保留，未完成目标不推断结果。
