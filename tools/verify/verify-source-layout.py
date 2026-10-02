@@ -68,6 +68,7 @@ for artifact in reviewed['artifacts']:
     group, name, version = artifact['coordinate'].split(':')
     component = tree.find(f'v:components/v:component[@group="{group}"][@name="{name}"][@version="{version}"]', namespace)
     assert component is not None
-    checksum = component.find(f'v:artifact[@name="{name}-{version}.module"]/v:sha256', namespace)
+    filename = artifact.get('file', f'{name}-{version}.module')
+    checksum = component.find(f'v:artifact[@name="{filename}"]/v:sha256', namespace)
     assert checksum is not None and checksum.get('value') == artifact['sha256'], artifact['coordinate']
 print(f'{len(targets)} targets: explicit source ownership and synchronized metadata pins verified')

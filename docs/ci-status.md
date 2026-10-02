@@ -7,3 +7,5 @@
 修复从官方仓库下载并核对元数据内的 component 坐标，固定 SHA-256，来源与 hash 见 [dependency-metadata.json](validation/dependency-metadata.json)。三个构建入口继续校验 metadata 和二进制。可选 Maven 缓存工具同步补充 `.module` 下载。
 
 工作流新增独立核心测试、全部目标源码归属与 pin 一致性检查，固定 Ubuntu 24.04，并在失败时上传 Gradle 校验报告和命令日志。修复后的远端执行结果将在实际运行后记录；本机验证见 [matrix.md](validation/matrix.md)，两种环境的结果分别报告。
+
+提交 `652df06` 的第二次运行 [36955402649](https://github.com/Axira-A/cinematic_chat_subtitless/actions/runs/36955402649) 在核心任务发现另外两项缺失：`apiguardian-api-1.1.2.module`、`junit-bom-5.11.4.pom`。已从 Maven Central 核对坐标并补入固定 hash；目标矩阵因核心任务失败而跳过，未记录为目标构建失败或通过。

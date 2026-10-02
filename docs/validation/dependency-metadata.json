@@ -62,6 +62,18 @@
       "coordinate": "net.minecraftforge:srgutils:0.4.15",
       "sha256": "c118768ef5b59d9baea1474019b2e850e4bfb8e9ec0f82bc6076da4ef3eb8155",
       "source": "https://maven.neoforged.net/releases/net/minecraftforge/srgutils/0.4.15/srgutils-0.4.15.module"
+    },
+    {
+      "coordinate": "org.apiguardian:apiguardian-api:1.1.2",
+      "file": "apiguardian-api-1.1.2.module",
+      "sha256": "e08028131375b357d1d28734e9a4fb4216da84b240641cb3ef7e7c7d628223fc",
+      "source": "https://repo.maven.apache.org/maven2/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.module"
+    },
+    {
+      "coordinate": "org.junit:junit-bom:5.11.4",
+      "file": "junit-bom-5.11.4.pom",
+      "sha256": "19d4b747b204805325b6334553296f986562277a4ac1cb5e593a5e4c4f5e4115",
+      "source": "https://repo.maven.apache.org/maven2/org/junit/junit-bom/5.11.4/junit-bom-5.11.4.pom"
     }
   ]
 }
