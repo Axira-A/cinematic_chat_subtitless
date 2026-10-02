@@ -28,6 +28,11 @@ if game_baseline.exists():
     for target in json.loads(game_baseline.read_text(encoding='utf-8'))['targets'].values():
         for artifact in target['artifacts']:
             allowed_trusts.add(tuple(artifact[field] for field in trust_fields))
+mod_baseline=root/'gradle/generated-mod-checksums.json'
+if mod_baseline.exists():
+    for target in json.loads(mod_baseline.read_text(encoding='utf-8'))['targets'].values():
+        for artifact in target['artifacts']:
+            allowed_trusts.add(tuple(artifact[field] for field in trust_fields))
 for entry in ('legacy', 'modern'):
     path = root / entry / 'gradle/verification-metadata.xml'
     tree = ET.parse(path)
@@ -93,7 +98,7 @@ ET.SubElement(configuration, f'{{{ns}}}verify-metadata').text = 'true'
 ET.SubElement(configuration, f'{{{ns}}}verify-signatures').text = 'false'
 trusted=ET.SubElement(configuration,f'{{{ns}}}trusted-artifacts')
 for coordinate in sorted(allowed_trusts):
-    ET.SubElement(trusted,f'{{{ns}}}trust',dict(zip(trust_fields,coordinate)),reason='Loom generated ZIP timestamps; full contents and Mojang inputs pinned by verifyGeneratedMappings / verifyGeneratedGame')
+    ET.SubElement(trusted,f'{{{ns}}}trust',dict(zip(trust_fields,coordinate)),reason='Loom generated ZIP timestamps; full contents and original inputs pinned by verifyGeneratedMappings / verifyGeneratedGame / verifyGeneratedMods')
 container = ET.SubElement(result, f'{{{ns}}}components')
 for (group,name,version), artifacts in sorted(components.items()):
     component = ET.SubElement(container, f'{{{ns}}}component', dict(group=group,name=name,version=version))

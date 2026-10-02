@@ -41,6 +41,8 @@ Wrapper JAR 与 distribution SHA-256 均固定在版本管理中。运行 `pytho
 
 传递依赖锁文件放在 `gradle/dependency-locks/`。纯 Java 模块共享锁文件；adapter 与 Loader 按 Minecraft/Loader 分开，避免不同目标覆盖彼此的锁状态。[Gradle 锁定说明](https://docs.gradle.org/current/userguide/dependency_locking.html)
 
+NeoForge 的四个 Netty epoll/kqueue 模块按操作系统条件出现。它们不要求在所有平台同时存在，版本由该 configuration 已锁定的 `netty-common` 固定；请求其他版本或缺少对应 pin 会失败。其传递依赖继续锁定，所有实际下载仍按 SHA-256 校验。这样不会把 Linux 专用模块强行加入 Windows 运行环境。
+
 三个入口各自的 `gradle/verification-metadata.xml` 使用 SHA-256，校验 metadata 与二进制。首次生成清单是信任基线的建立，需要审阅；它不能证明上游文件不存在恶意行为。[Gradle 校验说明](https://docs.gradle.org/current/userguide/dependency_verification.html)
 
 运行 `python tools/verify/verify-source-layout.py` 检查三个入口的校验文件一致、已审阅的 `.module` 校验以及全部目标的有效源码归属。工具在 CI 的独立核心任务中执行，随后才运行完整目标矩阵。首次 CI 暴露的元数据缺失和复测结果见 [CI 记录](ci-status.md)。
@@ -58,11 +60,14 @@ Loom 1.15.5 的本地派生映射及游戏 ZIP 使用生成时间，并且不同
 
 `verifyGeneratedMappings` 在 adapter compile/check 前校验 ZIP 只含 `mappings/mappings.tiny`，逐版本固定该内容的 SHA-256 和原始 client/server 映射输入 hash，拒绝内容变化或额外 ZIP 文件。记录在 [generated-mappings-checksums.json](../gradle/generated-mappings-checksums.json)。`verifyGeneratedGame` 对每个 Fabric 目标校验官方 client/server 游戏输入 hash、base/processed 两个 JAR 的完整文件集和每个文件的内容，排除 ZIP 日期及压缩差异。逐文件 SHA-256 与文件名排序后再次 SHA-256，记录在 [generated-game-checksums.json](../gradle/generated-game-checksums.json)。校验任务没有缓存输出，每次 compile/check 都执行。精确例外只解决容器差异，不忽略内容校验。[Gradle 精确例外说明](https://docs.gradle.org/current/userguide/dependency_verification.html#sec:trusted-artifacts)
 
+1.21.x 的 Fabric API 重映射也生成本地 ZIP。`verifyGeneratedMods` 在 Loader 编译、check、客户端运行前核对全部重映射 artifact、ZIP 文件集与内容 SHA-256，固定记录见 [generated-mod-checksums.json](../gradle/generated-mod-checksums.json)。571 个本地 JAR 的 Gradle 例外逐个限定 group/name/version/file；不使用坐标正则。原始 Fabric API JAR 与元数据继续由 Gradle 校验，生成基线工具也必须先核对原始输入 hash。26.1.x 不重映射 Fabric API，不需要这一例外。
+
 只有明确审阅输入与变更后才更新派生内容基线：
 
 ```powershell
 python tools/verify/write-mapping-baseline.py --loom-cache "$env:USERPROFILE/.gradle/caches/fabric-loom"
 python tools/verify/write-generated-game-baseline.py --loom-cache "$env:USERPROFILE/.gradle/caches/fabric-loom"
+python tools/verify/write-generated-mod-baseline.py --official-cache tools/.cache/maven
 python tools/verify/merge-verification.py
 ```
 

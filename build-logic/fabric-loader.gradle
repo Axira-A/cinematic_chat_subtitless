@@ -30,6 +30,7 @@ jar {
 }
 tasks.named(targetSpec.apiFamily == 'legacy'?'remapJar':'jar') { archiveFileName = "cinematic-chat-${project.version}+mc${targetSpec.minecraft}-fabric.jar" }
 apply from: rootProject.repoFile('build-logic/verify-jar.gradle')
+apply from: rootProject.repoFile('build-logic/verify-generated-mods.gradle')
 processResources { inputs.property 'version', project.version; inputs.property 'javaVersion',targetSpec.java; filesMatching('fabric.mod.json') { expand version: project.version, minecraft: targetSpec.minecraft, javaVersion:targetSpec.java } }
 tasks.named('runSmoke') {
     dependsOn tasks.named('smokeClasses'),project(':minecraft-adapter').tasks.named('smokeClasses')

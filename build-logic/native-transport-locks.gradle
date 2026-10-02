@@ -1,0 +1,27 @@
+// NeoForge selects these modules by host OS. Keep ordinary graph locking and
+// pin optional transport versions to the already locked Netty version in each
+// configuration, without requiring Linux/macOS modules on Windows.
+def optionalModules = ['netty-transport-native-epoll', 'netty-transport-native-kqueue',
+                       'netty-transport-classes-epoll', 'netty-transport-classes-kqueue']
+def versions = [:]
+dependencyLocking.lockFile.get().asFile.eachLine { line ->
+    if (line.startsWith('io.netty:netty-common:')) {
+        def parts = line.split('=', 2)
+        def version = parts[0].split(':')[2]
+        parts[1].split(',').each { versions[it] = version }
+    }
+}
+dependencyLocking.ignoredDependencies.addAll(optionalModules.collect { "io.netty:${it}".toString() })
+configurations.configureEach { configuration ->
+    configuration.resolutionStrategy.eachDependency { details ->
+        if (details.requested.group == 'io.netty' && details.requested.name in optionalModules) {
+            def pinned = versions[configuration.name]
+            if (pinned == null) throw new GradleException("Missing native transport version pin for ${configuration.name}")
+            if (details.requested.version && details.requested.version != pinned) {
+                throw new GradleException("Unexpected native transport version: ${details.requested}; expected ${pinned}")
+            }
+            details.useVersion(pinned)
+            details.because('Optional OS transport follows the configuration-specific locked Netty version')
+        }
+    }
+}

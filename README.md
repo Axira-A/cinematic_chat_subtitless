@@ -6,6 +6,8 @@
 
 本机与 GitHub Actions 的结果分别记录：[远端 CI 状态](docs/ci-status.md)。首次远端构建因缺少依赖元数据校验失败，修复后按真实运行结果更新。
 
+项目结构、开发脚本、分支策略和 26.1.x 显式 API 兼容层的整改见 [审查与修改记录](docs/refactor-review.md)。
+
 ## 开发与验证
 
 legacy 入口：Java 21、Gradle Wrapper 9.2.1；modern 入口：Java 25、Gradle Wrapper 9.4.0。共享核心始终编译为 Java 21。根目录 Wrapper 是 legacy 快捷入口。Windows：

@@ -1,0 +1,48 @@
+// ZIP dates of Loom's local remapped dependencies vary across clean builds.
+// Exact generated coordinates are exempt only from the ZIP-byte hash; every
+// entry name and byte is checked here against reviewed original-download pins.
+if (targetSpec.apiFamily == 'legacy') {
+    def baseline = rootProject.repoFile('gradle/generated-mod-checksums.json')
+    def verifyMods = tasks.register('verifyGeneratedMods') {
+        inputs.file(baseline)
+        doLast {
+            def data = new groovy.json.JsonSlurper().parse(baseline)
+            def expected = data.targets[targetSpec.minecraft]
+            if (data.loom != '1.15.5' || expected == null || expected.fabricApi != targetSpec.fabricApi) {
+                throw new GradleException("Missing reviewed remapped mod baseline for ${targetSpec.minecraft}")
+            }
+            def actual = configurations.compileClasspath.resolvedConfiguration.resolvedArtifacts
+                    .findAll { it.moduleVersion.id.group == 'remapped.net.fabricmc.fabric-api' }
+            def key = { artifact -> "${artifact.group}:${artifact.name}:${artifact.version}" }
+            def artifacts = actual.collectEntries { [key(it.moduleVersion.id), it.file] }
+            if (actual.size() != expected.artifacts.size() || artifacts.keySet() != expected.artifacts.collect { key(it) }.toSet()) {
+                throw new GradleException("Remapped mod artifact set mismatch for ${targetSpec.minecraft}")
+            }
+            expected.artifacts.each { artifact ->
+                new java.util.zip.ZipFile(artifacts[key(artifact)]).withCloseable { zip ->
+                    def entries = java.util.Collections.list(zip.entries()).findAll { !it.directory }.sort { it.name }
+                    if (entries.size() != artifact.entryCount || entries.collect { it.name }.toSet().size() != entries.size()) {
+                        throw new GradleException("Remapped mod entry set mismatch: ${artifact.name}")
+                    }
+                    def result = java.security.MessageDigest.getInstance('SHA-256')
+                    entries.each { entry ->
+                        result.update(entry.name.getBytes(java.nio.charset.StandardCharsets.UTF_8)); result.update((byte)0)
+                        def digest = java.security.MessageDigest.getInstance('SHA-256')
+                        zip.getInputStream(entry).withCloseable { stream ->
+                            byte[] block = new byte[8192]; int count
+                            while ((count = stream.read(block)) != -1) digest.update(block, 0, count)
+                        }
+                        result.update(digest.digest())
+                    }
+                    if (result.digest().encodeHex().toString() != artifact.contentSha256) {
+                        throw new GradleException("Remapped mod content checksum mismatch: ${artifact.name}")
+                    }
+                }
+            }
+        }
+    }
+    tasks.withType(JavaCompile).configureEach { dependsOn verifyMods }
+    tasks.named('check') { dependsOn verifyMods }
+    tasks.named('runClient') { dependsOn verifyMods }
+    tasks.named('runSmoke') { dependsOn verifyMods }
+}

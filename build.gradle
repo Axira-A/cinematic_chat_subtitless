@@ -9,6 +9,9 @@ allprojects {
         def shared=name in ['minecraft-api','engine','client-common']
         lockFile=rootProject.repoFile("gradle/dependency-locks/${shared?'shared':targetSpec.minecraft+'-'+targetSpec.loader}-${name}.lockfile")
     }
+    if (name in ['minecraft-adapter', 'neoforge'] && targetSpec.loader == 'neoforge') {
+        apply from: rootProject.repoFile('build-logic/native-transport-locks.gradle')
+    }
     repositories {
         if (providers.gradleProperty('dependencyCache').isPresent()) maven { url = rootProject.repoFile(providers.gradleProperty('dependencyCache').get()) }
         mavenCentral()

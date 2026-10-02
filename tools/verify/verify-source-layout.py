@@ -71,4 +71,32 @@ for artifact in reviewed['artifacts']:
     filename = artifact.get('file', f'{name}-{version}.module')
     checksum = component.find(f'v:artifact[@name="{filename}"]/v:sha256', namespace)
     assert checksum is not None and checksum.get('value') == artifact['sha256'], artifact['coordinate']
+expected_trusts = {('loom', 'mappings', 'layered+hash.2198', 'mappings-layered+hash.2198.jar')}
+for baseline in ('generated-game-checksums.json', 'generated-mod-checksums.json'):
+    generated = json.loads((root / 'gradle' / baseline).read_text(encoding='utf-8'))
+    assert generated['schemaVersion'] == 1 and generated['loom'] == '1.15.5'
+    expected_versions = {t['minecraft'] for t in targets if t['loader'] == 'fabric'
+                         and (baseline == 'generated-game-checksums.json' or t['apiFamily'] == 'legacy')}
+    assert set(generated['targets']) == expected_versions, baseline
+    for version, target in generated['targets'].items():
+        assert target['artifacts'], version
+        for artifact in target['artifacts']:
+            coordinate = tuple(artifact[k] for k in ('group', 'name', 'version', 'file'))
+            assert coordinate not in expected_trusts, coordinate
+            expected_trusts.add(coordinate)
+            assert artifact['entryCount'] > 0 and re.fullmatch('[0-9a-f]{64}', artifact['contentSha256'])
+            expected_path = '/'.join((artifact['group'].replace('.', '/'), artifact['name'], artifact['version'], artifact['file']))
+            assert artifact['path'] == expected_path
+            if baseline == 'generated-mod-checksums.json':
+                assert artifact['group'] == 'remapped.net.fabricmc.fabric-api'
+                group, name, revision = artifact['inputCoordinate'].split(':')
+                component = tree.find(f'v:components/v:component[@group="{group}"][@name="{name}"][@version="{revision}"]', namespace)
+                assert component is not None
+                checksum = component.find(f'v:artifact[@name="{artifact["inputFile"]}"]/v:sha256', namespace)
+                assert checksum is not None
+                assert artifact['inputSha256'] in {checksum.get('value'), *(x.get('value') for x in checksum)}
+trusts = tree.findall('v:configuration/v:trusted-artifacts/v:trust', namespace)
+assert all(t.get('regex', 'false') == 'false' for t in trusts), 'Generated-artifact trust must be exact'
+assert {tuple(t.get(k) for k in ('group', 'name', 'version', 'file')) for t in trusts} == expected_trusts
+assert len(trusts) == len(expected_trusts), 'Duplicate generated-artifact trust'
 print(f'{len(targets)} targets: explicit source ownership and synchronized metadata pins verified')
